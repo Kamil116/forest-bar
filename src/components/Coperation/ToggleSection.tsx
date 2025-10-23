@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {Box, Text, Stack, Title, Button, Group, useMantineTheme, Divider} from '@mantine/core';
+import {Box, Stack, Title, Button, Group, useMantineTheme} from '@mantine/core';
 import VacancyCards from "@/components/Coperation/VacancyCards/VacancyCards";
 import ProfileCards from './ProfileCards/ProfileCards';
 import Partnership from './Partnership';

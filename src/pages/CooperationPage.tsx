@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Group, Stack, Title, useMantineTheme} from "@mantine/core";
+import {Box, Stack, Title, useMantineTheme} from "@mantine/core";
 import {ToggleSection} from "@/components/Coperation/ToggleSection";
 import Advantages from "@/components/Coperation/Advantages/Advantages";
 
