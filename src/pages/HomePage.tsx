@@ -1,7 +1,16 @@
-import {Box, Button, Container, Group, Stack, Title, Image} from "@mantine/core";
+import {Box, Button, Container, Group, Stack, Title, Image, useMantineTheme} from "@mantine/core";
+
+const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+    }
+};
 
 
 export function HomePage() {
+    const theme = useMantineTheme();
+    
     return (
         <Box
             h="100vh"
@@ -18,7 +27,7 @@ export function HomePage() {
                     left={0}
                     w="100%"
                     p={30}
-                    bg="rgba(52, 33, 41, 1)" // semi-transparent background
+                    bg={theme.other.cardBackground}
                 >
                     <Container
                         h="100%"
@@ -30,16 +39,43 @@ export function HomePage() {
                         }}
                     >
                         <Group w="100%" justify="center" gap="xl">
-                            <Button variant="subtle" color="rgba(240, 173, 10, 1)" fz={40}>О нас</Button>
-                            <Button variant="subtle" color="rgba(240, 173, 10, 1)" fz={40}>Каталог</Button>
-                            {/* TODO разобраться со стандартными размера шрифтов Mantine*/}
+                            <Button 
+                                variant="subtle" 
+                                color={theme.other.buttonColor} 
+                                fz={40}
+                                onClick={() => scrollToSection('home-section')}
+                            >
+                                О нас
+                            </Button>
+                            <Button 
+                                variant="subtle" 
+                                color={theme.other.buttonColor} 
+                                fz={40}
+                                onClick={() => scrollToSection('cooperation-section')}
+                            >
+                                Сотрудничество
+                            </Button>
                             <Image
                                 src="/images/logo.svg"
                                 h={70} // FIXME костыль
                                 w={100} // FIXME костыль
                             />
-                            <Button variant="subtle" color="rgba(240, 173, 10, 1)" fz={40}>Команда</Button>
-                            <Button variant="subtle" color="rgba(240, 173, 10, 1)" fz={40}>Регистрация</Button>
+                            <Button 
+                                variant="subtle" 
+                                color={theme.other.buttonColor} 
+                                fz={40}
+                                onClick={() => scrollToSection('cooperation-section')}
+                            >
+                                Команда
+                            </Button>
+                            <Button 
+                                variant="subtle" 
+                                color={theme.other.buttonColor} 
+                                fz={40}
+                                onClick={() => scrollToSection('cooperation-section')}
+                            >
+                                Регистрация
+                            </Button>
                         </Group>
                     </Container>
                 </Box>
@@ -48,13 +84,22 @@ export function HomePage() {
                     <Title fw={400} order={1} fz={120} tt="uppercase" c="white">
                         богатства природы
                     </Title>
-                    <Title fw={400} order={2} fz={96} tt="uppercase">
+                    <Title fw={400} order={2} fz={96} tt="uppercase" c="rgb(255, 255, 255, 0.74)">
                         как часть жизни
                     </Title>
                 </Stack>
 
-                <Button size="xl" fz={40} fw={400} color="rgba(56, 52, 52, 0.53)" radius="xl"
-                        style={{width: '15%'}}>Каталог</Button>
+                <Button 
+                    size="xl" 
+                    fz={40} 
+                    fw={400} 
+                    color="rgba(56, 52, 52, 0.53)" 
+                    radius={theme.other.buttonRadius}
+                    style={{width: '15%'}}
+                    onClick={() => scrollToSection('cooperation-section')}
+                >
+                    Каталог
+                </Button>
             </Stack>
 
         </Box>
