@@ -50,7 +50,10 @@ function Header() {
                         variant="subtle"
                         color={theme.other.buttonColor}
                         fz={40}
-                        onClick={() => navigate('/')}
+                        onClick={() => {
+                            navigate('/');
+                            setTimeout(() => scrollToSection('about-us'), 100);
+                        }}
                     >
                         Команда
                     </Button>
