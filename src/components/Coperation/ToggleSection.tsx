@@ -1,5 +1,5 @@
-import {useState} from 'react';
-import {Box, Stack, Title, Button, Group, useMantineTheme} from '@mantine/core';
+import { useState } from 'react';
+import { Box, Stack, Title, Button, Group, useMantineTheme } from '@mantine/core';
 import VacancyCards from "@/components/Coperation/VacancyCards/VacancyCards";
 import ProfileCards from './ProfileCards/ProfileCards';
 import Partnership from './Partnership';
@@ -36,20 +36,22 @@ export function ToggleSection() {
                 </Button>
             </Group>
 
-            <Box mt="xl">
+            {/* // похоже на костыль, но ок  */}
+            <Box mt="xl" style={{ minHeight: '80vh' }} >
                 {value === 'job' && (
                     <Stack align="center" justify="center">
-                        <VacancyCards/>
+                        <VacancyCards />
                         <Title order={2} fz={theme.other.titleSize} fw={400} tt="uppercase"
-                               c={theme.other.customOrange}>
+                            c={theme.other.customOrange}>
                             Профили сотрудников
                         </Title>
-                        <ProfileCards/>
-
-                        <Footer/>
+                        <ProfileCards />
+                        <Footer />
                     </Stack>
                 )}
-                {value === 'cooperation' && <Partnership/>}
+                {value === 'cooperation' && (
+                    <Partnership />
+                )}
             </Box>
         </Box>
     );

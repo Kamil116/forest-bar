@@ -5,7 +5,7 @@ function ProfileCard({leaderProfile}: {
     leaderProfile: { name: string, middleName: string, surname: string, phone: number }
 }) {
     const theme = useMantineTheme();
-    
+
     return (
         <Container
             size="sm"
@@ -16,7 +16,7 @@ function ProfileCard({leaderProfile}: {
         >
             <Stack align="center">
                 <Image
-                    src="/images/home-bg.jpg"
+                    src={`${import.meta.env.BASE_URL}/images/home-bg.jpg`}
                     alt="Profile"
                     h={120}
                     radius="xl"
@@ -24,15 +24,16 @@ function ProfileCard({leaderProfile}: {
                         objectFit: 'cover',
                     }}
                 />
-                <Text c={theme.other.customOrange} tt="uppercase" fz={34} fw={700}>{leaderProfile.name} {leaderProfile.surname} {leaderProfile.middleName}</Text>
+                <Text c={theme.other.customOrange} tt="uppercase" fz={34}
+                      fw={700}>{leaderProfile.name} {leaderProfile.surname} {leaderProfile.middleName}</Text>
                 <Text c={theme.other.customOrange} tt="uppercase" fz={34}>Конакты:</Text>
-                <Text c={theme.other.customOrange} fz={34} >{leaderProfile.phone}</Text>
-                <Button 
-                    mt="md" 
-                    color={theme.other.customOrange} 
-                    radius={theme.other.buttonRadius} 
-                    fz={34} 
-                    fw={500} 
+                <Text c={theme.other.customOrange} fz={34}>{leaderProfile.phone}</Text>
+                <Button
+                    mt="md"
+                    color={theme.other.customOrange}
+                    radius={theme.other.buttonRadius}
+                    fz={34}
+                    fw={500}
                     w="fit-content"
                     px="xl"
                 >

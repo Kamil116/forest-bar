@@ -3,10 +3,10 @@
   "private": true,
   "type": "module",
   "version": "0.0.0",
-  "homepage": "https://Kamil116.github.io/forest-bar",
+  "homepage": "https://kamil116.github.io/forest-bar/",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
@@ -24,9 +24,13 @@
   },
   "dependencies": {
     "@mantine/core": "8.3.4",
+    "@mantine/form": "^8.3.5",
     "@mantine/hooks": "8.3.4",
+    "@tabler/icons-react": "^3.35.0",
+    "leaflet": "^1.9.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-leaflet": "^5.0.0",
     "react-router-dom": "^7.9.4"
   },
   "devDependencies": {

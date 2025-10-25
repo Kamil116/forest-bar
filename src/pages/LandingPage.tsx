@@ -16,20 +16,13 @@ export function LandingPage() {
 
     return (
         <Box>
-            {/* Секция 1: Главная страница */}
             <Box id="home-section">
                 <HomePage />
             </Box>
             
-            {/* Секция 2: Сотрудничество */}
             <Box id="cooperation-section">
                 <CooperationPage />
             </Box>
-            
-            {/* Здесь можно добавить другие страницы */}
-            {/* <Box id="other-section">
-                <OtherPage />
-            </Box> */}
         </Box>
     );
 }

@@ -1,0 +1,54 @@
+.scrollbar {
+    &,
+    &:hover {
+        background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
+    }
+
+    &[data-orientation='vertical'] .thumb {
+        background-color: rgba(219, 166, 25, 1);
+    }
+
+    &[data-orientation='horizontal'] .thumb {
+        background-color: rgba(219, 166, 25, 1);
+    }
+}
+
+.responsiveGroup {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+}
+
+.vendorBox {
+    height: 70vh;
+
+    @media (max-width: 768px) {
+        height: 50vh;
+        min-height: 400px;
+    }
+}
+
+.mapBox {
+    height: 70vh;
+
+    @media (max-width: 768px) {
+        height: 60vh;
+        min-height: 400px;
+    }
+}
+
+.title {
+    font-size: 60px;
+
+    @media (max-width: 768px) {
+        font-size: 36px;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 28px;
+    }
+}

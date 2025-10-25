@@ -1,11 +1,11 @@
-import {Box, Text, Stack, TextInput, Textarea, Button, Group, Image, useMantineTheme} from '@mantine/core';
+import { Box, Text, Stack, TextInput, Textarea, Button, Group, Image, useMantineTheme } from '@mantine/core';
 
 function Partnership() {
     const theme = useMantineTheme();
     return (
         <Box>
-            <Box style={{display: 'flex', gap: '16px', width: '100%'}}>
-                <Box style={{flex: '0 0 calc(60% - 8px)'}}>
+            <Box style={{ display: 'flex', gap: '16px', width: '100%' }}>
+                <Box style={{ flex: '0 0 calc(60% - 8px)' }}>
                     <Text ta="center" fz={theme.other.titleSize} fw={700} c="white" mb="xl" tt="uppercase">
                         Заполни анкету на партнерство и стань частью коллектива
                     </Text>
@@ -94,7 +94,7 @@ function Partnership() {
                 </Box>
 
                 <Image
-                    src="/images/dawd.png"
+                    src={`${import.meta.env.BASE_URL}/images/dawd.png`}
                     alt="Partnership"
                     style={{
                         flex: '0 0 calc(40% - 8px)',
