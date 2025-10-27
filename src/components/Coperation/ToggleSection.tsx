@@ -3,7 +3,7 @@ import { Box, Stack, Title, Button, Group, useMantineTheme } from '@mantine/core
 import VacancyCards from "@/components/Coperation/VacancyCards/VacancyCards";
 import ProfileCards from './ProfileCards/ProfileCards';
 import Partnership from './Partnership';
-import Footer from "@/components/Footer/Footer";
+import Footer from "@/components/shared/Footer";
 
 export function ToggleSection() {
     const [value, setValue] = useState('job');

@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import Header from "@/components/shared/Header";
 import { Box, Button, Container, Stack, TextInput, Badge, useMantineTheme, Group } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import classes from "./Login.module.css";

@@ -1,23 +1,61 @@
-import {createBrowserRouter, RouterProvider} from 'react-router-dom';
-import {LandingPage} from "@/pages/LandingPage";
-import Registration from "@/pages/Registration";
-import Login from "@/pages/Login";
-import VendorsPage from "@/pages/VendorsPage";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { LandingPage } from "@/pages/LandingPage";
+import Registration from "@/pages/Registration/Registration";
+import Login from "@/pages/Login/Login";
+import Catalog from '@/pages/Catalog/Catalog';
+
+// Admin imports
+import AdminLayout from '@/components/Admin/AdminLayout';
+import Dashboard from '@/pages/Admin/Dashboard';
+import ProductsManagement from '@/pages/Admin/ProductsManagement';
+import VendorsManagement from '@/pages/Admin/VendorsManagement';
+import EmployeesManagement from '@/pages/Admin/EmployeesManagement';
+import VacanciesManagement from '@/pages/Admin/VacanciesManagement';
 
 const router = createBrowserRouter(
     [
         {
             path: '/',
-            element: <LandingPage/>,
+            element: <LandingPage />,
             index: true, // ✅ ensures "/" maps correctly
         },
         {
             path: '/registration',
-            element: <Registration/>,
+            element: <Registration />,
         },
         {
             path: '/login',
-            element: <Login/>,
+            element: <Login />,
+        },
+        {
+            path: '/catalog',
+            element: <Catalog />,
+        },
+        {
+            path: '/admin',
+            element: <AdminLayout />,
+            children: [
+                {
+                    index: true,
+                    element: <Dashboard />,
+                },
+                {
+                    path: 'products',
+                    element: <ProductsManagement />,
+                },
+                {
+                    path: 'vendors',
+                    element: <VendorsManagement />,
+                },
+                {
+                    path: 'employees',
+                    element: <EmployeesManagement />,
+                },
+                {
+                    path: 'vacancies',
+                    element: <VacanciesManagement />,
+                },
+            ],
         },
     ],
     {
@@ -26,5 +64,5 @@ const router = createBrowserRouter(
 );
 
 export function Router() {
-    return <RouterProvider router={router}/>;
+    return <RouterProvider router={router} />;
 }

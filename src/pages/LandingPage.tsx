@@ -1,8 +1,9 @@
-import React, {useEffect} from 'react';
-import {Box} from '@mantine/core';
-import {HomePage} from './HomePage';
+import React, { useEffect } from 'react';
+import { Box } from '@mantine/core';
+import { HomePage } from './HomePage';
 import CooperationPage from './CooperationPage';
-import VendorsPage from "@/pages/VendorsPage";
+import VendorsPage from "@/pages/VendorsPage/VendorsPage";
+import Catalog from './Catalog/Catalog';
 
 export function LandingPage() {
     useEffect(() => {
@@ -18,13 +19,13 @@ export function LandingPage() {
     return (
         <Box>
             <Box id="home-section">
-                <HomePage/>
+                <HomePage />
             </Box>
             <Box id="about-us">
-                <VendorsPage/>
+                <VendorsPage />
             </Box>
             <Box id="cooperation-section">
-                <CooperationPage/>
+                <CooperationPage />
             </Box>
         </Box>
     );

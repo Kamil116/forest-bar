@@ -1,5 +1,5 @@
-import {useState} from 'react';
-import {Box, Text, Stack, Group, ScrollArea, Card, useMantineTheme, Container} from '@mantine/core';
+import { useState } from 'react';
+import { Box, Text, Stack, Group, ScrollArea, Card, useMantineTheme, Container } from '@mantine/core';
 import classes from './VendorsPage.module.css';
 
 const vendors = [
@@ -52,7 +52,7 @@ const vendors = [
         phone: '+7 (351) 789-0123',
         coords: [55.1644, 61.4368]
     },
-    {id: 8, title: 'Омск', address: 'Омск, улица Ленина, 8', phone: '+7 (3812) 890-1234', coords: [54.9885, 73.3242]},
+    { id: 8, title: 'Омск', address: 'Омск, улица Ленина, 8', phone: '+7 (3812) 890-1234', coords: [54.9885, 73.3242] },
     {
         id: 9,
         title: 'Самара',
@@ -93,7 +93,7 @@ export default function VendorsPage() {
                         }}
                         bg={theme.other.cardBackground}
                     >
-                        <Box p="lg" style={{borderBottom: `1px solid ${theme.other.customYellow}`}}>
+                        <Box p="lg" style={{ borderBottom: `1px solid ${theme.other.customYellow}` }}>
                             <Text fz={24} fw={700} c="white" tt="uppercase">Регионы</Text>
                         </Box>
                         <ScrollArea
@@ -134,11 +134,11 @@ export default function VendorsPage() {
                                         onClick={() => setSelected(v)}
                                     >
                                         <Text fw={700}
-                                              c={selected?.id === v.id ? theme.other.darkBackground : 'white'}>{v.title}</Text>
+                                            c={selected?.id === v.id ? theme.other.darkBackground : 'white'}>{v.title}</Text>
                                         <Text size="sm"
-                                              c={selected?.id === v.id ? theme.other.darkBackground : 'rgba(255,255,255,0.7)'}>{v.address}</Text>
+                                            c={selected?.id === v.id ? theme.other.darkBackground : 'rgba(255,255,255,0.7)'}>{v.address}</Text>
                                         <Text size="sm"
-                                              c={selected?.id === v.id ? theme.other.darkBackground : 'rgba(255,255,255,0.7)'}>{v.phone}</Text>
+                                            c={selected?.id === v.id ? theme.other.darkBackground : 'rgba(255,255,255,0.7)'}>{v.phone}</Text>
                                     </Card>
                                 ))}
                             </Stack>
@@ -147,12 +147,12 @@ export default function VendorsPage() {
 
                     <Box
                         className={classes.mapBox}
-                        style={{borderRadius: theme.other.cardRadius, flex: 2}}
+                        style={{ borderRadius: theme.other.cardRadius, flex: 2 }}
                         p="md"
                         bg={theme.other.cardBackground}
                     >
                         <iframe src={mapUrl} width="100%" height="100%" frameBorder="0"
-                                style={{borderRadius: theme.other.cardRadius}}/>
+                            style={{ borderRadius: theme.other.cardRadius }} />
                     </Box>
                 </Box>
             </Stack>

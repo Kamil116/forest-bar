@@ -1,11 +1,12 @@
 import { Box, Button, Stack, Title, useMantineTheme } from "@mantine/core";
 import { scrollToSection } from "@/utils/scrollToSection";
-import Header from "@/components/Header";
+import Header from "@/components/shared/Header";
+import { useNavigate } from "react-router-dom";
 
 
 export function HomePage() {
     const theme = useMantineTheme();
-
+    const navigate = useNavigate();
     return (
         <Box
             h="100vh"
@@ -34,7 +35,7 @@ export function HomePage() {
                     color="rgba(56, 52, 52, 0.53)"
                     radius={theme.other.buttonRadius}
                     style={{ width: '15%' }}
-                    onClick={() => scrollToSection('cooperation-section')}
+                    onClick={() => navigate('/catalog')}
                 >
                     Каталог
                 </Button>

@@ -8,7 +8,7 @@ function Header() {
     return (
         <Box
             w="100%"
-            bg={theme.other.cardBackground}
+            bg={theme.other.darkBackground}
         >
             <Container
                 h="100%"
@@ -32,12 +32,9 @@ function Header() {
                         variant="subtle"
                         color={theme.other.buttonColor}
                         fz={40}
-                        onClick={() => {
-                            navigate('/');
-                            setTimeout(() => scrollToSection('cooperation-section'), 100);
-                        }}
+                        onClick={() => navigate('/catalog')}
                     >
-                        Сотрудничество
+                        Каталог
                     </Button>
                     <Image
                         src={`${import.meta.env.BASE_URL}/images/logo.svg`}
@@ -72,6 +69,14 @@ function Header() {
                         onClick={() => navigate('/registration')}
                     >
                         Регистрация
+                    </Button>
+                    <Button
+                        variant="subtle"
+                        color="red"
+                        fz={40}
+                        onClick={() => navigate('/admin')}
+                    >
+                        Админка
                     </Button>
                 </Group>
             </Container>
