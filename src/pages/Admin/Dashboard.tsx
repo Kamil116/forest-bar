@@ -87,61 +87,61 @@ export default function Dashboard() {
                 <Group justify="space-between" align="center">
                     <div>
                         <Title order={1} c="white" fw={700} size="42px">
-                            Admin Dashboard
+                            Панель управления
                         </Title>
                         <Text c="dimmed" size="lg" mt="xs">
-                            Overview of your business metrics
+                            Обзор бизнес-показателей
                         </Text>
                     </div>
                 </Group>
 
                 <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing="lg">
                     <StatCard
-                        title="Total Products"
+                        title="Всего товаров"
                         value={totalProducts}
                         icon={<IconShoppingBag size={40} />}
                         color={theme.other.customOrange}
-                        description="Available in catalog"
+                        description="Доступно в каталоге"
                     />
 
                     <StatCard
-                        title="Average Price"
+                        title="Средняя цена"
                         value={`₽${averagePrice}`}
                         icon={<IconCoin size={40} />}
                         color={theme.other.customYellow}
-                        description="Per product"
+                        description="За товар"
                     />
 
                     <StatCard
-                        title="Partners"
+                        title="Партнеры"
                         value={totalVendors}
                         icon={<IconBuilding size={40} />}
                         color="#4ECDC4"
-                        description="Active vendors"
+                        description="Активных поставщиков"
                     />
 
                     <StatCard
-                        title="Employees"
+                        title="Сотрудники"
                         value={`${activeEmployees}/${totalEmployees}`}
                         icon={<IconUsers size={40} />}
                         color="#95E1D3"
-                        description="Active staff"
+                        description="Активный персонал"
                     />
 
                     <StatCard
-                        title="Open Vacancies"
+                        title="Открытые вакансии"
                         value={`${openVacancies}/${totalVacancies}`}
                         icon={<IconBriefcase size={40} />}
                         color="#F38181"
-                        description="Currently hiring"
+                        description="Сейчас набираем"
                     />
 
                     <StatCard
-                        title="Salary Expense"
+                        title="Расходы на зарплату"
                         value={`₽${(totalSalaryExpense / 1000).toFixed(0)}K`}
                         icon={<IconTrendingUp size={40} />}
                         color="#AA96DA"
-                        description="Monthly total"
+                        description="В месяц всего"
                     />
                 </SimpleGrid>
 
@@ -149,29 +149,29 @@ export default function Dashboard() {
                     <Paper p="xl" radius={theme.other.cardRadius} bg={theme.other.darkBackground}>
                         <Stack gap="md">
                             <Title order={3} c="white" size="24px">
-                                Quick Stats
+                                Быстрая статистика
                             </Title>
                             <Stack gap="sm">
                                 <Group justify="space-between">
-                                    <Text c="dimmed">Products per vendor (avg)</Text>
+                                    <Text c="dimmed">Товаров на поставщика (средн.)</Text>
                                     <Text c="white" fw={600}>
                                         {(totalProducts / totalVendors).toFixed(1)}
                                     </Text>
                                 </Group>
                                 <Group justify="space-between">
-                                    <Text c="dimmed">Employees per department (avg)</Text>
+                                    <Text c="dimmed">Сотрудников на отдел (средн.)</Text>
                                     <Text c="white" fw={600}>
                                         {(totalEmployees / new Set(mockEmployees.map(e => e.department)).size).toFixed(1)}
                                     </Text>
                                 </Group>
                                 <Group justify="space-between">
-                                    <Text c="dimmed">Vacancy fill rate</Text>
+                                    <Text c="dimmed">Закрытие вакансий</Text>
                                     <Text c="white" fw={600}>
                                         {((1 - openVacancies / totalVacancies) * 100).toFixed(0)}%
                                     </Text>
                                 </Group>
                                 <Group justify="space-between">
-                                    <Text c="dimmed">Employee activity rate</Text>
+                                    <Text c="dimmed">Активность сотрудников</Text>
                                     <Text c="white" fw={600}>
                                         {((activeEmployees / totalEmployees) * 100).toFixed(0)}%
                                     </Text>
@@ -183,31 +183,31 @@ export default function Dashboard() {
                     <Paper p="xl" radius={theme.other.cardRadius} bg={theme.other.darkBackground}>
                         <Stack gap="md">
                             <Title order={3} c="white" size="24px">
-                                Recent Activity
+                                Последняя активность
                             </Title>
                             <Stack gap="sm">
                                 <Group>
                                     <IconShoppingBag size={20} color={theme.other.customOrange} />
                                     <Text c="dimmed" size="sm">
-                                        {totalProducts} products in catalog
+                                        {totalProducts} товаров в каталоге
                                     </Text>
                                 </Group>
                                 <Group>
                                     <IconBuilding size={20} color="#4ECDC4" />
                                     <Text c="dimmed" size="sm">
-                                        {totalVendors} active partnerships
+                                        {totalVendors} активных партнерств
                                     </Text>
                                 </Group>
                                 <Group>
                                     <IconUsers size={20} color="#95E1D3" />
                                     <Text c="dimmed" size="sm">
-                                        {mockEmployees.filter(e => e.status === 'vacation').length} employees on vacation
+                                        {mockEmployees.filter(e => e.status === 'vacation').length} сотрудников в отпуске
                                     </Text>
                                 </Group>
                                 <Group>
                                     <IconBriefcase size={20} color="#F38181" />
                                     <Text c="dimmed" size="sm">
-                                        {openVacancies} positions actively recruiting
+                                        {openVacancies} позиций активно набираем
                                     </Text>
                                 </Group>
                             </Stack>

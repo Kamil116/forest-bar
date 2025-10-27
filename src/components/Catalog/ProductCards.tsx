@@ -3,6 +3,7 @@ import { useMediaQuery } from "@mantine/hooks";
 import ProductCard from "./ProductCard";
 import { useState } from "react";
 import { mockProducts } from "@/data/mockProducts";
+import paginationClasses from "@/styles/pagination.module.css";
 
 function ProductCards() {
     const [activePage, setActivePage] = useState(1);
@@ -64,6 +65,9 @@ function ProductCards() {
                         onChange={handlePageChange}
                         size="lg"
                         radius="md"
+                        classNames={{
+                            control: paginationClasses.paginationControl,
+                        }}
                     />
                 </Center>
             )}

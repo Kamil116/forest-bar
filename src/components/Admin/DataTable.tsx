@@ -12,10 +12,12 @@ import {
     Text,
     Stack,
     useMantineTheme,
-    Flex,
     Badge,
+    Title,
 } from '@mantine/core';
-import { IconSearch, IconEdit, IconTrash, IconPlus } from '@tabler/icons-react';
+import { IconSearch, IconEdit, IconTrash, IconPlus, IconArrowUp, IconArrowDown, IconSelector, IconFilterOff } from '@tabler/icons-react';
+import classes from './DataTable.module.css';
+import paginationClasses from '@/styles/pagination.module.css';
 
 export interface Column<T> {
     key: keyof T | string;
@@ -103,30 +105,18 @@ export default function DataTable<T extends { id: number }>({
     return (
         <Stack gap="md">
             <Paper p="lg" radius={theme.other.cardRadius} bg={theme.other.darkBackground}>
-                <Flex
-                    direction={{ base: 'column', sm: 'row' }}
-                    gap="md"
-                    justify="space-between"
-                    align={{ base: 'stretch', sm: 'center' }}
-                >
+                <Group gap="md" justify="space-between">
                     <TextInput
-                        placeholder="Search..."
+                        placeholder="Поиск..."
                         leftSection={<IconSearch size={16} />}
                         value={search}
                         onChange={(e) => {
                             setSearch(e.currentTarget.value);
                             setPage(1);
                         }}
-                        style={{ flex: 1, maxWidth: '400px' }}
-                        styles={{
-                            input: {
-                                backgroundColor: theme.other.cardBackground,
-                                color: 'white',
-                                borderColor: theme.other.customYellow,
-                                '&:focus': {
-                                    borderColor: theme.other.customOrange,
-                                },
-                            },
+                        classNames={{
+                            root: classes.searchWrapper,
+                            input: classes.searchInput,
                         }}
                     />
                     <Group gap="sm">
@@ -138,14 +128,10 @@ export default function DataTable<T extends { id: number }>({
                             }}
                             data={itemsPerPageOptions.map(option => ({
                                 value: String(option),
-                                label: `${option} per page`,
+                                label: `${option} на странице`,
                             }))}
-                            styles={{
-                                input: {
-                                    backgroundColor: theme.other.cardBackground,
-                                    color: 'white',
-                                    borderColor: theme.other.customYellow,
-                                },
+                            classNames={{
+                                input: classes.selectInput,
                             }}
                         />
                         <Button
@@ -153,76 +139,83 @@ export default function DataTable<T extends { id: number }>({
                             color={theme.other.customOrange}
                             onClick={onAdd}
                         >
-                            Add New
+                            Добавить
                         </Button>
                     </Group>
-                </Flex>
+                </Group>
             </Paper>
 
             <Paper p="lg" radius={theme.other.cardRadius} bg={theme.other.darkBackground}>
                 <Stack gap="md">
-                    <Group justify="space-between">
-                        <Text size="lg" fw={700} c="white">
+                    <Group justify="space-between" wrap="wrap">
+                        <Title order={2} className={classes.tableTitle}>
                             {title}
-                        </Text>
-                        <Badge color={theme.other.customYellow} size="lg">
-                            {filteredData.length} total
-                        </Badge>
+                        </Title>
+                        <Group gap="sm">
+                            {sortBy && (
+                                <Button
+                                    leftSection={<IconFilterOff size={16} />}
+                                    onClick={() => {
+                                        setSortBy(null);
+                                        setSortOrder('asc');
+                                        setPage(1);
+                                    }}
+                                    color={theme.other.customYellow}
+                                >
+                                    Сбросить сортировку
+                                </Button>
+                            )}
+                            <Badge color={theme.other.customYellow} size="lg">
+                                Всего: {filteredData.length}
+                            </Badge>
+                        </Group>
                     </Group>
 
                     <ScrollArea>
                         <Table
-                            striped
                             highlightOnHover
-                            styles={{
-                                th: {
-                                    backgroundColor: theme.other.cardBackground,
-                                    color: theme.other.customYellow,
-                                    fontWeight: 700,
-                                    fontSize: '14px',
-                                    textTransform: 'uppercase',
-                                    padding: '16px',
-                                },
-                                td: {
-                                    color: 'white',
-                                    padding: '12px 16px',
-                                },
-                                tr: {
-                                    '&:hover': {
-                                        backgroundColor: theme.other.cardBackground,
-                                    },
-                                },
+                            classNames={{
+                                th: classes.tableHeader,
+                                td: classes.tableCell,
+                                tr: classes.tableRow,
                             }}
                         >
                             <Table.Thead>
                                 <Table.Tr>
                                     {columns.map((column) => (
-                                        <Table.Th
-                                            key={String(column.key)}
-                                            style={{
-                                                cursor: column.sortable ? 'pointer' : 'default',
-                                            }}
-                                            onClick={() => column.sortable && handleSort(String(column.key))}
-                                        >
-                                            <Group gap={4}>
+                                        <Table.Th key={String(column.key)}>
+                                            <Group gap={8} wrap="nowrap">
                                                 {column.label}
-                                                {column.sortable && sortBy === column.key && (
-                                                    <Text size="xs">
-                                                        {sortOrder === 'asc' ? '↑' : '↓'}
-                                                    </Text>
+                                                {column.sortable && (
+                                                    <ActionIcon
+                                                        variant="subtle"
+                                                        size="sm"
+                                                        color={sortBy === column.key ? theme.other.customYellow : 'gray'}
+                                                        onClick={() => handleSort(String(column.key))}
+                                                    >
+                                                        {sortBy === column.key ? (
+                                                            sortOrder === 'asc' ? (
+                                                                <IconArrowUp size={16} />
+                                                            ) : (
+                                                                <IconArrowDown size={16} />
+                                                            )
+                                                        ) : (
+                                                            <IconSelector size={16} />
+                                                        )}
+                                                    </ActionIcon>
                                                 )}
                                             </Group>
                                         </Table.Th>
                                     ))}
-                                    <Table.Th style={{ width: '120px' }}>Actions</Table.Th>
+                                    <Table.Th className={classes.actionsColumn}>Действия</Table.Th>
                                 </Table.Tr>
                             </Table.Thead>
                             <Table.Tbody>
                                 {paginatedData.length === 0 ? (
                                     <Table.Tr>
                                         <Table.Td colSpan={columns.length + 1}>
-                                            <Text ta="center" c="dimmed" py="xl">
-                                                No data found
+                                            <Text className={classes.emptyState} c="dimmed">
+                                                Данные не найдены
                                             </Text>
                                         </Table.Td>
                                     </Table.Tr>
@@ -271,14 +264,8 @@ export default function DataTable<T extends { id: number }>({
                                 onChange={setPage}
                                 total={totalPages}
                                 color={theme.other.customYellow}
-                                styles={{
-                                    control: {
-                                        color: 'white',
-                                        '&[data-active]': {
-                                            backgroundColor: theme.other.customYellow,
-                                            color: theme.other.darkBackground,
-                                        },
-                                    },
+                                classNames={{
+                                    control: paginationClasses.paginationControl,
                                 }}
                             />
                         </Group>

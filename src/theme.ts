@@ -16,6 +16,7 @@ export const theme = createTheme({
         // Typography
         titleSize: 48,
         buttonSize: 24,
+        textSize: 16,
         
         // Spacing
         cardPadding: 20,

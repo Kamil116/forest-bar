@@ -18,6 +18,7 @@ import { DateInput } from '@mantine/dates';
 import DataTable, { Column } from '@/components/Admin/DataTable';
 import { Employee } from '@/types/employee';
 import { mockEmployees } from '@/data/mockEmployees';
+import classes from './EmployeesManagement.module.css';
 
 export default function EmployeesManagement() {
     const theme = useMantineTheme();
@@ -40,12 +41,12 @@ export default function EmployeesManagement() {
             status: 'active',
         },
         validate: {
-            name: (value) => (value.length < 2 ? 'Name must be at least 2 characters' : null),
-            surname: (value) => (value.length < 2 ? 'Surname must be at least 2 characters' : null),
-            phone: (value) => (value.length < 10 ? 'Phone must be valid' : null),
-            email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-            position: (value) => (value.length < 3 ? 'Position must be at least 3 characters' : null),
-            department: (value) => (value.length < 3 ? 'Department must be at least 3 characters' : null),
+            name: (value) => (value.length < 2 ? 'Имя должно содержать минимум 2 символа' : null),
+            surname: (value) => (value.length < 2 ? 'Фамилия должна содержать минимум 2 символа' : null),
+            phone: (value) => (value.length < 10 ? 'Телефон должен быть действительным' : null),
+            email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Неверный email'),
+            position: (value) => (value.length < 3 ? 'Должность должна содержать минимум 3 символа' : null),
+            department: (value) => (value.length < 3 ? 'Отдел должен содержать минимум 3 символа' : null),
         },
     });
 
@@ -74,11 +75,11 @@ export default function EmployeesManagement() {
     };
 
     const handleDelete = (employee: Employee) => {
-        if (window.confirm(`Are you sure you want to delete "${employee.name} ${employee.surname}"?`)) {
+        if (window.confirm(`Вы уверены, что хотите удалить "${employee.name} ${employee.surname}"?`)) {
             setEmployees(employees.filter((e) => e.id !== employee.id));
             notifications.show({
-                title: 'Employee deleted',
-                message: `${employee.name} ${employee.surname} has been removed`,
+                title: 'Сотрудник удален',
+                message: `${employee.name} ${employee.surname} был удален`,
                 color: 'red',
             });
         }
@@ -92,8 +93,8 @@ export default function EmployeesManagement() {
                 )
             );
             notifications.show({
-                title: 'Employee updated',
-                message: `${values.name} ${values.surname} has been updated successfully`,
+                title: 'Сотрудник обновлен',
+                message: `${values.name} ${values.surname} был успешно обновлен`,
                 color: 'green',
             });
         } else {
@@ -103,8 +104,8 @@ export default function EmployeesManagement() {
             };
             setEmployees([...employees, newEmployee]);
             notifications.show({
-                title: 'Employee added',
-                message: `${values.name} ${values.surname} has been added successfully`,
+                title: 'Сотрудник добавлен',
+                message: `${values.name} ${values.surname} был успешно добавлен`,
                 color: 'green',
             });
         }
@@ -133,37 +134,37 @@ export default function EmployeesManagement() {
         },
         {
             key: 'name',
-            label: 'Full Name',
+            label: 'ФИО',
             sortable: true,
             render: (value, row) => `${row.surname} ${row.name} ${row.middleName}`,
         },
         {
             key: 'position',
-            label: 'Position',
+            label: 'Должность',
             sortable: true,
         },
         {
             key: 'department',
-            label: 'Department',
+            label: 'Отдел',
             sortable: true,
             render: (value) => <Badge color={theme.other.customYellow}>{value}</Badge>,
         },
         {
             key: 'phone',
-            label: 'Phone',
+            label: 'Телефон',
         },
         {
             key: 'email',
             label: 'Email',
             render: (value) => (
-                <span style={{ maxWidth: '180px', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                <span className={classes.descriptionText}>
                     {value}
                 </span>
             ),
         },
         {
             key: 'status',
-            label: 'Status',
+            label: 'Статус',
             sortable: true,
             render: (value) => (
                 <Badge color={getStatusColor(value)} variant="filled">
@@ -173,17 +174,17 @@ export default function EmployeesManagement() {
         },
         {
             key: 'salary',
-            label: 'Salary',
+            label: 'Зарплата',
             sortable: true,
-            render: (value) => (value ? `₽${value.toLocaleString()}` : 'N/A'),
+            render: (value) => (value ? `₽${value.toLocaleString()}` : 'Н/Д'),
         },
     ];
 
     return (
-        <Container size="xl" p="xl">
+        <Container size="xl" className={classes.container}>
             <Stack gap="xl">
-                <Title order={1} c="white" fw={700} size="42px">
-                    Employees Management
+                <Title order={1} className={classes.title}>
+                    Управление сотрудниками
                 </Title>
 
                 <DataTable
@@ -193,62 +194,56 @@ export default function EmployeesManagement() {
                     onDelete={handleDelete}
                     onAdd={handleAdd}
                     searchKeys={['name', 'surname', 'position', 'department', 'email']}
-                    title="Company Employees"
+                    title="Сотрудники компании"
                 />
 
                 <Modal
                     opened={opened}
                     onClose={() => setOpened(false)}
                     title={
-                        <Title order={3} c="white">
-                            {editingEmployee ? 'Edit Employee' : 'Add New Employee'}
+                        <Title order={2} c='white'>
+                            {editingEmployee ? 'Редактировать сотрудника' : 'Добавить нового сотрудника'}
                         </Title>
                     }
                     size="lg"
-                    styles={{
-                        content: {
-                            backgroundColor: theme.other.darkBackground,
-                        },
-                        header: {
-                            backgroundColor: theme.other.darkBackground,
-                        },
+                    centered
+                    overlayProps={{
+                        backgroundOpacity: 0.55,
+                        blur: 3,
+                    }}
+                    classNames={{
+                        content: classes.modalContent,
+                        body: classes.modalBody,
+                        header: classes.modalHeader,
                     }}
                 >
                     <form onSubmit={form.onSubmit(handleSubmit)}>
                         <Stack gap="md">
                             <Group grow>
                                 <TextInput
-                                    label="Name"
+                                    label="Имя"
                                     placeholder="Иван"
                                     required
                                     {...form.getInputProps('name')}
-                                    styles={{
-                                        label: { color: 'white' },
-                                        input: {
-                                            backgroundColor: theme.other.cardBackground,
-                                            color: 'white',
-                                            borderColor: theme.other.customYellow,
-                                        },
+                                    classNames={{
+                                        label: classes.inputLabel,
+                                        input: classes.inputField,
                                     }}
                                 />
                                 <TextInput
-                                    label="Surname"
+                                    label="Фамилия"
                                     placeholder="Петров"
                                     required
                                     {...form.getInputProps('surname')}
-                                    styles={{
-                                        label: { color: 'white' },
-                                        input: {
-                                            backgroundColor: theme.other.cardBackground,
-                                            color: 'white',
-                                            borderColor: theme.other.customYellow,
-                                        },
+                                    classNames={{
+                                        label: classes.inputLabel,
+                                        input: classes.inputField,
                                     }}
                                 />
                             </Group>
 
                             <TextInput
-                                label="Middle Name"
+                                label="Отчество"
                                 placeholder="Сергеевич"
                                 required
                                 {...form.getInputProps('middleName')}
@@ -264,17 +259,13 @@ export default function EmployeesManagement() {
 
                             <Group grow>
                                 <TextInput
-                                    label="Phone"
+                                    label="Телефон"
                                     placeholder="+7 (XXX) XXX-XXXX"
                                     required
                                     {...form.getInputProps('phone')}
-                                    styles={{
-                                        label: { color: 'white' },
-                                        input: {
-                                            backgroundColor: theme.other.cardBackground,
-                                            color: 'white',
-                                            borderColor: theme.other.customYellow,
-                                        },
+                                    classNames={{
+                                        label: classes.inputLabel,
+                                        input: classes.inputField,
                                     }}
                                 />
                                 <TextInput
@@ -282,87 +273,67 @@ export default function EmployeesManagement() {
                                     placeholder="employee@forestbar.ru"
                                     required
                                     {...form.getInputProps('email')}
-                                    styles={{
-                                        label: { color: 'white' },
-                                        input: {
-                                            backgroundColor: theme.other.cardBackground,
-                                            color: 'white',
-                                            borderColor: theme.other.customYellow,
-                                        },
+                                    classNames={{
+                                        label: classes.inputLabel,
+                                        input: classes.inputField,
                                     }}
                                 />
                             </Group>
 
                             <Group grow>
                                 <TextInput
-                                    label="Position"
-                                    placeholder="Manager"
+                                    label="Должность"
+                                    placeholder="Менеджер"
                                     required
                                     {...form.getInputProps('position')}
-                                    styles={{
-                                        label: { color: 'white' },
-                                        input: {
-                                            backgroundColor: theme.other.cardBackground,
-                                            color: 'white',
-                                            borderColor: theme.other.customYellow,
-                                        },
+                                    classNames={{
+                                        label: classes.inputLabel,
+                                        input: classes.inputField,
                                     }}
                                 />
                                 <TextInput
-                                    label="Department"
-                                    placeholder="Sales"
+                                    label="Отдел"
+                                    placeholder="Продажи"
                                     required
                                     {...form.getInputProps('department')}
-                                    styles={{
-                                        label: { color: 'white' },
-                                        input: {
-                                            backgroundColor: theme.other.cardBackground,
-                                            color: 'white',
-                                            borderColor: theme.other.customYellow,
-                                        },
+                                    classNames={{
+                                        label: classes.inputLabel,
+                                        input: classes.inputField,
                                     }}
                                 />
                             </Group>
 
                             <Group grow>
                                 <TextInput
-                                    label="Hire Date"
+                                    label="Дата найма"
                                     placeholder="YYYY-MM-DD"
                                     required
                                     {...form.getInputProps('hireDate')}
-                                    styles={{
-                                        label: { color: 'white' },
-                                        input: {
-                                            backgroundColor: theme.other.cardBackground,
-                                            color: 'white',
-                                            borderColor: theme.other.customYellow,
-                                        },
+                                    classNames={{
+                                        label: classes.inputLabel,
+                                        input: classes.inputField,
                                     }}
                                 />
                                 <NumberInput
-                                    label="Salary (₽)"
+                                    label="Зарплата (₽)"
                                     placeholder="100000"
                                     min={0}
                                     {...form.getInputProps('salary')}
-                                    styles={{
-                                        label: { color: 'white' },
-                                        input: {
-                                            backgroundColor: theme.other.cardBackground,
-                                            color: 'white',
-                                            borderColor: theme.other.customYellow,
-                                        },
+                                    classNames={{
+                                        label: classes.inputLabel,
+                                        input: classes.inputField,
                                     }}
                                 />
                             </Group>
 
                             <Select
-                                label="Status"
-                                placeholder="Select status"
+                                label="Статус"
+                                placeholder="Выберите статус"
                                 required
                                 data={[
-                                    { value: 'active', label: 'Active' },
-                                    { value: 'inactive', label: 'Inactive' },
-                                    { value: 'vacation', label: 'On Vacation' },
+                                    { value: 'active', label: 'Активный' },
+                                    { value: 'inactive', label: 'Неактивный' },
+                                    { value: 'vacation', label: 'В отпуске' },
                                 ]}
                                 {...form.getInputProps('status')}
                                 styles={{
@@ -376,7 +347,7 @@ export default function EmployeesManagement() {
                             />
 
                             <TextInput
-                                label="Image URL (Optional)"
+                                label="URL изображения (необязательно)"
                                 placeholder="https://..."
                                 {...form.getInputProps('image_url')}
                                 styles={{
@@ -389,12 +360,12 @@ export default function EmployeesManagement() {
                                 }}
                             />
 
-                            <Group justify="flex-end" mt="md">
+                            <Group className={classes.buttonGroup}>
                                 <Button variant="outline" onClick={() => setOpened(false)}>
-                                    Cancel
+                                    Отмена
                                 </Button>
                                 <Button type="submit" color={theme.other.customOrange}>
-                                    {editingEmployee ? 'Update' : 'Create'}
+                                    {editingEmployee ? 'Обновить' : 'Создать'}
                                 </Button>
                             </Group>
                         </Stack>

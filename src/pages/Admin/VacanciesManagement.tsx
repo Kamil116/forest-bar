@@ -19,6 +19,7 @@ import { notifications } from '@mantine/notifications';
 import DataTable, { Column } from '@/components/Admin/DataTable';
 import { Vacancy } from '@/types/vacancy';
 import { mockVacancies } from '@/data/mockVacancies';
+import classes from './VacanciesManagement.module.css';
 
 export default function VacanciesManagement() {
     const theme = useMantineTheme();
@@ -41,12 +42,12 @@ export default function VacanciesManagement() {
             posted_date: new Date().toISOString().split('T')[0],
         },
         validate: {
-            title: (value) => (value.length < 3 ? 'Title must be at least 3 characters' : null),
-            city: (value) => (value.length < 2 ? 'City is required' : null),
-            department: (value) => (value.length < 3 ? 'Department must be at least 3 characters' : null),
-            description: (value) => (value.length < 20 ? 'Description must be at least 20 characters' : null),
-            conditions: (value) => (value.length === 0 ? 'At least one condition is required' : null),
-            requirements: (value) => (value.length === 0 ? 'At least one requirement is required' : null),
+            title: (value) => (value.length < 3 ? 'Название должно содержать минимум 3 символа' : null),
+            city: (value) => (value.length < 2 ? 'Город обязателен' : null),
+            department: (value) => (value.length < 3 ? 'Отдел должен содержать минимум 3 символа' : null),
+            description: (value) => (value.length < 20 ? 'Описание должно содержать минимум 20 символов' : null),
+            conditions: (value) => (value.length === 0 ? 'Необходимо добавить хотя бы одно условие' : null),
+            requirements: (value) => (value.length === 0 ? 'Необходимо добавить хотя бы одно требование' : null),
         },
     });
 
@@ -78,11 +79,11 @@ export default function VacanciesManagement() {
     };
 
     const handleDelete = (vacancy: Vacancy) => {
-        if (window.confirm(`Are you sure you want to delete "${vacancy.title}"?`)) {
+        if (window.confirm(`Вы уверены, что хотите удалить "${vacancy.title}"?`)) {
             setVacancies(vacancies.filter((v) => v.id !== vacancy.id));
             notifications.show({
-                title: 'Vacancy deleted',
-                message: `${vacancy.title} has been removed`,
+                title: 'Вакансия удалена',
+                message: `${vacancy.title} была удалена`,
                 color: 'red',
             });
         }
@@ -96,8 +97,8 @@ export default function VacanciesManagement() {
                 )
             );
             notifications.show({
-                title: 'Vacancy updated',
-                message: `${values.title} has been updated successfully`,
+                title: 'Вакансия обновлена',
+                message: `${values.title} была успешно обновлена`,
                 color: 'green',
             });
         } else {
@@ -107,8 +108,8 @@ export default function VacanciesManagement() {
             };
             setVacancies([...vacancies, newVacancy]);
             notifications.show({
-                title: 'Vacancy added',
-                message: `${values.title} has been added successfully`,
+                title: 'Вакансия добавлена',
+                message: `${values.title} была успешно добавлена`,
                 color: 'green',
             });
         }
@@ -137,23 +138,23 @@ export default function VacanciesManagement() {
         },
         {
             key: 'title',
-            label: 'Title',
+            label: 'Название',
             sortable: true,
         },
         {
             key: 'city',
-            label: 'City',
+            label: 'Город',
             sortable: true,
         },
         {
             key: 'department',
-            label: 'Department',
+            label: 'Отдел',
             sortable: true,
             render: (value) => <Badge color={theme.other.customYellow}>{value}</Badge>,
         },
         {
             key: 'employment_type',
-            label: 'Type',
+            label: 'Тип',
             render: (value) => (
                 <Badge color="blue" variant="light">
                     {value}
@@ -162,15 +163,15 @@ export default function VacanciesManagement() {
         },
         {
             key: 'salary_min',
-            label: 'Salary Range',
+            label: 'Диапазон зарплаты',
             render: (value, row) => {
-                if (!value && !row.salary_max) return 'Not specified';
+                if (!value && !row.salary_max) return 'Не указано';
                 return `₽${value?.toLocaleString()} - ₽${row.salary_max?.toLocaleString()}`;
             },
         },
         {
             key: 'status',
-            label: 'Status',
+            label: 'Статус',
             sortable: true,
             render: (value) => (
                 <Badge color={getStatusColor(value)} variant="filled">
@@ -180,7 +181,7 @@ export default function VacanciesManagement() {
         },
         {
             key: 'posted_date',
-            label: 'Posted',
+            label: 'Опубликовано',
             sortable: true,
         },
     ];
@@ -189,7 +190,7 @@ export default function VacanciesManagement() {
         <Container size="xl" p="xl">
             <Stack gap="xl">
                 <Title order={1} c="white" fw={700} size="42px">
-                    Vacancies Management
+                    Управление вакансиями
                 </Title>
 
                 <DataTable
@@ -199,104 +200,86 @@ export default function VacanciesManagement() {
                     onDelete={handleDelete}
                     onAdd={handleAdd}
                     searchKeys={['title', 'city', 'department', 'description']}
-                    title="Job Vacancies"
+                    title="Вакансии"
                 />
 
                 <Modal
                     opened={opened}
                     onClose={() => setOpened(false)}
                     title={
-                        <Title order={3} c="white">
-                            {editingVacancy ? 'Edit Vacancy' : 'Add New Vacancy'}
+                        <Title order={2} c='white'>
+                            {editingVacancy ? 'Редактировать вакансию' : 'Добавить новую вакансию'}
                         </Title>
                     }
                     size="lg"
-                    styles={{
-                        content: {
-                            backgroundColor: theme.other.darkBackground,
-                        },
-                        header: {
-                            backgroundColor: theme.other.darkBackground,
-                        },
+                    centered
+                    overlayProps={{
+                        backgroundOpacity: 0.55,
+                        blur: 3,
+                    }}
+                    classNames={{
+                        content: classes.modalContent,
+                        body: classes.modalBody,
+                        header: classes.modalHeader,
                     }}
                 >
                     <form onSubmit={form.onSubmit(handleSubmit)}>
                         <Stack gap="md">
                             <TextInput
-                                label="Job Title"
-                                placeholder="e.g., Sales Manager"
+                                label="Название вакансии"
+                                placeholder="например, Менеджер по продажам"
                                 required
                                 {...form.getInputProps('title')}
-                                styles={{
-                                    label: { color: 'white' },
-                                    input: {
-                                        backgroundColor: theme.other.cardBackground,
-                                        color: 'white',
-                                        borderColor: theme.other.customYellow,
-                                    },
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
                                 }}
                             />
 
                             <Group grow>
                                 <TextInput
-                                    label="City"
+                                    label="Город"
                                     placeholder="Москва"
                                     required
                                     {...form.getInputProps('city')}
-                                    styles={{
-                                        label: { color: 'white' },
-                                        input: {
-                                            backgroundColor: theme.other.cardBackground,
-                                            color: 'white',
-                                            borderColor: theme.other.customYellow,
-                                        },
+                                    classNames={{
+                                        label: classes.inputLabel,
+                                        input: classes.inputField,
                                     }}
                                 />
                                 <TextInput
-                                    label="Department"
-                                    placeholder="Sales"
+                                    label="Отдел"
+                                    placeholder="Продажи"
                                     required
                                     {...form.getInputProps('department')}
-                                    styles={{
-                                        label: { color: 'white' },
-                                        input: {
-                                            backgroundColor: theme.other.cardBackground,
-                                            color: 'white',
-                                            borderColor: theme.other.customYellow,
-                                        },
+                                    classNames={{
+                                        label: classes.inputLabel,
+                                        input: classes.inputField,
                                     }}
                                 />
                             </Group>
 
                             <Textarea
-                                label="Description"
-                                placeholder="Detailed job description"
+                                label="Описание"
+                                placeholder="Подробное описание вакансии"
                                 required
                                 minRows={3}
                                 {...form.getInputProps('description')}
-                                styles={{
-                                    label: { color: 'white' },
-                                    input: {
-                                        backgroundColor: theme.other.cardBackground,
-                                        color: 'white',
-                                        borderColor: theme.other.customYellow,
-                                    },
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
                                 }}
                             />
 
                             <Stack gap="xs">
                                 <Group>
                                     <TextInput
-                                        placeholder="Add condition"
+                                        placeholder="Добавить условие"
                                         value={newCondition}
                                         onChange={(e) => setNewCondition(e.currentTarget.value)}
                                         style={{ flex: 1 }}
-                                        styles={{
-                                            input: {
-                                                backgroundColor: theme.other.cardBackground,
-                                                color: 'white',
-                                                borderColor: theme.other.customYellow,
-                                            },
+                                        classNames={{
+                                            input: classes.inputField,
                                         }}
                                     />
                                     <Button
@@ -311,7 +294,7 @@ export default function VacanciesManagement() {
                                         }}
                                         color={theme.other.customOrange}
                                     >
-                                        Add
+                                        Добавить
                                     </Button>
                                 </Group>
                                 <Stack gap={4}>
@@ -342,16 +325,12 @@ export default function VacanciesManagement() {
                             <Stack gap="xs">
                                 <Group>
                                     <TextInput
-                                        placeholder="Add requirement"
+                                        placeholder="Добавить требование"
                                         value={newRequirement}
                                         onChange={(e) => setNewRequirement(e.currentTarget.value)}
                                         style={{ flex: 1 }}
-                                        styles={{
-                                            input: {
-                                                backgroundColor: theme.other.cardBackground,
-                                                color: 'white',
-                                                borderColor: theme.other.customYellow,
-                                            },
+                                        classNames={{
+                                            input: classes.inputField,
                                         }}
                                     />
                                     <Button
@@ -366,7 +345,7 @@ export default function VacanciesManagement() {
                                         }}
                                         color={theme.other.customOrange}
                                     >
-                                        Add
+                                        Добавить
                                     </Button>
                                 </Group>
                                 <Stack gap={4}>
@@ -396,80 +375,64 @@ export default function VacanciesManagement() {
 
                             <Group grow>
                                 <NumberInput
-                                    label="Min Salary (₽)"
+                                    label="Минимальная зарплата (₽)"
                                     placeholder="80000"
                                     min={0}
                                     {...form.getInputProps('salary_min')}
-                                    styles={{
-                                        label: { color: 'white' },
-                                        input: {
-                                            backgroundColor: theme.other.cardBackground,
-                                            color: 'white',
-                                            borderColor: theme.other.customYellow,
-                                        },
+                                    classNames={{
+                                        label: classes.inputLabel,
+                                        input: classes.inputField,
                                     }}
                                 />
                                 <NumberInput
-                                    label="Max Salary (₽)"
+                                    label="Максимальная зарплата (₽)"
                                     placeholder="150000"
                                     min={0}
                                     {...form.getInputProps('salary_max')}
-                                    styles={{
-                                        label: { color: 'white' },
-                                        input: {
-                                            backgroundColor: theme.other.cardBackground,
-                                            color: 'white',
-                                            borderColor: theme.other.customYellow,
-                                        },
+                                    classNames={{
+                                        label: classes.inputLabel,
+                                        input: classes.inputField,
                                     }}
                                 />
                             </Group>
 
                             <Group grow>
                                 <Select
-                                    label="Employment Type"
-                                    placeholder="Select type"
+                                    label="Тип занятости"
+                                    placeholder="Выберите тип"
                                     required
                                     data={[
-                                        { value: 'full-time', label: 'Full Time' },
-                                        { value: 'part-time', label: 'Part Time' },
-                                        { value: 'contract', label: 'Contract' },
-                                        { value: 'internship', label: 'Internship' },
+                                        { value: 'full-time', label: 'Полный день' },
+                                        { value: 'part-time', label: 'Частичная занятость' },
+                                        { value: 'contract', label: 'Контракт' },
+                                        { value: 'internship', label: 'Стажировка' },
                                     ]}
                                     {...form.getInputProps('employment_type')}
-                                    styles={{
-                                        label: { color: 'white' },
-                                        input: {
-                                            backgroundColor: theme.other.cardBackground,
-                                            color: 'white',
-                                            borderColor: theme.other.customYellow,
-                                        },
+                                    classNames={{
+                                        label: classes.inputLabel,
+                                        input: classes.inputField,
                                     }}
                                 />
                                 <Select
-                                    label="Status"
-                                    placeholder="Select status"
+                                    label="Статус"
+                                    placeholder="Выберите статус"
                                     required
                                     data={[
-                                        { value: 'open', label: 'Open' },
-                                        { value: 'on-hold', label: 'On Hold' },
-                                        { value: 'closed', label: 'Closed' },
+                                        { value: 'open', label: 'Открыта' },
+                                        { value: 'on-hold', label: 'На паузе' },
+                                        { value: 'closed', label: 'Закрыта' },
                                     ]}
                                     {...form.getInputProps('status')}
-                                    styles={{
-                                        label: { color: 'white' },
-                                        input: {
-                                            backgroundColor: theme.other.cardBackground,
-                                            color: 'white',
-                                            borderColor: theme.other.customYellow,
-                                        },
+                                    classNames={{
+                                        label: classes.inputLabel,
+                                        input: classes.inputField,
                                     }}
                                 />
                             </Group>
 
                             <TextInput
-                                label="Posted Date"
-                                placeholder="YYYY-MM-DD"
+                                label="Дата публикации"
+                                placeholder="ГГГГ-ММ-ДД"
                                 required
                                 {...form.getInputProps('posted_date')}
                                 styles={{
@@ -482,12 +445,12 @@ export default function VacanciesManagement() {
                                 }}
                             />
 
-                            <Group justify="flex-end" mt="md">
+                            <Group className={classes.buttonGroup}>
                                 <Button variant="outline" onClick={() => setOpened(false)}>
-                                    Cancel
+                                    Отмена
                                 </Button>
                                 <Button type="submit" color={theme.other.customOrange}>
-                                    {editingVacancy ? 'Update' : 'Create'}
+                                    {editingVacancy ? 'Обновить' : 'Создать'}
                                 </Button>
                             </Group>
                         </Stack>

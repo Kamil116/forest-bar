@@ -17,6 +17,7 @@ import { notifications } from '@mantine/notifications';
 import DataTable, { Column } from '@/components/Admin/DataTable';
 import { Vendor } from '@/types/vendor';
 import { mockVendors } from '@/data/mockVendors';
+import classes from './VendorsManagement.module.css';
 
 export default function VendorsManagement() {
     const theme = useMantineTheme();
@@ -34,10 +35,10 @@ export default function VendorsManagement() {
             description: '',
         },
         validate: {
-            title: (value) => (value.length < 3 ? 'Title must be at least 3 characters' : null),
-            address: (value) => (value.length < 10 ? 'Address must be at least 10 characters' : null),
-            phone: (value) => (value.length < 10 ? 'Phone must be valid' : null),
-            email: (value) => (/^\S+@\S+$/.test(value || '') || !value ? null : 'Invalid email'),
+            title: (value) => (value.length < 3 ? 'Название должно содержать минимум 3 символа' : null),
+            address: (value) => (value.length < 10 ? 'Адрес должен содержать минимум 10 символов' : null),
+            phone: (value) => (value.length < 10 ? 'Телефон должен быть действительным' : null),
+            email: (value) => (/^\S+@\S+$/.test(value || '') || !value ? null : 'Неверный email'),
         },
     });
 
@@ -61,11 +62,11 @@ export default function VendorsManagement() {
     };
 
     const handleDelete = (vendor: Vendor) => {
-        if (window.confirm(`Are you sure you want to delete "${vendor.title}"?`)) {
+        if (window.confirm(`Вы уверены, что хотите удалить "${vendor.title}"?`)) {
             setVendors(vendors.filter((v) => v.id !== vendor.id));
             notifications.show({
-                title: 'Vendor deleted',
-                message: `${vendor.title} has been removed`,
+                title: 'Поставщик удален',
+                message: `${vendor.title} был удален`,
                 color: 'red',
             });
         }
@@ -79,8 +80,8 @@ export default function VendorsManagement() {
                 )
             );
             notifications.show({
-                title: 'Vendor updated',
-                message: `${values.title} has been updated successfully`,
+                title: 'Поставщик обновлен',
+                message: `${values.title} был успешно обновлен`,
                 color: 'green',
             });
         } else {
@@ -90,8 +91,8 @@ export default function VendorsManagement() {
             };
             setVendors([...vendors, newVendor]);
             notifications.show({
-                title: 'Vendor added',
-                message: `${values.title} has been added successfully`,
+                title: 'Поставщик добавлен',
+                message: `${values.title} был успешно добавлен`,
                 color: 'green',
             });
         }
@@ -107,30 +108,30 @@ export default function VendorsManagement() {
         },
         {
             key: 'title',
-            label: 'Title',
+            label: 'Название',
             sortable: true,
         },
         {
             key: 'address',
-            label: 'Address',
+            label: 'Адрес',
             render: (value) => (
-                <span style={{ maxWidth: '200px', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                <span className={classes.descriptionText}>
                     {value}
                 </span>
             ),
         },
         {
             key: 'phone',
-            label: 'Phone',
+            label: 'Телефон',
         },
         {
             key: 'email',
             label: 'Email',
-            render: (value) => value || <Badge color="gray">N/A</Badge>,
+            render: (value) => value || <Badge color="gray">Н/Д</Badge>,
         },
         {
             key: 'coords',
-            label: 'Location',
+            label: 'Местоположение',
             render: (value: [number, number]) => (
                 <Badge color={theme.other.customYellow}>
                     {value[0].toFixed(2)}, {value[1].toFixed(2)}
@@ -140,10 +141,10 @@ export default function VendorsManagement() {
     ];
 
     return (
-        <Container size="xl" p="xl">
+        <Container size="xl" className={classes.container}>
             <Stack gap="xl">
-                <Title order={1} c="white" fw={700} size="42px">
-                    Vendors Management
+                <Title order={1} className={classes.title}>
+                    Управление поставщиками
                 </Title>
 
                 <DataTable
@@ -153,92 +154,78 @@ export default function VendorsManagement() {
                     onDelete={handleDelete}
                     onAdd={handleAdd}
                     searchKeys={['title', 'address', 'phone', 'email']}
-                    title="Partner Vendors"
+                    title="Партнеры-поставщики"
                 />
 
                 <Modal
                     opened={opened}
                     onClose={() => setOpened(false)}
                     title={
-                        <Title order={3} c="white">
-                            {editingVendor ? 'Edit Vendor' : 'Add New Vendor'}
+                        <Title order={2} c='white'>
+                            {editingVendor ? 'Редактировать поставщика' : 'Добавить нового поставщика'}
                         </Title>
                     }
                     size="lg"
-                    styles={{
-                        content: {
-                            backgroundColor: theme.other.darkBackground,
-                        },
-                        header: {
-                            backgroundColor: theme.other.darkBackground,
-                        },
+                    centered
+                    overlayProps={{
+                        backgroundOpacity: 0.55,
+                        blur: 3,
+                    }}
+                    classNames={{
+                        content: classes.modalContent,
+                        body: classes.modalBody,
+                        header: classes.modalHeader,
                     }}
                 >
                     <form onSubmit={form.onSubmit(handleSubmit)}>
                         <Stack gap="md">
                             <TextInput
-                                label="Vendor Title"
-                                placeholder="Enter vendor name"
+                                label="Название поставщика"
+                                placeholder="Введите название поставщика"
                                 required
                                 {...form.getInputProps('title')}
-                                styles={{
-                                    label: { color: 'white' },
-                                    input: {
-                                        backgroundColor: theme.other.cardBackground,
-                                        color: 'white',
-                                        borderColor: theme.other.customYellow,
-                                    },
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
                                 }}
                             />
 
                             <Textarea
-                                label="Address"
-                                placeholder="Enter full address"
+                                label="Адрес"
+                                placeholder="Введите полный адрес"
                                 required
                                 minRows={2}
                                 {...form.getInputProps('address')}
-                                styles={{
-                                    label: { color: 'white' },
-                                    input: {
-                                        backgroundColor: theme.other.cardBackground,
-                                        color: 'white',
-                                        borderColor: theme.other.customYellow,
-                                    },
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
                                 }}
                             />
 
                             <TextInput
-                                label="Phone"
+                                label="Телефон"
                                 placeholder="+7 (XXX) XXX-XXXX"
                                 required
                                 {...form.getInputProps('phone')}
-                                styles={{
-                                    label: { color: 'white' },
-                                    input: {
-                                        backgroundColor: theme.other.cardBackground,
-                                        color: 'white',
-                                        borderColor: theme.other.customYellow,
-                                    },
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
                                 }}
                             />
 
                             <TextInput
-                                label="Email (Optional)"
+                                label="Email (необязательно)"
                                 placeholder="vendor@example.com"
                                 {...form.getInputProps('email')}
-                                styles={{
-                                    label: { color: 'white' },
-                                    input: {
-                                        backgroundColor: theme.other.cardBackground,
-                                        color: 'white',
-                                        borderColor: theme.other.customYellow,
-                                    },
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
                                 }}
                             />
 
                             <Group grow>
                                 <NumberInput
-                                    label="Latitude"
+                                    label="Широта"
                                     placeholder="55.7558"
                                     required
                                     decimalScale={4}
@@ -247,17 +234,13 @@ export default function VendorsManagement() {
                                     onChange={(value) =>
                                         form.setFieldValue('coords', [Number(value), form.values.coords[1]])
                                     }
-                                    styles={{
-                                        label: { color: 'white' },
-                                        input: {
-                                            backgroundColor: theme.other.cardBackground,
-                                            color: 'white',
-                                            borderColor: theme.other.customYellow,
-                                        },
+                                    classNames={{
+                                        label: classes.inputLabel,
+                                        input: classes.inputField,
                                     }}
                                 />
                                 <NumberInput
-                                    label="Longitude"
+                                    label="Долгота"
                                     placeholder="37.6176"
                                     required
                                     decimalScale={4}
@@ -266,38 +249,30 @@ export default function VendorsManagement() {
                                     onChange={(value) =>
                                         form.setFieldValue('coords', [form.values.coords[0], Number(value)])
                                     }
-                                    styles={{
-                                        label: { color: 'white' },
-                                        input: {
-                                            backgroundColor: theme.other.cardBackground,
-                                            color: 'white',
-                                            borderColor: theme.other.customYellow,
-                                        },
+                                    classNames={{
+                                        label: classes.inputLabel,
+                                        input: classes.inputField,
                                     }}
                                 />
                             </Group>
 
                             <Textarea
-                                label="Description (Optional)"
-                                placeholder="Enter vendor description"
+                                label="Описание (необязательно)"
+                                placeholder="Введите описание поставщика"
                                 minRows={2}
                                 {...form.getInputProps('description')}
-                                styles={{
-                                    label: { color: 'white' },
-                                    input: {
-                                        backgroundColor: theme.other.cardBackground,
-                                        color: 'white',
-                                        borderColor: theme.other.customYellow,
-                                    },
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
                                 }}
                             />
 
-                            <Group justify="flex-end" mt="md">
+                            <Group className={classes.buttonGroup}>
                                 <Button variant="outline" onClick={() => setOpened(false)}>
-                                    Cancel
+                                    Отмена
                                 </Button>
                                 <Button type="submit" color={theme.other.customOrange}>
-                                    {editingVendor ? 'Update' : 'Create'}
+                                    {editingVendor ? 'Обновить' : 'Создать'}
                                 </Button>
                             </Group>
                         </Stack>

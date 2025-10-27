@@ -1,4 +1,4 @@
-import { AppShell, Burger, Group, Stack, Text, NavLink, useMantineTheme, ScrollArea } from '@mantine/core';
+import { AppShell, Burger, Group, Stack, Title, NavLink, ScrollArea, useMantineTheme } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import {
@@ -10,19 +10,20 @@ import {
     IconLogout,
     IconHome,
 } from '@tabler/icons-react';
+import classes from './AdminLayout.module.css';
 
 export default function AdminLayout() {
     const [opened, { toggle }] = useDisclosure();
-    const theme = useMantineTheme();
     const navigate = useNavigate();
     const location = useLocation();
+    const theme = useMantineTheme();
 
     const navItems = [
-        { label: 'Dashboard', icon: IconDashboard, path: '/admin' },
-        { label: 'Products', icon: IconShoppingBag, path: '/admin/products' },
-        { label: 'Vendors', icon: IconBuilding, path: '/admin/vendors' },
-        { label: 'Employees', icon: IconUsers, path: '/admin/employees' },
-        { label: 'Vacancies', icon: IconBriefcase, path: '/admin/vacancies' },
+        { label: 'Панель управления', icon: IconDashboard, path: '/admin' },
+        { label: 'Товары', icon: IconShoppingBag, path: '/admin/products' },
+        { label: 'Поставщики', icon: IconBuilding, path: '/admin/vendors' },
+        { label: 'Сотрудники', icon: IconUsers, path: '/admin/employees' },
+        { label: 'Вакансии', icon: IconBriefcase, path: '/admin/vacancies' },
     ];
 
     return (
@@ -30,41 +31,27 @@ export default function AdminLayout() {
             header={{ height: 70 }}
             navbar={{ width: 280, breakpoint: 'sm', collapsed: { mobile: !opened } }}
             padding="md"
-            styles={{
-                main: {
-                    backgroundColor: theme.other.cardBackground,
-                    minHeight: '100vh',
-                },
-                navbar: {
-                    backgroundColor: theme.other.darkBackground,
-                },
-                header: {
-                    backgroundColor: theme.other.darkBackground,
-                    borderBottom: `2px solid ${theme.other.customYellow}`,
-                },
+            classNames={{
+                main: classes.main,
+                navbar: classes.navbar,
+                header: classes.header,
             }}
         >
             <AppShell.Header>
                 <Group h="100%" px="md" justify="space-between">
                     <Group>
+                        {/* Menu for mobile view */}
                         <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" color="white" />
-                        <Text size="xl" fw={700} c={theme.other.customYellow} tt="uppercase">
-                            Forest Bar Admin
-                        </Text>
+                        <Title order={1} tt="uppercase" className={classes.title}>
+                            Forest Bar Админ
+                        </Title>
                     </Group>
                     <Group>
                         <NavLink
-                            label="Go to Site"
+                            label="Домой"
                             leftSection={<IconHome size={20} />}
                             onClick={() => navigate('/')}
-                            styles={{
-                                root: {
-                                    color: 'white',
-                                    '&:hover': {
-                                        backgroundColor: theme.other.cardBackground,
-                                    },
-                                },
-                            }}
+                            classNames={{ root: classes.headerLink }}
                         />
                     </Group>
                 </Group>
@@ -80,23 +67,7 @@ export default function AdminLayout() {
                                 leftSection={<item.icon size={20} />}
                                 active={location.pathname === item.path}
                                 onClick={() => navigate(item.path)}
-                                styles={{
-                                    root: {
-                                        borderRadius: theme.radius.md,
-                                        color: 'white',
-                                        fontWeight: 500,
-                                        '&:hover': {
-                                            backgroundColor: theme.other.cardBackground,
-                                        },
-                                        '&[data-active]': {
-                                            backgroundColor: theme.other.customYellow,
-                                            color: theme.other.darkBackground,
-                                            '&:hover': {
-                                                backgroundColor: theme.other.customYellow,
-                                            },
-                                        },
-                                    },
-                                }}
+                                classNames={{ root: classes.navLink }}
                             />
                         ))}
                     </Stack>
@@ -104,22 +75,13 @@ export default function AdminLayout() {
 
                 <AppShell.Section>
                     <NavLink
-                        label="Logout"
+                        label="Выход"
                         leftSection={<IconLogout size={20} />}
                         onClick={() => {
                             // TODO: Add logout logic
                             navigate('/login');
                         }}
-                        styles={{
-                            root: {
-                                borderRadius: theme.radius.md,
-                                color: theme.colors.red[5],
-                                fontWeight: 500,
-                                '&:hover': {
-                                    backgroundColor: theme.other.cardBackground,
-                                },
-                            },
-                        }}
+                        classNames={{ root: classes.logoutLink }}
                     />
                 </AppShell.Section>
             </AppShell.Navbar>

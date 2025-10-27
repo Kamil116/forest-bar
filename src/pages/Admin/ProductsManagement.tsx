@@ -18,11 +18,12 @@ import { notifications } from '@mantine/notifications';
 import DataTable, { Column } from '@/components/Admin/DataTable';
 import { Product } from '@/types/product';
 import { mockProducts } from '@/data/mockProducts';
+import classes from './ProductsManagement.module.css';
 
 export default function ProductsManagement() {
     const theme = useMantineTheme();
-    const [products, setProducts] = useState<Product[]>(mockProducts);
-    const [opened, setOpened] = useState(false);
+    const [products, setProducts] = useState<Product[]>(mockProducts); // TODO: replace mock data to database's data
+    const [opened, setOpened] = useState(false); // for adding view
     const [editingProduct, setEditingProduct] = useState<Product | null>(null);
 
     const form = useForm<Omit<Product, 'id'>>({
@@ -36,12 +37,12 @@ export default function ProductsManagement() {
             seller_id: 1,
         },
         validate: {
-            name: (value) => (value.length < 2 ? 'Name must be at least 2 characters' : null),
-            price: (value) => (value <= 0 ? 'Price must be greater than 0' : null),
+            name: (value) => (value.length < 2 ? 'Название должно содержать минимум 2 символа' : null),
+            price: (value) => (value <= 0 ? 'Цена должна быть больше 0' : null),
             short_description: (value) =>
-                value.length < 10 ? 'Short description must be at least 10 characters' : null,
+                value.length < 10 ? 'Краткое описание должно содержать минимум 10 символов' : null,
             long_description: (value) =>
-                value.length < 20 ? 'Long description must be at least 20 characters' : null,
+                value.length < 20 ? 'Полное описание должно содержать минимум 20 символов' : null,
         },
     });
 
@@ -66,11 +67,11 @@ export default function ProductsManagement() {
     };
 
     const handleDelete = (product: Product) => {
-        if (window.confirm(`Are you sure you want to delete "${product.name}"?`)) {
+        if (window.confirm(`Вы уверены, что хотите удалить "${product.name}"?`)) {
             setProducts(products.filter((p) => p.id !== product.id));
             notifications.show({
-                title: 'Product deleted',
-                message: `${product.name} has been removed`,
+                title: 'Товар удален',
+                message: `${product.name} был удален`,
                 color: 'red',
             });
         }
@@ -85,20 +86,20 @@ export default function ProductsManagement() {
                 )
             );
             notifications.show({
-                title: 'Product updated',
-                message: `${values.name} has been updated successfully`,
+                title: 'Товар обновлен',
+                message: `${values.name} был успешно обновлен`,
                 color: 'green',
             });
         } else {
             // Add new product
             const newProduct: Product = {
                 ...values,
-                id: Math.max(...products.map((p) => p.id)) + 1,
+                id: Math.max(...products.map((p) => p.id)) + 1, // Take maximum ID and add 1 for the new one
             };
             setProducts([...products, newProduct]);
             notifications.show({
-                title: 'Product added',
-                message: `${values.name} has been added successfully`,
+                title: 'Товар добавлен',
+                message: `${values.name} был успешно добавлен`,
                 color: 'green',
             });
         }
@@ -114,44 +115,44 @@ export default function ProductsManagement() {
         },
         {
             key: 'image_url',
-            label: 'Image',
+            label: 'Изображение',
             render: (value) => (
                 <Image src={value} alt="Product" h={50} w={50} radius="md" fit="cover" />
             ),
         },
         {
             key: 'name',
-            label: 'Name',
+            label: 'Название',
             sortable: true,
         },
         {
             key: 'price',
-            label: 'Price',
+            label: 'Цена',
             sortable: true,
             render: (value) => `₽${value}`,
         },
         {
             key: 'short_description',
-            label: 'Description',
+            label: 'Описание',
             render: (value) => (
-                <span style={{ maxWidth: '200px', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                <span className={classes.descriptionText}>
                     {value}
                 </span>
             ),
         },
         {
             key: 'seller_id',
-            label: 'Seller ID',
+            label: 'ID продавца',
             sortable: true,
             render: (value) => <Badge color={theme.other.customYellow}>{value}</Badge>,
         },
     ];
 
     return (
-        <Container size="xl" p="xl">
+        <Container size="xl" className={classes.container}>
             <Stack gap="xl">
-                <Title order={1} c="white" fw={700} size="42px">
-                    Products Management
+                <Title order={1} className={classes.title}>
+                    Управление товарами
                 </Title>
 
                 <DataTable
@@ -161,142 +162,117 @@ export default function ProductsManagement() {
                     onDelete={handleDelete}
                     onAdd={handleAdd}
                     searchKeys={['name', 'short_description', 'long_description']}
-                    title="Products Catalog"
+                    title="Каталог товаров"
                 />
 
                 <Modal
                     opened={opened}
                     onClose={() => setOpened(false)}
                     title={
-                        <Title order={3} c="white">
-                            {editingProduct ? 'Edit Product' : 'Add New Product'}
+                        <Title order={2} c='white'>
+                            {editingProduct ? 'Редактировать товар' : 'Добавить новый товар'}
                         </Title>
                     }
                     size="lg"
-                    styles={{
-                        content: {
-                            backgroundColor: theme.other.darkBackground,
-                        },
-                        header: {
-                            backgroundColor: theme.other.darkBackground,
-                        },
+                    centered
+                    overlayProps={{
+                        backgroundOpacity: 0.55,
+                        blur: 3,
+                    }}
+                    classNames={{
+                        content: classes.modalContent,
+                        body: classes.modalBody,
+                        header: classes.modalHeader,
                     }}
                 >
+                    {/* Form of the modal */}
                     <form onSubmit={form.onSubmit(handleSubmit)}>
                         <Stack gap="md">
                             <TextInput
-                                label="Product Name"
-                                placeholder="Enter product name"
+                                label="Название товара"
+                                placeholder="Введите название товара"
                                 required
                                 {...form.getInputProps('name')}
-                                styles={{
-                                    label: { color: 'white' },
-                                    input: {
-                                        backgroundColor: theme.other.cardBackground,
-                                        color: 'white',
-                                        borderColor: theme.other.customYellow,
-                                    },
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
                                 }}
                             />
 
                             <NumberInput
-                                label="Price (₽)"
-                                placeholder="Enter price"
+                                label="Цена (₽)"
+                                placeholder="Введите цену"
                                 required
                                 min={0}
                                 {...form.getInputProps('price')}
-                                styles={{
-                                    label: { color: 'white' },
-                                    input: {
-                                        backgroundColor: theme.other.cardBackground,
-                                        color: 'white',
-                                        borderColor: theme.other.customYellow,
-                                    },
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
                                 }}
                             />
 
                             <TextInput
-                                label="Short Description"
-                                placeholder="Enter short description"
+                                label="Краткое описание"
+                                placeholder="Введите краткое описание"
                                 required
                                 {...form.getInputProps('short_description')}
-                                styles={{
-                                    label: { color: 'white' },
-                                    input: {
-                                        backgroundColor: theme.other.cardBackground,
-                                        color: 'white',
-                                        borderColor: theme.other.customYellow,
-                                    },
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
                                 }}
                             />
 
                             <Textarea
-                                label="Long Description"
-                                placeholder="Enter detailed description"
+                                label="Полное описание"
+                                placeholder="Введите подробное описание"
                                 required
                                 minRows={3}
                                 {...form.getInputProps('long_description')}
-                                styles={{
-                                    label: { color: 'white' },
-                                    input: {
-                                        backgroundColor: theme.other.cardBackground,
-                                        color: 'white',
-                                        borderColor: theme.other.customYellow,
-                                    },
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
                                 }}
                             />
 
                             <TextInput
-                                label="Image URL"
-                                placeholder="Enter image URL"
+                                label="URL изображения"
+                                placeholder="Введите URL изображения"
                                 required
                                 {...form.getInputProps('image_url')}
-                                styles={{
-                                    label: { color: 'white' },
-                                    input: {
-                                        backgroundColor: theme.other.cardBackground,
-                                        color: 'white',
-                                        borderColor: theme.other.customYellow,
-                                    },
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
                                 }}
                             />
 
                             <TextInput
-                                label="Video URL (Optional)"
-                                placeholder="Enter video URL"
+                                label="URL видео (необязательно)"
+                                placeholder="Введите URL видео"
                                 {...form.getInputProps('video_url')}
-                                styles={{
-                                    label: { color: 'white' },
-                                    input: {
-                                        backgroundColor: theme.other.cardBackground,
-                                        color: 'white',
-                                        borderColor: theme.other.customYellow,
-                                    },
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
                                 }}
                             />
 
                             <NumberInput
-                                label="Seller ID"
-                                placeholder="Enter seller ID"
+                                label="ID продавца"
+                                placeholder="Введите ID продавца"
                                 required
                                 min={1}
                                 {...form.getInputProps('seller_id')}
-                                styles={{
-                                    label: { color: 'white' },
-                                    input: {
-                                        backgroundColor: theme.other.cardBackground,
-                                        color: 'white',
-                                        borderColor: theme.other.customYellow,
-                                    },
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
                                 }}
                             />
 
-                            <Group justify="flex-end" mt="md">
+                            <Group className={classes.buttonGroup}>
                                 <Button variant="outline" onClick={() => setOpened(false)}>
-                                    Cancel
+                                    Отмена
                                 </Button>
                                 <Button type="submit" color={theme.other.customOrange}>
-                                    {editingProduct ? 'Update' : 'Create'}
+                                    {editingProduct ? 'Обновить' : 'Создать'}
                                 </Button>
                             </Group>
                         </Stack>
