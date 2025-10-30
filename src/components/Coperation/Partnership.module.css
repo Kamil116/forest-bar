@@ -1,0 +1,18 @@
+.input {
+    background-color: rgba(219, 166, 25, 1);
+    color: black;
+    box-shadow: 4px 8px 0px rgba(219, 166, 25, 0.69);
+    border: none;
+}
+
+.input::placeholder {
+    font-weight: 700;
+    font-size: 32px;
+    color: black;
+}
+
+.image {
+    min-height: 500px;
+    object-fit: cover;
+    overflow: hidden;
+}

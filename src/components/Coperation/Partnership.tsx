@@ -1,4 +1,5 @@
 import { Box, Text, Stack, TextInput, Textarea, Button, Group, Image, useMantineTheme } from '@mantine/core';
+import styles from './Partnership.module.css';
 
 function Partnership() {
     const theme = useMantineTheme();
@@ -6,11 +7,11 @@ function Partnership() {
         <Box>
             <Box style={{ display: 'flex', gap: '16px', width: '100%' }}>
                 <Box style={{ flex: '0 0 calc(60% - 8px)' }}>
-                    <Text ta="center" fz={theme.other.titleSize} fw={700} c="white" mb="xl" tt="uppercase">
+                    <Text ta="center" fw={700} c="white" mb="xl" tt="uppercase" fz={32}>
                         Заполни анкету на партнерство и стань частью коллектива
                     </Text>
 
-                    <Group align="stretch" gap="md" h="100%" grow>
+                    <Group align="flex-start" gap="md" grow>
                         <Stack gap="lg" align="center">
                             <TextInput
                                 placeholder="Имя и фамилия"
@@ -18,14 +19,7 @@ function Partnership() {
                                 size="lg"
                                 radius={theme.other.buttonRadius}
                                 w="100%"
-                                styles={{
-                                    input: {
-                                        backgroundColor: theme.other.customYellow,
-                                        color: 'black',
-                                        boxShadow: `4px 8px 0px ${theme.other.customYellowShadow}`,
-                                        border: 'none',
-                                    }
-                                }}
+                                classNames={{ input: styles.input }}
                             />
                             <TextInput
                                 placeholder="Email"
@@ -33,14 +27,7 @@ function Partnership() {
                                 size="lg"
                                 w="100%"
                                 radius={theme.other.buttonRadius}
-                                styles={{
-                                    input: {
-                                        backgroundColor: theme.other.customYellow,
-                                        color: 'black',
-                                        boxShadow: `4px 8px 0px ${theme.other.customYellowShadow}`,
-                                        border: 'none',
-                                    }
-                                }}
+                                classNames={{ input: styles.input }}
                             />
                             <TextInput
                                 placeholder="Телефон"
@@ -48,14 +35,8 @@ function Partnership() {
                                 size="lg"
                                 radius={theme.other.buttonRadius}
                                 w="100%"
-                                styles={{
-                                    input: {
-                                        backgroundColor: theme.other.customYellow,
-                                        color: 'black',
-                                        boxShadow: `4px 8px 0px ${theme.other.customYellowShadow}`,
-                                        border: 'none',
-                                    }
-                                }}
+
+                                classNames={{ input: styles.input }}
                             />
                             <Button
                                 size="xl"
@@ -79,14 +60,8 @@ function Partnership() {
                             tt="uppercase"
                             size="lg"
                             radius={theme.other.buttonRadius}
-                            styles={{
-                                input: {
-                                    backgroundColor: theme.other.customYellow,
-                                    color: 'black',
-                                    boxShadow: `4px 8px 0px ${theme.other.customYellowShadow}`,
-                                    border: 'none',
-                                }
-                            }}
+
+                            classNames={{ input: styles.input }}
                         />
                     </Group>
 
@@ -96,11 +71,9 @@ function Partnership() {
                 <Image
                     src={`${import.meta.env.BASE_URL}/images/dawd.png`}
                     alt="Partnership"
+                    className={styles.image}
                     style={{
                         flex: '0 0 calc(40% - 8px)',
-                        minHeight: '500px',
-                        objectFit: 'cover',
-                        overflow: 'hidden',
                     }}
                     fit="cover"
                 />

@@ -37,7 +37,7 @@ export function ToggleSection() {
             </Group>
 
             {/* // похоже на костыль, но ок  */}
-            <Box mt="xl" style={{ minHeight: '80vh' }} >
+            <Box mt="xl" >
                 {value === 'job' && (
                     <Stack align="center" justify="center">
                         <VacancyCards />

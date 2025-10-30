@@ -19,7 +19,6 @@ export default function AdminLayout() {
     const theme = useMantineTheme();
 
     const navItems = [
-        { label: 'Панель управления', icon: IconDashboard, path: '/admin' },
         { label: 'Товары', icon: IconShoppingBag, path: '/admin/products' },
         { label: 'Поставщики', icon: IconBuilding, path: '/admin/vendors' },
         { label: 'Сотрудники', icon: IconUsers, path: '/admin/employees' },

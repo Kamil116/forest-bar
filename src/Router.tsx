@@ -36,10 +36,6 @@ const router = createBrowserRouter(
             element: <AdminLayout />,
             children: [
                 {
-                    index: true,
-                    element: <Dashboard />,
-                },
-                {
                     path: 'products',
                     element: <ProductsManagement />,
                 },
