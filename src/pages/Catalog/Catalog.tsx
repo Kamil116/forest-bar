@@ -1,5 +1,4 @@
-import { Title, useMantineTheme } from "@mantine/core";
-import { Box, Stack } from "@mantine/core";
+import { Title, useMantineTheme, Box, Stack } from "@mantine/core";
 import Header from "@/components/shared/Header";
 import ProductCards from "@/components/Catalog/ProductCards";
 

@@ -6,7 +6,6 @@ import Catalog from '@/pages/Catalog/Catalog';
 
 // Admin imports
 import AdminLayout from '@/components/Admin/AdminLayout';
-import Dashboard from '@/pages/Admin/Dashboard';
 import ProductsManagement from '@/pages/Admin/ProductsManagement';
 import VendorsManagement from '@/pages/Admin/VendorsManagement';
 import EmployeesManagement from '@/pages/Admin/EmployeesManagement';

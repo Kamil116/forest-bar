@@ -1,5 +1,4 @@
 import { Box, Button, Stack, Title, useMantineTheme } from "@mantine/core";
-import { scrollToSection } from "@/utils/scrollToSection";
 import Header from "@/components/shared/Header";
 import { useNavigate } from "react-router-dom";
 

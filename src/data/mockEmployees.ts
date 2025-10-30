@@ -12,7 +12,7 @@ export const mockEmployees: Employee[] = [
         department: 'Руководство',
         hireDate: '2020-01-15',
         salary: 250000,
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         status: 'active',
     },
     {
@@ -26,7 +26,7 @@ export const mockEmployees: Employee[] = [
         department: 'Финансы',
         hireDate: '2020-03-20',
         salary: 200000,
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         status: 'active',
     },
     {
@@ -40,7 +40,7 @@ export const mockEmployees: Employee[] = [
         department: 'Продажи',
         hireDate: '2020-06-10',
         salary: 150000,
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         status: 'active',
     },
     {
@@ -54,7 +54,7 @@ export const mockEmployees: Employee[] = [
         department: 'Закупки',
         hireDate: '2021-02-15',
         salary: 120000,
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         status: 'active',
     },
     {
@@ -68,7 +68,7 @@ export const mockEmployees: Employee[] = [
         department: 'Логистика',
         hireDate: '2021-05-20',
         salary: 110000,
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         status: 'active',
     },
     {
@@ -82,7 +82,7 @@ export const mockEmployees: Employee[] = [
         department: 'Кадры',
         hireDate: '2021-08-10',
         salary: 100000,
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         status: 'vacation',
     },
     {
@@ -96,7 +96,7 @@ export const mockEmployees: Employee[] = [
         department: 'Маркетинг',
         hireDate: '2022-01-15',
         salary: 95000,
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         status: 'active',
     },
     {
@@ -110,7 +110,7 @@ export const mockEmployees: Employee[] = [
         department: 'Финансы',
         hireDate: '2022-03-20',
         salary: 90000,
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         status: 'active',
     },
     {
@@ -124,7 +124,7 @@ export const mockEmployees: Employee[] = [
         department: 'Качество',
         hireDate: '2022-06-10',
         salary: 85000,
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         status: 'active',
     },
     {
@@ -138,7 +138,7 @@ export const mockEmployees: Employee[] = [
         department: 'Юридический',
         hireDate: '2022-09-01',
         salary: 105000,
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         status: 'active',
     },
     {
@@ -152,7 +152,7 @@ export const mockEmployees: Employee[] = [
         department: 'IT',
         hireDate: '2023-01-15',
         salary: 130000,
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         status: 'active',
     },
     {
@@ -166,7 +166,7 @@ export const mockEmployees: Employee[] = [
         department: 'Продажи',
         hireDate: '2023-04-01',
         salary: 80000,
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         status: 'active',
     },
 ];

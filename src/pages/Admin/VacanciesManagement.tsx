@@ -12,7 +12,6 @@ import {
     useMantineTheme,
     NumberInput,
     Select,
-    MultiSelect,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { notifications } from '@mantine/notifications';
@@ -79,7 +78,7 @@ export default function VacanciesManagement() {
     };
 
     const handleDelete = (vacancy: Vacancy) => {
-        if (window.confirm(`Вы уверены, что хотите удалить "${vacancy.title}"?`)) {
+        if (confirm(`Вы уверены, что хотите удалить "${vacancy.title}"?`)) {
             setVacancies(vacancies.filter((v) => v.id !== vacancy.id));
             notifications.show({
                 title: 'Вакансия удалена',
@@ -165,7 +164,9 @@ export default function VacanciesManagement() {
             key: 'salary_min',
             label: 'Диапазон зарплаты',
             render: (value, row) => {
-                if (!value && !row.salary_max) return 'Не указано';
+                if (!value && !row.salary_max) {
+                    return 'Не указано';
+                }
                 return `₽${value?.toLocaleString()} - ₽${row.salary_max?.toLocaleString()}`;
             },
         },

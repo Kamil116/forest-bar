@@ -1,8 +1,7 @@
-import { AppShell, Burger, Group, Stack, Title, NavLink, ScrollArea, useMantineTheme } from '@mantine/core';
+import { AppShell, Burger, Group, Stack, Title, NavLink, ScrollArea } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import {
-    IconDashboard,
     IconShoppingBag,
     IconUsers,
     IconBriefcase,
@@ -16,7 +15,6 @@ export default function AdminLayout() {
     const [opened, { toggle }] = useDisclosure();
     const navigate = useNavigate();
     const location = useLocation();
-    const theme = useMantineTheme();
 
     const navItems = [
         { label: 'Товары', icon: IconShoppingBag, path: '/admin/products' },

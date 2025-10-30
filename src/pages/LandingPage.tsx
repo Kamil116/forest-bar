@@ -3,7 +3,6 @@ import { Box } from '@mantine/core';
 import { HomePage } from './HomePage';
 import CooperationPage from './CooperationPage';
 import VendorsPage from "@/pages/VendorsPage/VendorsPage";
-import Catalog from './Catalog/Catalog';
 
 export function LandingPage() {
     useEffect(() => {

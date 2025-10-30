@@ -14,7 +14,6 @@ import {
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { notifications } from '@mantine/notifications';
-import { DateInput } from '@mantine/dates';
 import DataTable, { Column } from '@/components/Admin/DataTable';
 import { Employee } from '@/types/employee';
 import { mockEmployees } from '@/data/mockEmployees';
@@ -75,7 +74,7 @@ export default function EmployeesManagement() {
     };
 
     const handleDelete = (employee: Employee) => {
-        if (window.confirm(`Вы уверены, что хотите удалить "${employee.name} ${employee.surname}"?`)) {
+        if (confirm(`Вы уверены, что хотите удалить "${employee.name} ${employee.surname}"?`)) {
             setEmployees(employees.filter((e) => e.id !== employee.id));
             notifications.show({
                 title: 'Сотрудник удален',
@@ -136,7 +135,7 @@ export default function EmployeesManagement() {
             key: 'name',
             label: 'ФИО',
             sortable: true,
-            render: (value, row) => `${row.surname} ${row.name} ${row.middleName}`,
+            render: (_value, row) => `${row.surname} ${row.name} ${row.middleName}`,
         },
         {
             key: 'position',

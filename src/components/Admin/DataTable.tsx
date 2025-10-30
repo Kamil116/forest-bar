@@ -56,23 +56,33 @@ export default function DataTable<T extends { id: number }>({
 
     // Filter data based on search
     const filteredData = data.filter((item) => {
-        if (!search) return true;
+        if (!search) {
+            return true;
+        }
         return searchKeys.some((key) => {
             const value = item[key];
-            if (value === null || value === undefined) return false;
+            if (value === null || value === undefined) {
+                return false;
+            }
             return String(value).toLowerCase().includes(search.toLowerCase());
         });
     });
 
     // Sort data
     const sortedData = [...filteredData].sort((a, b) => {
-        if (!sortBy) return 0;
+        if (!sortBy) {
+            return 0;
+        }
         
         const aValue = a[sortBy as keyof T];
         const bValue = b[sortBy as keyof T];
         
-        if (aValue === null || aValue === undefined) return 1;
-        if (bValue === null || bValue === undefined) return -1;
+        if (aValue === null || aValue === undefined) {
+            return 1;
+        }
+        if (bValue === null || bValue === undefined) {
+            return -1;
+        }
         
         if (typeof aValue === 'string' && typeof bValue === 'string') {
             return sortOrder === 'asc' 

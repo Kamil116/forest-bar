@@ -11,7 +11,7 @@ export const mockProducts: Product[] = [
         price: 150,
         short_description: 'Свежая лесная ежевика',
         long_description: 'Ароматная лесная ежевика, собранная вручную в экологически чистых районах. Богата витаминами и антиоксидантами.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         video_url: 'https://www.w3schools.com/html/mov_bbb.mp4',
         seller_id: 1,
     },
@@ -21,7 +21,7 @@ export const mockProducts: Product[] = [
         price: 200,
         short_description: 'Сочная садовая малина',
         long_description: 'Крупная садовая малина. Сладкая и ароматная, выращена без химикатов.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 2,
     },
     {
@@ -30,7 +30,7 @@ export const mockProducts: Product[] = [
         price: 250,
         short_description: 'Лесная черника',
         long_description: 'Свежая черника из северных лесов. Полезна для зрения, богата антиоксидантами.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -39,7 +39,7 @@ export const mockProducts: Product[] = [
         price: 180,
         short_description: 'Кислая брусника',
         long_description: 'Дикая брусника из таежных лесов. Отлично подходит для морсов и варенья.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 3,
     },
     {
@@ -48,7 +48,7 @@ export const mockProducts: Product[] = [
         price: 220,
         short_description: 'Болотная клюква',
         long_description: 'Клюква с северных болот. Кислая, полезная для иммунитета.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 4,
     },
     {
@@ -57,7 +57,7 @@ export const mockProducts: Product[] = [
         price: 190,
         short_description: 'Оранжевая облепиха',
         long_description: 'Свежая облепиха, богатая витаминами. Кислая, но очень полезная.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 5,
     },
     {
@@ -66,7 +66,7 @@ export const mockProducts: Product[] = [
         price: 240,
         short_description: 'Дикая голубика',
         long_description: 'Голубика из горных районов. Слегка терпкая, богата витаминами.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 2,
     },
     {
@@ -75,7 +75,7 @@ export const mockProducts: Product[] = [
         price: 170,
         short_description: 'Черная смородина',
         long_description: 'Черная смородина с дачного участка. Ароматная, кислая.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 3,
     },
     {
@@ -84,7 +84,7 @@ export const mockProducts: Product[] = [
         price: 160,
         short_description: 'Красная смородина',
         long_description: 'Красная смородина. Кислая, подходит для желе и компотов.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -93,7 +93,7 @@ export const mockProducts: Product[] = [
         price: 165,
         short_description: 'Белая смородина',
         long_description: 'Редкая белая смородина. Менее кислая, чем красная.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 4,
     },
     {
@@ -102,7 +102,7 @@ export const mockProducts: Product[] = [
         price: 155,
         short_description: 'Зеленый крыжовник',
         long_description: 'Крупный крыжовник. Кисло-сладкий, отлично для варенья.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 5,
     },
     {
@@ -111,7 +111,7 @@ export const mockProducts: Product[] = [
         price: 140,
         short_description: 'Сладкая ирга',
         long_description: 'Ирга с приусадебного участка. Сладкая, немного вяжущая.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 2,
     },
     {
@@ -120,7 +120,7 @@ export const mockProducts: Product[] = [
         price: 350,
         short_description: 'Северная морошка',
         long_description: 'Редкая морошка с севера. Необычный вкус, очень полезная.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -129,7 +129,7 @@ export const mockProducts: Product[] = [
         price: 180,
         short_description: 'Лесная костяника',
         long_description: 'Костяника из хвойного леса. Кисло-сладкая, необычная текстура.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 3,
     },
     {
@@ -138,7 +138,7 @@ export const mockProducts: Product[] = [
         price: 450,
         short_description: 'Редкая княженика',
         long_description: 'Княженика - королева ягод. Очень редкая, невероятно ароматная.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -147,7 +147,7 @@ export const mockProducts: Product[] = [
         price: 210,
         short_description: 'Синяя жимолость',
         long_description: 'Жимолость съедобная. Первая ягода сезона, кисло-сладкая.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 4,
     },
     {
@@ -156,7 +156,7 @@ export const mockProducts: Product[] = [
         price: 195,
         short_description: 'Красный кизил',
         long_description: 'Кизил с юга. Кислый, богат витамином C.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 5,
     },
     {
@@ -165,7 +165,7 @@ export const mockProducts: Product[] = [
         price: 145,
         short_description: 'Кислый барбарис',
         long_description: 'Барбарис обыкновенный. Очень кислый, используется в плове.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 2,
     },
     {
@@ -174,7 +174,7 @@ export const mockProducts: Product[] = [
         price: 115,
         short_description: 'Красная рябина',
         long_description: 'Рябина обыкновенная. Горькая до морозов, потом сладкая.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 3,
     },
     {
@@ -183,7 +183,7 @@ export const mockProducts: Product[] = [
         price: 125,
         short_description: 'Красная калина',
         long_description: 'Калина красная. Горькая, но очень полезная.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -192,7 +192,7 @@ export const mockProducts: Product[] = [
         price: 130,
         short_description: 'Красный боярышник',
         long_description: 'Боярышник садовый. Полезен для сердца.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 4,
     },
     {
@@ -201,7 +201,7 @@ export const mockProducts: Product[] = [
         price: 120,
         short_description: 'Дикий шиповник',
         long_description: 'Шиповник с витамином C. Идеален для чая.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 5,
     },
     {
@@ -210,7 +210,7 @@ export const mockProducts: Product[] = [
         price: 100,
         short_description: 'Черная бузина',
         long_description: 'Бузина черная. Требует термической обработки.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 2,
     },
     {
@@ -219,7 +219,7 @@ export const mockProducts: Product[] = [
         price: 135,
         short_description: 'Черная черемуха',
         long_description: 'Черемуха обыкновенная. Вяжущая, ароматная.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 3,
     },
     {
@@ -228,7 +228,7 @@ export const mockProducts: Product[] = [
         price: 225,
         short_description: 'Черная шелковица',
         long_description: 'Шелковица (тутовник). Сладкая, нежная.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -237,7 +237,7 @@ export const mockProducts: Product[] = [
         price: 280,
         short_description: 'Лесная земляника',
         long_description: 'Дикая лесная земляника. Мелкая, но очень ароматная.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 4,
     },
     {
@@ -246,7 +246,7 @@ export const mockProducts: Product[] = [
         price: 260,
         short_description: 'Садовая клубника',
         long_description: 'Крупная садовая клубника. Сладкая и сочная.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 5,
     },
     {
@@ -255,7 +255,7 @@ export const mockProducts: Product[] = [
         price: 205,
         short_description: 'Спелая вишня',
         long_description: 'Садовая вишня. Кисло-сладкая, сочная.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 2,
     },
     {
@@ -264,7 +264,7 @@ export const mockProducts: Product[] = [
         price: 190,
         short_description: 'Душистая дикая малина',
         long_description: 'Дикая лесная малина. Меньше садовой, но ароматнее и полезнее.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 3,
     },
     {
@@ -273,7 +273,7 @@ export const mockProducts: Product[] = [
         price: 120,
         short_description: 'Полезная черноплодка',
         long_description: 'Арония черноплодная. Понижает давление и укрепляет сосуды.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 2,
     },
     {
@@ -282,7 +282,7 @@ export const mockProducts: Product[] = [
         price: 185,
         short_description: 'Дикая вишня',
         long_description: 'Мелкая лесная вишня с насыщенным кисло-сладким вкусом. Отлично подходит для варенья.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 3,
     },
     {
@@ -291,7 +291,7 @@ export const mockProducts: Product[] = [
         price: 280,
         short_description: 'Сладкая черешня',
         long_description: 'Редкая дикая черешня из горных лесов. Сладкая и ароматная.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -300,7 +300,7 @@ export const mockProducts: Product[] = [
         price: 95,
         short_description: 'Терпкий терновник',
         long_description: 'Плоды терновника. Терпкие, но после заморозки становятся сладкими.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 4,
     },
     {
@@ -309,7 +309,7 @@ export const mockProducts: Product[] = [
         price: 160,
         short_description: 'Дикая слива',
         long_description: 'Кислая алыча для консервирования. Богата витаминами и пектином.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 5,
     },
     {
@@ -318,7 +318,7 @@ export const mockProducts: Product[] = [
         price: 135,
         short_description: 'Дикая груша',
         long_description: 'Мелкие лесные груши. Твердые в свежем виде, идеальны для варки.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 2,
     },
     {
@@ -327,7 +327,7 @@ export const mockProducts: Product[] = [
         price: 115,
         short_description: 'Кислое яблоко',
         long_description: 'Дикие яблоки небольшого размера. Кислые, но очень ароматные.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 3,
     },
     {
@@ -336,7 +336,7 @@ export const mockProducts: Product[] = [
         price: 380,
         short_description: 'Северный киви',
         long_description: 'Редкая актинидия коломикта. Богата витамином C, напоминает киви.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -345,7 +345,7 @@ export const mockProducts: Product[] = [
         price: 420,
         short_description: 'Тонизирующая ягода',
         long_description: 'Ягоды лимонника. Сильный тонизирующий эффект, кисло-горький вкус.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -354,7 +354,7 @@ export const mockProducts: Product[] = [
         price: 165,
         short_description: 'Синяя ягода',
         long_description: 'Темно-синие ягоды магонии. Кислые, подходят для желе и компотов.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 4,
     },
     {
@@ -363,7 +363,7 @@ export const mockProducts: Product[] = [
         price: 240,
         short_description: 'Северная ягода',
         long_description: 'Черная водяника с севера. Водянистая, но очень полезная.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 2,
     },
     {
@@ -372,7 +372,7 @@ export const mockProducts: Product[] = [
         price: 145,
         short_description: 'Медвежья ягода',
         long_description: 'Лечебная ягода толокнянка. Используется в народной медицине.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 5,
     },
     {
@@ -381,7 +381,7 @@ export const mockProducts: Product[] = [
         price: 85,
         short_description: 'Красная ягода',
         long_description: 'Мелкие красные ягоды с характерным запахом. Съедобны после обработки.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 3,
     },
     {
@@ -390,7 +390,7 @@ export const mockProducts: Product[] = [
         price: 195,
         short_description: 'Ягоды можжевельника',
         long_description: 'Синие шишкоягоды можжевельника. Используются как приправа.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 4,
     },
     {
@@ -399,7 +399,7 @@ export const mockProducts: Product[] = [
         price: 210,
         short_description: 'Крупная брусника',
         long_description: 'Садовая крупноплодная брусника. Слаще лесной.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -408,7 +408,7 @@ export const mockProducts: Product[] = [
         price: 260,
         short_description: 'Крупная клюква',
         long_description: 'Американская крупноплодная клюква. Размером с вишню.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 2,
     },
     {
@@ -417,7 +417,7 @@ export const mockProducts: Product[] = [
         price: 290,
         short_description: 'Крупная черника',
         long_description: 'Садовая крупноплодная черника. Сладкая и крупная.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 3,
     },
     {
@@ -426,7 +426,7 @@ export const mockProducts: Product[] = [
         price: 235,
         short_description: 'Золотистая малина',
         long_description: 'Желтая малина необычного цвета. Очень сладкая.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 5,
     },
     {
@@ -435,7 +435,7 @@ export const mockProducts: Product[] = [
         price: 245,
         short_description: 'Черная малина',
         long_description: 'Черная малина, похожая на ежевику. Насыщенный вкус.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 4,
     },
     {
@@ -444,7 +444,7 @@ export const mockProducts: Product[] = [
         price: 265,
         short_description: 'Крупная ежевика',
         long_description: 'Садовая ежевика без шипов. Крупные сладкие ягоды.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -453,7 +453,7 @@ export const mockProducts: Product[] = [
         price: 450,
         short_description: 'Ягоды годжи',
         long_description: 'Тибетский барбарис. Суперфуд с антиоксидантами.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -462,7 +462,7 @@ export const mockProducts: Product[] = [
         price: 175,
         short_description: 'Оранжевая облепиха',
         long_description: 'Обычная облепиха. Кислая, но очень витаминная.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 3,
     },
     {
@@ -471,7 +471,7 @@ export const mockProducts: Product[] = [
         price: 220,
         short_description: 'Сладкая облепиха',
         long_description: 'Гибридный сорт сладкой облепихи. Крупные ягоды.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 2,
     },
     {
@@ -480,7 +480,7 @@ export const mockProducts: Product[] = [
         price: 155,
         short_description: 'Желтая смородина',
         long_description: 'Редкая золотистая смородина. Сладкая и крупная.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 4,
     },
     {
@@ -489,7 +489,7 @@ export const mockProducts: Product[] = [
         price: 165,
         short_description: 'Розовая смородина',
         long_description: 'Гибрид красной и белой смородины. Нежный вкус.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 5,
     },
     {
@@ -498,7 +498,7 @@ export const mockProducts: Product[] = [
         price: 185,
         short_description: 'Гибрид смородины',
         long_description: 'Гибрид черной смородины и крыжовника. Без шипов.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 3,
     },
     {
@@ -507,7 +507,7 @@ export const mockProducts: Product[] = [
         price: 170,
         short_description: 'Крыжовник без шипов',
         long_description: 'Современный сорт крыжовника. Легко собирать.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 2,
     },
     {
@@ -516,7 +516,7 @@ export const mockProducts: Product[] = [
         price: 160,
         short_description: 'Красный крыжовник',
         long_description: 'Крыжовник с красными ягодами. Сладкий и ароматный.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -525,7 +525,7 @@ export const mockProducts: Product[] = [
         price: 175,
         short_description: 'Крупная ирга',
         long_description: 'Канадский сорт ирги. Ягоды размером с вишню.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 4,
     },
     {
@@ -534,7 +534,7 @@ export const mockProducts: Product[] = [
         price: 135,
         short_description: 'Черная арония',
         long_description: 'Культурная арония. Полезная для сердца и сосудов.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 5,
     },
     {
@@ -543,7 +543,7 @@ export const mockProducts: Product[] = [
         price: 90,
         short_description: 'Красная бузина',
         long_description: 'Красная бузина. Требует термообработки перед употреблением.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 3,
     },
     {
@@ -552,7 +552,7 @@ export const mockProducts: Product[] = [
         price: 225,
         short_description: 'Синяя жимолость',
         long_description: 'Ранняя жимолость съедобная. Первые ягоды сезона.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -561,7 +561,7 @@ export const mockProducts: Product[] = [
         price: 245,
         short_description: 'Крупная жимолость',
         long_description: 'Камчатский сорт с крупными сладкими ягодами.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 2,
     },
     {
@@ -570,7 +570,7 @@ export const mockProducts: Product[] = [
         price: 190,
         short_description: 'Красный кизил',
         long_description: 'Обычный красный кизил. Кислый, богат витамином C.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 4,
     },
     {
@@ -579,7 +579,7 @@ export const mockProducts: Product[] = [
         price: 210,
         short_description: 'Желтый кизил',
         long_description: 'Редкий желтый кизил. Слаще красного.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 5,
     },
     {
@@ -588,7 +588,7 @@ export const mockProducts: Product[] = [
         price: 140,
         short_description: 'Красный барбарис',
         long_description: 'Декоративный барбарис с красными листьями и ягодами.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 3,
     },
     {
@@ -597,7 +597,7 @@ export const mockProducts: Product[] = [
         price: 150,
         short_description: 'Амурский барбарис',
         long_description: 'Дикий амурский барбарис. Очень кислый, для варенья.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -606,7 +606,7 @@ export const mockProducts: Product[] = [
         price: 130,
         short_description: 'Сладкая рябина',
         long_description: 'Культурная сладкая рябина. Не горчит.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 2,
     },
     {
@@ -615,7 +615,7 @@ export const mockProducts: Product[] = [
         price: 125,
         short_description: 'Черная рябина',
         long_description: 'Черноплодная рябина арония. Терпкая и полезная.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 4,
     },
     {
@@ -624,7 +624,7 @@ export const mockProducts: Product[] = [
         price: 95,
         short_description: 'Декоративная калина',
         long_description: 'Калина с крупными белыми соцветиями. Ягоды съедобны.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 5,
     },
     {
@@ -633,7 +633,7 @@ export const mockProducts: Product[] = [
         price: 105,
         short_description: 'Черная калина',
         long_description: 'Гордовина с черными ягодами. Сладковатая.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 3,
     },
     {
@@ -642,7 +642,7 @@ export const mockProducts: Product[] = [
         price: 120,
         short_description: 'Красный боярышник',
         long_description: 'Обычный боярышник. Полезен для сердца.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -651,7 +651,7 @@ export const mockProducts: Product[] = [
         price: 145,
         short_description: 'Крупный боярышник',
         long_description: 'Боярышник с крупными ягодами размером с вишню.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 2,
     },
     {
@@ -660,7 +660,7 @@ export const mockProducts: Product[] = [
         price: 110,
         short_description: 'Красный шиповник',
         long_description: 'Обычный шиповник. Рекордсмен по витамину C.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 4,
     },
     {
@@ -669,7 +669,7 @@ export const mockProducts: Product[] = [
         price: 135,
         short_description: 'Крупный шиповник',
         long_description: 'Шиповник с крупными плодами. Толстая мякоть.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 5,
     },
     {
@@ -678,7 +678,7 @@ export const mockProducts: Product[] = [
         price: 155,
         short_description: 'Красная черемуха',
         long_description: 'Черемуха с красными ягодами. Менее вяжущая.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 3,
     },
     {
@@ -687,7 +687,7 @@ export const mockProducts: Product[] = [
         price: 130,
         short_description: 'Черная черемуха',
         long_description: 'Обычная черная черемуха. Сильно вяжет.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -696,7 +696,7 @@ export const mockProducts: Product[] = [
         price: 215,
         short_description: 'Белая шелковица',
         long_description: 'Белая шелковица. Очень сладкая и нежная.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 2,
     },
     {
@@ -705,7 +705,7 @@ export const mockProducts: Product[] = [
         price: 205,
         short_description: 'Черная шелковица',
         long_description: 'Черная шелковица. Красит руки, но очень вкусная.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 4,
     },
     {
@@ -714,7 +714,7 @@ export const mockProducts: Product[] = [
         price: 425,
         short_description: 'Ягоды годжи',
         long_description: 'Дереза обыкновенная, она же годжи. Суперфуд.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -723,7 +723,7 @@ export const mockProducts: Product[] = [
         price: 75,
         short_description: 'Красный паслен',
         long_description: 'Паслен с красными ягодами. Осторожно, слабоядовит.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 5,
     },
     {
@@ -732,7 +732,7 @@ export const mockProducts: Product[] = [
         price: 255,
         short_description: 'Черная водяника',
         long_description: 'Вороника (шикша) с севера. Черные водянистые ягоды.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 2,
     },
     {
@@ -741,7 +741,7 @@ export const mockProducts: Product[] = [
         price: 285,
         short_description: 'Садовая голубика',
         long_description: 'Американская высокорослая голубика. Крупные ягоды.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -750,7 +750,7 @@ export const mockProducts: Product[] = [
         price: 230,
         short_description: 'Болотная голубика',
         long_description: 'Низкорослая болотная голубика. Мелкая, но ароматная.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 3,
     },
     {
@@ -759,7 +759,7 @@ export const mockProducts: Product[] = [
         price: 195,
         short_description: 'Лесная брусника',
         long_description: 'Дикая лесная брусника. Классический вкус.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 4,
     },
     {
@@ -768,7 +768,7 @@ export const mockProducts: Product[] = [
         price: 215,
         short_description: 'Болотная клюква',
         long_description: 'Настоящая болотная клюква. Кислая и полезная.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 2,
     },
     {
@@ -777,7 +777,7 @@ export const mockProducts: Product[] = [
         price: 480,
         short_description: 'Арктическая малина',
         long_description: 'Княженика с крайнего севера. Самая дорогая ягода.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -786,7 +786,7 @@ export const mockProducts: Product[] = [
         price: 340,
         short_description: 'Гибрид княженики',
         long_description: 'Поляника - гибрид княженики и малины. Редкая ягода.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -795,7 +795,7 @@ export const mockProducts: Product[] = [
         price: 175,
         short_description: 'Красная костяника',
         long_description: 'Костяника из хвойных лесов. Кисло-сладкая.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 5,
     },
     {
@@ -804,7 +804,7 @@ export const mockProducts: Product[] = [
         price: 390,
         short_description: 'Северная морошка',
         long_description: 'Морошка с тундры. Янтарные ягоды с уникальным вкусом.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -813,7 +813,7 @@ export const mockProducts: Product[] = [
         price: 260,
         short_description: 'Клубника-земляника',
         long_description: 'Земляника мускусная (клубника). Ароматная, мелкая.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 3,
     },
     {
@@ -822,7 +822,7 @@ export const mockProducts: Product[] = [
         price: 240,
         short_description: 'Крупная клубника',
         long_description: 'Садовая земляника (клубника). Крупные сладкие ягоды.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 2,
     },
     {
@@ -831,7 +831,7 @@ export const mockProducts: Product[] = [
         price: 280,
         short_description: 'Ремонтантная земляника',
         long_description: 'Мелкоплодная альпийская земляника. Плодоносит все лето.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 4,
     },
     {
@@ -840,7 +840,7 @@ export const mockProducts: Product[] = [
         price: 270,
         short_description: 'Осенняя малина',
         long_description: 'Ремонтантная малина. Плодоносит до заморозков.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 5,
     },
     {
@@ -849,7 +849,7 @@ export const mockProducts: Product[] = [
         price: 295,
         short_description: 'Малиновое дерево',
         long_description: 'Штамбовая малина в форме дерева. Удобно собирать.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -858,7 +858,7 @@ export const mockProducts: Product[] = [
         price: 185,
         short_description: 'Стелющаяся ежевика',
         long_description: 'Дикая росяника со стелющимися побегами. Кисло-сладкая.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 3,
     },
     {
@@ -867,7 +867,7 @@ export const mockProducts: Product[] = [
         price: 195,
         short_description: 'Пряморослая ежевика',
         long_description: 'Куманика с прямостоячими побегами. Крупные ягоды.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 2,
     },
     {
@@ -876,7 +876,7 @@ export const mockProducts: Product[] = [
         price: 310,
         short_description: 'Гибрид ежевики',
         long_description: 'Логанова ягода - гибрид ежевики и малины. Крупная и кислая.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -885,7 +885,7 @@ export const mockProducts: Product[] = [
         price: 330,
         short_description: 'Шотландская ягода',
         long_description: 'Тайберри - улучшенный логанберри. Сладкая, крупная.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -894,7 +894,7 @@ export const mockProducts: Product[] = [
         price: 350,
         short_description: 'Бойзенберри',
         long_description: 'Бойзенова ягода - сложный гибрид. Огромные темные ягоды.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
     {
@@ -903,7 +903,7 @@ export const mockProducts: Product[] = [
         price: 370,
         short_description: 'Премиум ежевика',
         long_description: 'Марионова ягода - лучший сорт ежевики. Насыщенный вкус.',
-        image_url: import.meta.env.BASE_URL + '/images/home-bg.jpg',
+        image_url: `${import.meta.env.BASE_URL}/images/home-bg.jpg`,
         seller_id: 1,
     },
 ];

@@ -47,7 +47,7 @@ function ProductCards() {
                         spacing="lg"
                         style={styles}
                     >
-                        {visibleProducts.map((product, index) => (
+                        {visibleProducts.map((product) => (
                             <ProductCard
                                 key={`${product.id}-${activePage}`}
                                 product={product}

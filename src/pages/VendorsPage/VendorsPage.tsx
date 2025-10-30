@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Text, Stack, Group, ScrollArea, Card, useMantineTheme, Container } from '@mantine/core';
+import { Box, Text, Stack, ScrollArea, Card, useMantineTheme } from '@mantine/core';
 import classes from './VendorsPage.module.css';
 
 const vendors = [
@@ -151,8 +151,14 @@ export default function VendorsPage() {
                         p="md"
                         bg={theme.other.cardBackground}
                     >
-                        <iframe src={mapUrl} width="100%" height="100%" frameBorder="0"
-                            style={{ borderRadius: theme.other.cardRadius }} />
+                        <iframe 
+                            src={mapUrl} 
+                            width="100%" 
+                            height="100%" 
+                            frameBorder="0"
+                            title="Карта магазинов"
+                            style={{ borderRadius: theme.other.cardRadius }} 
+                        />
                     </Box>
                 </Box>
             </Stack>

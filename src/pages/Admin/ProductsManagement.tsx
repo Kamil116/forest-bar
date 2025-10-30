@@ -67,7 +67,7 @@ export default function ProductsManagement() {
     };
 
     const handleDelete = (product: Product) => {
-        if (window.confirm(`Вы уверены, что хотите удалить "${product.name}"?`)) {
+        if (confirm(`Вы уверены, что хотите удалить "${product.name}"?`)) {
             setProducts(products.filter((p) => p.id !== product.id));
             notifications.show({
                 title: 'Товар удален',
