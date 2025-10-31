@@ -1,5 +1,1 @@
-export interface Advantage {
-    id: number;
-    title: string;
-    text: string;
-}
+export type { Advantage } from '../schemas/advantage';

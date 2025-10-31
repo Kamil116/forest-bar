@@ -38,12 +38,20 @@ export default function ProductsManagement() {
             seller_id: 1,
         },
         validate: {
-            name: (value) => (value.length < 2 ? 'Название должно содержать минимум 2 символа' : null),
-            price: (value) => (value <= 0 ? 'Цена должна быть больше 0' : null),
+            name: (value) =>
+                value.length < 2
+                    ? 'Название должно содержать минимум 2 символа'
+                    : null,
+            price: (value) =>
+                value <= 0 ? 'Цена должна быть больше 0' : null,
             short_description: (value) =>
-                value.length < 10 ? 'Краткое описание должно содержать минимум 10 символов' : null,
+                value.length < 10
+                    ? 'Краткое описание должно содержать минимум 10 символов'
+                    : null,
             long_description: (value) =>
-                value.length < 20 ? 'Полное описание должно содержать минимум 20 символов' : null,
+                value.length < 20
+                    ? 'Полное описание должно содержать минимум 20 символов'
+                    : null,
         },
     });
 
@@ -94,7 +102,9 @@ export default function ProductsManagement() {
             // Update existing product
             setProducts(
                 products.map((p) =>
-                    p.id === editingProduct.id ? { ...values, id: editingProduct.id } : p
+                    p.id === editingProduct.id
+                        ? { ...values, id: editingProduct.id }
+                        : p
                 )
             );
             notifications.show({
@@ -129,7 +139,14 @@ export default function ProductsManagement() {
             key: 'image_url',
             label: 'Изображение',
             render: (value) => (
-                <Image src={value} alt="Product" h={50} w={50} radius="md" fit="cover" />
+                <Image
+                    src={value}
+                    alt="Product"
+                    h={50}
+                    w={50}
+                    radius="md"
+                    fit="cover"
+                />
             ),
         },
         {
@@ -147,16 +164,16 @@ export default function ProductsManagement() {
             key: 'short_description',
             label: 'Описание',
             render: (value) => (
-                <span className={classes.descriptionText}>
-                    {value}
-                </span>
+                <span className={classes.descriptionText}>{value}</span>
             ),
         },
         {
             key: 'seller_id',
             label: 'ID продавца',
             sortable: true,
-            render: (value) => <Badge color={theme.other.customYellow}>{value}</Badge>,
+            render: (value) => (
+                <Badge color={theme.other.customYellow}>{value}</Badge>
+            ),
         },
     ];
 
@@ -173,7 +190,11 @@ export default function ProductsManagement() {
                     onEdit={handleEdit}
                     onDelete={handleDelete}
                     onAdd={handleAdd}
-                    searchKeys={['name', 'short_description', 'long_description']}
+                    searchKeys={[
+                        'name',
+                        'short_description',
+                        'long_description',
+                    ]}
                     title="Каталог товаров"
                 />
 
@@ -181,8 +202,10 @@ export default function ProductsManagement() {
                     opened={opened}
                     onClose={() => setOpened(false)}
                     title={
-                        <Title order={2} c='white'>
-                            {editingProduct ? 'Редактировать товар' : 'Добавить новый товар'}
+                        <Title order={2} c="white">
+                            {editingProduct
+                                ? 'Редактировать товар'
+                                : 'Добавить новый товар'}
                         </Title>
                     }
                     size="lg"
@@ -280,10 +303,16 @@ export default function ProductsManagement() {
                             />
 
                             <Group className={classes.buttonGroup}>
-                                <Button variant="outline" onClick={() => setOpened(false)}>
+                                <Button
+                                    variant="outline"
+                                    onClick={() => setOpened(false)}
+                                >
                                     Отмена
                                 </Button>
-                                <Button type="submit" color={theme.other.customOrange}>
+                                <Button
+                                    type="submit"
+                                    color={theme.other.customOrange}
+                                >
                                     {editingProduct ? 'Обновить' : 'Создать'}
                                 </Button>
                             </Group>
@@ -294,4 +323,3 @@ export default function ProductsManagement() {
         </Container>
     );
 }
-

@@ -7,15 +7,20 @@ import {Notifications} from '@mantine/notifications';
 import {ModalsProvider} from '@mantine/modals';
 import {Router} from './Router';
 import {theme} from './theme';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import './fonts.css';
+
+const queryClient = new QueryClient();
 
 export default function App() {
     return (
-        <MantineProvider theme={theme}>
-            <ModalsProvider>
-                <Notifications position="top-right" />
-                <Router/>
-            </ModalsProvider>
-        </MantineProvider>
+        <QueryClientProvider client={queryClient}>
+            <MantineProvider theme={theme}>
+                <ModalsProvider>
+                    <Notifications position="top-right" />
+                    <Router/>
+                </ModalsProvider>
+            </MantineProvider>
+        </QueryClientProvider>
     );
 }
