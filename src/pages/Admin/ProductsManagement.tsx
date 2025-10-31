@@ -15,6 +15,7 @@ import {
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { notifications } from '@mantine/notifications';
+import { modals } from '@mantine/modals';
 import DataTable, { Column } from '@/components/Admin/DataTable';
 import { Product } from '@/types/product';
 import { mockProducts } from '@/data/mockProducts';
@@ -67,14 +68,25 @@ export default function ProductsManagement() {
     };
 
     const handleDelete = (product: Product) => {
-        if (confirm(`Вы уверены, что хотите удалить "${product.name}"?`)) {
-            setProducts(products.filter((p) => p.id !== product.id));
-            notifications.show({
-                title: 'Товар удален',
-                message: `${product.name} был удален`,
-                color: 'red',
-            });
-        }
+        modals.openConfirmModal({
+            title: 'Удалить товар',
+            children: `Вы уверены, что хотите удалить "${product.name}"?`,
+            labels: { confirm: 'Удалить', cancel: 'Отмена' },
+            confirmProps: { color: 'red', size: 'lg' },
+            cancelProps: { size: 'lg' },
+            styles: {
+                title: { fontSize: '24px', fontWeight: 700 },
+                body: { fontSize: '18px' },
+            },
+            onConfirm: () => {
+                setProducts(products.filter((p) => p.id !== product.id));
+                notifications.show({
+                    title: 'Товар удален',
+                    message: `${product.name} был удален`,
+                    color: 'red',
+                });
+            },
+        });
     };
 
     const handleSubmit = (values: Omit<Product, 'id'>) => {

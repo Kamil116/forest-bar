@@ -3,11 +3,11 @@ import { useDisclosure } from '@mantine/hooks';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import {
     IconShoppingBag,
-    IconUsers,
     IconBriefcase,
     IconBuilding,
     IconLogout,
     IconHome,
+    IconStar,
 } from '@tabler/icons-react';
 import classes from './AdminLayout.module.css';
 
@@ -19,8 +19,8 @@ export default function AdminLayout() {
     const navItems = [
         { label: 'Товары', icon: IconShoppingBag, path: '/admin/products' },
         { label: 'Поставщики', icon: IconBuilding, path: '/admin/vendors' },
-        { label: 'Сотрудники', icon: IconUsers, path: '/admin/employees' },
         { label: 'Вакансии', icon: IconBriefcase, path: '/admin/vacancies' },
+        { label: 'Преимущества', icon: IconStar, path: '/admin/advantages' },
     ];
 
     return (

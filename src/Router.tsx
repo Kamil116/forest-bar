@@ -8,8 +8,8 @@ import Catalog from '@/pages/Catalog/Catalog';
 import AdminLayout from '@/components/Admin/AdminLayout';
 import ProductsManagement from '@/pages/Admin/ProductsManagement';
 import VendorsManagement from '@/pages/Admin/VendorsManagement';
-import EmployeesManagement from '@/pages/Admin/EmployeesManagement';
 import VacanciesManagement from '@/pages/Admin/VacanciesManagement';
+import AdvantagesManagement from '@/pages/Admin/AdvantagesManagement';
 
 const router = createBrowserRouter(
     [
@@ -43,12 +43,12 @@ const router = createBrowserRouter(
                     element: <VendorsManagement />,
                 },
                 {
-                    path: 'employees',
-                    element: <EmployeesManagement />,
-                },
-                {
                     path: 'vacancies',
                     element: <VacanciesManagement />,
+                },
+                {
+                    path: 'advantages',
+                    element: <AdvantagesManagement />,
                 },
             ],
         },

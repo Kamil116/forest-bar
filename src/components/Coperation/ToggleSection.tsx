@@ -43,7 +43,7 @@ export function ToggleSection() {
                         <VacancyCards />
                         <Title order={2} fz={theme.other.titleSize} fw={400} tt="uppercase"
                             c={theme.other.customOrange}>
-                            Профили сотрудников
+                            Профили продавцов
                         </Title>
                         <ProfileCards />
                         <Footer />

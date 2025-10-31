@@ -14,6 +14,7 @@ import {
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { notifications } from '@mantine/notifications';
+import { modals } from '@mantine/modals';
 import DataTable, { Column } from '@/components/Admin/DataTable';
 import { Employee } from '@/types/employee';
 import { mockEmployees } from '@/data/mockEmployees';
@@ -74,14 +75,25 @@ export default function EmployeesManagement() {
     };
 
     const handleDelete = (employee: Employee) => {
-        if (confirm(`Вы уверены, что хотите удалить "${employee.name} ${employee.surname}"?`)) {
-            setEmployees(employees.filter((e) => e.id !== employee.id));
-            notifications.show({
-                title: 'Сотрудник удален',
-                message: `${employee.name} ${employee.surname} был удален`,
-                color: 'red',
-            });
-        }
+        modals.openConfirmModal({
+            title: 'Удалить сотрудника',
+            children: `Вы уверены, что хотите удалить "${employee.name} ${employee.surname}"?`,
+            labels: { confirm: 'Удалить', cancel: 'Отмена' },
+            confirmProps: { color: 'red', size: 'lg' },
+            cancelProps: { size: 'lg' },
+            styles: {
+                title: { fontSize: '24px', fontWeight: 700 },
+                body: { fontSize: '18px' },
+            },
+            onConfirm: () => {
+                setEmployees(employees.filter((e) => e.id !== employee.id));
+                notifications.show({
+                    title: 'Сотрудник удален',
+                    message: `${employee.name} ${employee.surname} был удален`,
+                    color: 'red',
+                });
+            },
+        });
     };
 
     const handleSubmit = (values: Omit<Employee, 'id'>) => {

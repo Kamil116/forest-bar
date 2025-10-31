@@ -15,6 +15,7 @@ import {
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { notifications } from '@mantine/notifications';
+import { modals } from '@mantine/modals';
 import DataTable, { Column } from '@/components/Admin/DataTable';
 import { Vacancy } from '@/types/vacancy';
 import { mockVacancies } from '@/data/mockVacancies';
@@ -78,14 +79,25 @@ export default function VacanciesManagement() {
     };
 
     const handleDelete = (vacancy: Vacancy) => {
-        if (confirm(`Вы уверены, что хотите удалить "${vacancy.title}"?`)) {
-            setVacancies(vacancies.filter((v) => v.id !== vacancy.id));
-            notifications.show({
-                title: 'Вакансия удалена',
-                message: `${vacancy.title} была удалена`,
-                color: 'red',
-            });
-        }
+        modals.openConfirmModal({
+            title: 'Удалить вакансию',
+            children: `Вы уверены, что хотите удалить вакансию "${vacancy.title}"?`,
+            labels: { confirm: 'Удалить', cancel: 'Отмена' },
+            confirmProps: { color: 'red', size: 'lg' },
+            cancelProps: { size: 'lg' },
+            styles: {
+                title: { fontSize: '24px', fontWeight: 700 },
+                body: { fontSize: '18px' },
+            },
+            onConfirm: () => {
+                setVacancies(vacancies.filter((v) => v.id !== vacancy.id));
+                notifications.show({
+                    title: 'Вакансия удалена',
+                    message: `${vacancy.title} была удалена`,
+                    color: 'red',
+                });
+            },
+        });
     };
 
     const handleSubmit = (values: Omit<Vacancy, 'id'>) => {
@@ -305,12 +317,22 @@ export default function VacanciesManagement() {
                                             color={theme.other.customYellow}
                                             rightSection={
                                                 <span
+                                                    role="button"
+                                                    tabIndex={0}
                                                     style={{ cursor: 'pointer', marginLeft: '8px' }}
                                                     onClick={() => {
                                                         form.setFieldValue(
                                                             'conditions',
                                                             form.values.conditions.filter((_, i) => i !== index)
                                                         );
+                                                    }}
+                                                    onKeyDown={(e) => {
+                                                        if (e.key === 'Enter' || e.key === ' ') {
+                                                            form.setFieldValue(
+                                                                'conditions',
+                                                                form.values.conditions.filter((_, i) => i !== index)
+                                                            );
+                                                        }
                                                     }}
                                                 >
                                                     ×
@@ -356,12 +378,22 @@ export default function VacanciesManagement() {
                                             color="blue"
                                             rightSection={
                                                 <span
+                                                    role="button"
+                                                    tabIndex={0}
                                                     style={{ cursor: 'pointer', marginLeft: '8px' }}
                                                     onClick={() => {
                                                         form.setFieldValue(
                                                             'requirements',
                                                             form.values.requirements.filter((_, i) => i !== index)
                                                         );
+                                                    }}
+                                                    onKeyDown={(e) => {
+                                                        if (e.key === 'Enter' || e.key === ' ') {
+                                                            form.setFieldValue(
+                                                                'requirements',
+                                                                form.values.requirements.filter((_, i) => i !== index)
+                                                            );
+                                                        }
                                                     }}
                                                 >
                                                     ×

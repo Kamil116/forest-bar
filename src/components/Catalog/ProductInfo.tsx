@@ -40,6 +40,7 @@ function ProductInfo({ product, opened, onClose }: ProductInfoProps) {
                             <video
                                 src={product.video_url}
                                 controls
+                                aria-label={`Видео товара: ${product.name}`}
                                 style={{
                                     width: '100%',
                                     maxHeight: 300,

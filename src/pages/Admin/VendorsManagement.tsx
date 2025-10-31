@@ -14,6 +14,7 @@ import {
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { notifications } from '@mantine/notifications';
+import { modals } from '@mantine/modals';
 import DataTable, { Column } from '@/components/Admin/DataTable';
 import { Vendor } from '@/types/vendor';
 import { mockVendors } from '@/data/mockVendors';
@@ -28,6 +29,9 @@ export default function VendorsManagement() {
     const form = useForm<Omit<Vendor, 'id'>>({
         initialValues: {
             title: '',
+            name: '',
+            middleName: '',
+            surname: '',
             address: '',
             phone: '',
             email: '',
@@ -36,6 +40,9 @@ export default function VendorsManagement() {
         },
         validate: {
             title: (value) => (value.length < 3 ? 'Название должно содержать минимум 3 символа' : null),
+            name: (value) => (value.length < 2 ? 'Имя должно содержать минимум 2 символа' : null),
+            middleName: (value) => (value.length < 2 ? 'Отчество должно содержать минимум 2 символа' : null),
+            surname: (value) => (value.length < 2 ? 'Фамилия должна содержать минимум 2 символа' : null),
             address: (value) => (value.length < 10 ? 'Адрес должен содержать минимум 10 символов' : null),
             phone: (value) => (value.length < 10 ? 'Телефон должен быть действительным' : null),
             email: (value) => (/^\S+@\S+$/.test(value || '') || !value ? null : 'Неверный email'),
@@ -52,6 +59,9 @@ export default function VendorsManagement() {
         setEditingVendor(vendor);
         form.setValues({
             title: vendor.title,
+            name: vendor.name,
+            middleName: vendor.middleName,
+            surname: vendor.surname,
             address: vendor.address,
             phone: vendor.phone,
             email: vendor.email || '',
@@ -62,14 +72,25 @@ export default function VendorsManagement() {
     };
 
     const handleDelete = (vendor: Vendor) => {
-        if (window.confirm(`Вы уверены, что хотите удалить "${vendor.title}"?`)) {
-            setVendors(vendors.filter((v) => v.id !== vendor.id));
-            notifications.show({
-                title: 'Поставщик удален',
-                message: `${vendor.title} был удален`,
-                color: 'red',
-            });
-        }
+        modals.openConfirmModal({
+            title: 'Удалить поставщика',
+            children: `Вы уверены, что хотите удалить "${vendor.title}"?`,
+            labels: { confirm: 'Удалить', cancel: 'Отмена' },
+            confirmProps: { color: 'red', size: 'lg' },
+            cancelProps: { size: 'lg' },
+            styles: {
+                title: { fontSize: '24px', fontWeight: 700 },
+                body: { fontSize: '18px' },
+            },
+            onConfirm: () => {
+                setVendors(vendors.filter((v) => v.id !== vendor.id));
+                notifications.show({
+                    title: 'Поставщик удален',
+                    message: `${vendor.title} был удален`,
+                    color: 'red',
+                });
+            },
+        });
     };
 
     const handleSubmit = (values: Omit<Vendor, 'id'>) => {
@@ -110,6 +131,12 @@ export default function VendorsManagement() {
             key: 'title',
             label: 'Название',
             sortable: true,
+        },
+        {
+            key: 'surname',
+            label: 'Представитель',
+            sortable: true,
+            render: (_value, row) => `${row.surname} ${row.name} ${row.middleName}`,
         },
         {
             key: 'address',
@@ -153,7 +180,7 @@ export default function VendorsManagement() {
                     onEdit={handleEdit}
                     onDelete={handleDelete}
                     onAdd={handleAdd}
-                    searchKeys={['title', 'address', 'phone', 'email']}
+                    searchKeys={['title', 'name', 'surname', 'middleName', 'address', 'phone', 'email']}
                     title="Партнеры-поставщики"
                 />
 
@@ -184,6 +211,39 @@ export default function VendorsManagement() {
                                 placeholder="Введите название поставщика"
                                 required
                                 {...form.getInputProps('title')}
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
+                                }}
+                            />
+
+                            <TextInput
+                                label="Имя представителя"
+                                placeholder="Введите имя"
+                                required
+                                {...form.getInputProps('name')}
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
+                                }}
+                            />
+
+                            <TextInput
+                                label="Отчество представителя"
+                                placeholder="Введите отчество"
+                                required
+                                {...form.getInputProps('middleName')}
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
+                                }}
+                            />
+
+                            <TextInput
+                                label="Фамилия представителя"
+                                placeholder="Введите фамилию"
+                                required
+                                {...form.getInputProps('surname')}
                                 classNames={{
                                     label: classes.inputLabel,
                                     input: classes.inputField,

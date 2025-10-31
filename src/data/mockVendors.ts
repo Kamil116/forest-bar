@@ -4,6 +4,9 @@ export const mockVendors: Vendor[] = [
     {
         id: 1,
         title: 'Московская область',
+        name: 'Александр',
+        middleName: 'Владимирович',
+        surname: 'Петров',
         address: 'Москва, Красная площадь, 1',
         phone: '+7 (495) 123-4567',
         email: 'moscow@forestbar.ru',
@@ -13,6 +16,9 @@ export const mockVendors: Vendor[] = [
     {
         id: 2,
         title: 'Санкт-Петербург',
+        name: 'Елена',
+        middleName: 'Сергеевна',
+        surname: 'Иванова',
         address: 'Санкт-Петербург, Дворцовая площадь, 2',
         phone: '+7 (812) 234-5678',
         email: 'spb@forestbar.ru',
@@ -22,6 +28,9 @@ export const mockVendors: Vendor[] = [
     {
         id: 3,
         title: 'Новосибирская область',
+        name: 'Дмитрий',
+        middleName: 'Александрович',
+        surname: 'Сидоров',
         address: 'Новосибирск, Красный проспект, 3',
         phone: '+7 (383) 345-6789',
         email: 'novosibirsk@forestbar.ru',
@@ -31,6 +40,9 @@ export const mockVendors: Vendor[] = [
     {
         id: 4,
         title: 'Екатеринбург',
+        name: 'Мария',
+        middleName: 'Николаевна',
+        surname: 'Козлова',
         address: 'Екатеринбург, проспект Ленина, 4',
         phone: '+7 (343) 456-7890',
         email: 'ekb@forestbar.ru',
@@ -40,6 +52,9 @@ export const mockVendors: Vendor[] = [
     {
         id: 5,
         title: 'Нижний Новгород',
+        name: 'Игорь',
+        middleName: 'Петрович',
+        surname: 'Волков',
         address: 'Нижний Новгород, Большая Покровская, 5',
         phone: '+7 (831) 567-8901',
         email: 'nn@forestbar.ru',
@@ -49,6 +64,9 @@ export const mockVendors: Vendor[] = [
     {
         id: 6,
         title: 'Казань',
+        name: 'Ольга',
+        middleName: 'Дмитриевна',
+        surname: 'Морозова',
         address: 'Казань, улица Баумана, 6',
         phone: '+7 (843) 678-9012',
         email: 'kazan@forestbar.ru',
@@ -58,6 +76,9 @@ export const mockVendors: Vendor[] = [
     {
         id: 7,
         title: 'Челябинск',
+        name: 'Андрей',
+        middleName: 'Михайлович',
+        surname: 'Новиков',
         address: 'Челябинск, проспект Ленина, 7',
         phone: '+7 (351) 789-0123',
         email: 'chel@forestbar.ru',
@@ -67,6 +88,9 @@ export const mockVendors: Vendor[] = [
     {
         id: 8,
         title: 'Омск',
+        name: 'Татьяна',
+        middleName: 'Игоревна',
+        surname: 'Соколова',
         address: 'Омск, улица Ленина, 8',
         phone: '+7 (3812) 890-1234',
         email: 'omsk@forestbar.ru',
@@ -76,6 +100,9 @@ export const mockVendors: Vendor[] = [
     {
         id: 9,
         title: 'Самара',
+        name: 'Сергей',
+        middleName: 'Иванович',
+        surname: 'Морозов',
         address: 'Самара, улица Ленинградская, 9',
         phone: '+7 (846) 901-2345',
         email: 'samara@forestbar.ru',
@@ -85,6 +112,9 @@ export const mockVendors: Vendor[] = [
     {
         id: 10,
         title: 'Ростов-на-Дону',
+        name: 'Анна',
+        middleName: 'Сергеевна',
+        surname: 'Лебедева',
         address: 'Ростов-на-Дону, Большая Садовая, 10',
         phone: '+7 (863) 012-3456',
         email: 'rostov@forestbar.ru',

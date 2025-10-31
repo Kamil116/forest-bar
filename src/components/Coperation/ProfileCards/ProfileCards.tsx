@@ -1,41 +1,29 @@
 import React from 'react';
 import ProfileCard from "@/components/Coperation/ProfileCards/ProfileCard";
-import {Box, Divider, Group, useMantineTheme} from "@mantine/core";
+import {Box, Divider, Group, ScrollArea, useMantineTheme} from "@mantine/core";
+import { mockVendors } from "@/data/mockVendors";
+import styles from "./ProfileCards.module.css";
 
 function ProfileCards() {
     const theme = useMantineTheme();
-    const leaders = [
-        {
-            name: 'Александр',
-            middleName: 'Владимирович',
-            surname: 'Петров',
-            phone: 89001234567,
-        },
-        {
-            name: 'Елена',
-            middleName: 'Сергеевна',
-            surname: 'Иванова',
-            phone: 89007654321,
-        },
-        {
-            name: 'Дмитрий',
-            middleName: 'Александрович',
-            surname: 'Сидоров',
-            phone: 89005551234,
-        },
-        {
-            name: 'Мария',
-            middleName: 'Николаевна',
-            surname: 'Козлова',
-            phone: 89009876543,
-        },
-    ];
+    
+    // Map vendors to the format expected by ProfileCard
+    const leaders = mockVendors.map(vendor => ({
+        name: vendor.name,
+        middleName: vendor.middleName,
+        surname: vendor.surname,
+        phone: vendor.phone,
+    }));
 
     return (
         <>
-            <Group>
-                {leaders.map((leader, index) => <ProfileCard key={index} leaderProfile={leader}/>)}
-            </Group>
+            <Box w="100%" style={{ overflow: 'hidden' }}>
+                <ScrollArea classNames={styles} type="auto" ml='xl' mr='xl' offsetScrollbars pb="md">
+                    <Group wrap="nowrap" gap="xl">
+                        {leaders.map((leader, index) => <ProfileCard key={index} leaderProfile={leader}/>)}
+                    </Group>
+                </ScrollArea>
+            </Box>
             <Box pos="relative" w="20%" mx="auto" my="xl">
                 <Divider size={2} color={theme.other.customOrange}/>
                 <Box
