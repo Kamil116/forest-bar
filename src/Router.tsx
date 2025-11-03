@@ -6,10 +6,11 @@ import Catalog from '@/pages/Catalog/Catalog';
 
 // Admin imports
 import AdminLayout from '@/components/Admin/AdminLayout';
-import ProductsManagement from '@/pages/Admin/ProductsManagement';
-import VendorsManagement from '@/pages/Admin/VendorsManagement';
-import VacanciesManagement from '@/pages/Admin/VacanciesManagement';
-import AdvantagesManagement from '@/pages/Admin/AdvantagesManagement';
+import Admin from '@/pages/Admin/Admin';
+import ProductsManagement from '@/components/Admin/ProductsManagement';
+import VendorsManagement from '@/components/Admin/VendorsManagement';
+import VacanciesManagement from '@/components/Admin/VacanciesManagement';
+import AdvantagesManagement from '@/components/Admin/AdvantagesManagement';
 
 const router = createBrowserRouter(
     [
@@ -34,6 +35,10 @@ const router = createBrowserRouter(
             path: '/admin',
             element: <AdminLayout />,
             children: [
+                {
+                    index: true,
+                    element: <Admin />,
+                },
                 {
                     path: 'products',
                     element: <ProductsManagement />,

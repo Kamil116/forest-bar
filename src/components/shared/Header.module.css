@@ -1,0 +1,15 @@
+.header {
+    position: relative;
+    z-index: 10;
+    overflow: visible;
+    height: 80px;
+    min-height: 80px;
+    max-height: 80px;
+}
+
+.logo {
+    position: relative;
+    z-index: 20;
+    cursor: pointer;
+}
+

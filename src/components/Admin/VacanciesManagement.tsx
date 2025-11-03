@@ -31,23 +31,31 @@ export default function VacanciesManagement() {
         initialValues: {
             title: '',
             city: '',
-            department: '',
             description: '',
             conditions: [],
             requirements: [],
             salary_min: 0,
             salary_max: 0,
-            employment_type: 'full-time',
-            status: 'open',
-            posted_date: new Date().toISOString().split('T')[0],
+            status: 'Открыта',
         },
         validate: {
-            title: (value) => (value.length < 3 ? 'Название должно содержать минимум 3 символа' : null),
+            title: (value) =>
+                value.length < 3
+                    ? 'Название должно содержать минимум 3 символа'
+                    : null,
             city: (value) => (value.length < 2 ? 'Город обязателен' : null),
-            department: (value) => (value.length < 3 ? 'Отдел должен содержать минимум 3 символа' : null),
-            description: (value) => (value.length < 20 ? 'Описание должно содержать минимум 20 символов' : null),
-            conditions: (value) => (value.length === 0 ? 'Необходимо добавить хотя бы одно условие' : null),
-            requirements: (value) => (value.length === 0 ? 'Необходимо добавить хотя бы одно требование' : null),
+            description: (value) =>
+                value.length < 20
+                    ? 'Описание должно содержать минимум 20 символов'
+                    : null,
+            conditions: (value) =>
+                value.length === 0
+                    ? 'Необходимо добавить хотя бы одно условие'
+                    : null,
+            requirements: (value) =>
+                value.length === 0
+                    ? 'Необходимо добавить хотя бы одно требование'
+                    : null,
         },
     });
 
@@ -65,15 +73,12 @@ export default function VacanciesManagement() {
         form.setValues({
             title: vacancy.title,
             city: vacancy.city,
-            department: vacancy.department,
             description: vacancy.description,
             conditions: vacancy.conditions,
             requirements: vacancy.requirements,
             salary_min: vacancy.salary_min,
             salary_max: vacancy.salary_max,
-            employment_type: vacancy.employment_type,
             status: vacancy.status,
-            posted_date: vacancy.posted_date,
         });
         setOpened(true);
     };
@@ -104,7 +109,9 @@ export default function VacanciesManagement() {
         if (editingVacancy) {
             setVacancies(
                 vacancies.map((v) =>
-                    v.id === editingVacancy.id ? { ...values, id: editingVacancy.id } : v
+                    v.id === editingVacancy.id
+                        ? { ...values, id: editingVacancy.id }
+                        : v
                 )
             );
             notifications.show({
@@ -130,11 +137,11 @@ export default function VacanciesManagement() {
 
     const getStatusColor = (status: string) => {
         switch (status) {
-            case 'open':
+            case 'Открыта':
                 return 'green';
-            case 'on-hold':
+            case 'На паузе':
                 return 'yellow';
-            case 'closed':
+            case 'Закрыта':
                 return 'red';
             default:
                 return 'gray';
@@ -158,21 +165,6 @@ export default function VacanciesManagement() {
             sortable: true,
         },
         {
-            key: 'department',
-            label: 'Отдел',
-            sortable: true,
-            render: (value) => <Badge color={theme.other.customYellow}>{value}</Badge>,
-        },
-        {
-            key: 'employment_type',
-            label: 'Тип',
-            render: (value) => (
-                <Badge color="blue" variant="light">
-                    {value}
-                </Badge>
-            ),
-        },
-        {
             key: 'salary_min',
             label: 'Диапазон зарплаты',
             render: (value, row) => {
@@ -192,11 +184,6 @@ export default function VacanciesManagement() {
                 </Badge>
             ),
         },
-        {
-            key: 'posted_date',
-            label: 'Опубликовано',
-            sortable: true,
-        },
     ];
 
     return (
@@ -212,7 +199,7 @@ export default function VacanciesManagement() {
                     onEdit={handleEdit}
                     onDelete={handleDelete}
                     onAdd={handleAdd}
-                    searchKeys={['title', 'city', 'department', 'description']}
+                    searchKeys={['title', 'city', 'description']}
                     title="Вакансии"
                 />
 
@@ -220,8 +207,10 @@ export default function VacanciesManagement() {
                     opened={opened}
                     onClose={() => setOpened(false)}
                     title={
-                        <Title order={2} c='white'>
-                            {editingVacancy ? 'Редактировать вакансию' : 'Добавить новую вакансию'}
+                        <Title order={2} c="white">
+                            {editingVacancy
+                                ? 'Редактировать вакансию'
+                                : 'Добавить новую вакансию'}
                         </Title>
                     }
                     size="lg"
@@ -249,28 +238,16 @@ export default function VacanciesManagement() {
                                 }}
                             />
 
-                            <Group grow>
-                                <TextInput
-                                    label="Город"
-                                    placeholder="Москва"
-                                    required
-                                    {...form.getInputProps('city')}
-                                    classNames={{
-                                        label: classes.inputLabel,
-                                        input: classes.inputField,
-                                    }}
-                                />
-                                <TextInput
-                                    label="Отдел"
-                                    placeholder="Продажи"
-                                    required
-                                    {...form.getInputProps('department')}
-                                    classNames={{
-                                        label: classes.inputLabel,
-                                        input: classes.inputField,
-                                    }}
-                                />
-                            </Group>
+                            <TextInput
+                                label="Город"
+                                placeholder="Москва"
+                                required
+                                {...form.getInputProps('city')}
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
+                                }}
+                            />
 
                             <Textarea
                                 label="Описание"
@@ -289,7 +266,11 @@ export default function VacanciesManagement() {
                                     <TextInput
                                         placeholder="Добавить условие"
                                         value={newCondition}
-                                        onChange={(e) => setNewCondition(e.currentTarget.value)}
+                                        onChange={(e) =>
+                                            setNewCondition(
+                                                e.currentTarget.value
+                                            )
+                                        }
                                         style={{ flex: 1 }}
                                         classNames={{
                                             input: classes.inputField,
@@ -298,10 +279,14 @@ export default function VacanciesManagement() {
                                     <Button
                                         onClick={() => {
                                             if (newCondition.trim()) {
-                                                form.setFieldValue('conditions', [
-                                                    ...form.values.conditions,
-                                                    newCondition.trim(),
-                                                ]);
+                                                form.setFieldValue(
+                                                    'conditions',
+                                                    [
+                                                        ...form.values
+                                                            .conditions,
+                                                        newCondition.trim(),
+                                                    ]
+                                                );
                                                 setNewCondition('');
                                             }
                                         }}
@@ -311,37 +296,59 @@ export default function VacanciesManagement() {
                                     </Button>
                                 </Group>
                                 <Stack gap={4}>
-                                    {form.values.conditions.map((condition, index) => (
-                                        <Badge
-                                            key={index}
-                                            color={theme.other.customYellow}
-                                            rightSection={
-                                                <span
-                                                    role="button"
-                                                    tabIndex={0}
-                                                    style={{ cursor: 'pointer', marginLeft: '8px' }}
-                                                    onClick={() => {
-                                                        form.setFieldValue(
-                                                            'conditions',
-                                                            form.values.conditions.filter((_, i) => i !== index)
-                                                        );
-                                                    }}
-                                                    onKeyDown={(e) => {
-                                                        if (e.key === 'Enter' || e.key === ' ') {
+                                    {form.values.conditions.map(
+                                        (condition, index) => (
+                                            <Badge
+                                                key={index}
+                                                color={
+                                                    theme.other.customYellow
+                                                }
+                                                rightSection={
+                                                    <span
+                                                        role="button"
+                                                        tabIndex={0}
+                                                        style={{
+                                                            cursor: 'pointer',
+                                                            marginLeft: '8px',
+                                                        }}
+                                                        onClick={() => {
                                                             form.setFieldValue(
                                                                 'conditions',
-                                                                form.values.conditions.filter((_, i) => i !== index)
+                                                                form.values.conditions.filter(
+                                                                    (_, i) =>
+                                                                        i !==
+                                                                        index
+                                                                )
                                                             );
-                                                        }
-                                                    }}
-                                                >
-                                                    ×
-                                                </span>
-                                            }
-                                        >
-                                            {condition}
-                                        </Badge>
-                                    ))}
+                                                        }}
+                                                        onKeyDown={(e) => {
+                                                            if (
+                                                                e.key ===
+                                                                    'Enter' ||
+                                                                e.key === ' '
+                                                            ) {
+                                                                form.setFieldValue(
+                                                                    'conditions',
+                                                                    form.values.conditions.filter(
+                                                                        (
+                                                                            _,
+                                                                            i
+                                                                        ) =>
+                                                                            i !==
+                                                                            index
+                                                                    )
+                                                                );
+                                                            }
+                                                        }}
+                                                    >
+                                                        ×
+                                                    </span>
+                                                }
+                                            >
+                                                {condition}
+                                            </Badge>
+                                        )
+                                    )}
                                 </Stack>
                             </Stack>
 
@@ -350,7 +357,11 @@ export default function VacanciesManagement() {
                                     <TextInput
                                         placeholder="Добавить требование"
                                         value={newRequirement}
-                                        onChange={(e) => setNewRequirement(e.currentTarget.value)}
+                                        onChange={(e) =>
+                                            setNewRequirement(
+                                                e.currentTarget.value
+                                            )
+                                        }
                                         style={{ flex: 1 }}
                                         classNames={{
                                             input: classes.inputField,
@@ -359,10 +370,14 @@ export default function VacanciesManagement() {
                                     <Button
                                         onClick={() => {
                                             if (newRequirement.trim()) {
-                                                form.setFieldValue('requirements', [
-                                                    ...form.values.requirements,
-                                                    newRequirement.trim(),
-                                                ]);
+                                                form.setFieldValue(
+                                                    'requirements',
+                                                    [
+                                                        ...form.values
+                                                            .requirements,
+                                                        newRequirement.trim(),
+                                                    ]
+                                                );
                                                 setNewRequirement('');
                                             }
                                         }}
@@ -372,37 +387,57 @@ export default function VacanciesManagement() {
                                     </Button>
                                 </Group>
                                 <Stack gap={4}>
-                                    {form.values.requirements.map((requirement, index) => (
-                                        <Badge
-                                            key={index}
-                                            color="blue"
-                                            rightSection={
-                                                <span
-                                                    role="button"
-                                                    tabIndex={0}
-                                                    style={{ cursor: 'pointer', marginLeft: '8px' }}
-                                                    onClick={() => {
-                                                        form.setFieldValue(
-                                                            'requirements',
-                                                            form.values.requirements.filter((_, i) => i !== index)
-                                                        );
-                                                    }}
-                                                    onKeyDown={(e) => {
-                                                        if (e.key === 'Enter' || e.key === ' ') {
+                                    {form.values.requirements.map(
+                                        (requirement, index) => (
+                                            <Badge
+                                                key={index}
+                                                color="blue"
+                                                rightSection={
+                                                    <span
+                                                        role="button"
+                                                        tabIndex={0}
+                                                        style={{
+                                                            cursor: 'pointer',
+                                                            marginLeft: '8px',
+                                                        }}
+                                                        onClick={() => {
                                                             form.setFieldValue(
                                                                 'requirements',
-                                                                form.values.requirements.filter((_, i) => i !== index)
+                                                                form.values.requirements.filter(
+                                                                    (_, i) =>
+                                                                        i !==
+                                                                        index
+                                                                )
                                                             );
-                                                        }
-                                                    }}
-                                                >
-                                                    ×
-                                                </span>
-                                            }
-                                        >
-                                            {requirement}
-                                        </Badge>
-                                    ))}
+                                                        }}
+                                                        onKeyDown={(e) => {
+                                                            if (
+                                                                e.key ===
+                                                                    'Enter' ||
+                                                                e.key === ' '
+                                                            ) {
+                                                                form.setFieldValue(
+                                                                    'requirements',
+                                                                    form.values.requirements.filter(
+                                                                        (
+                                                                            _,
+                                                                            i
+                                                                        ) =>
+                                                                            i !==
+                                                                            index
+                                                                    )
+                                                                );
+                                                            }
+                                                        }}
+                                                    >
+                                                        ×
+                                                    </span>
+                                                }
+                                            >
+                                                {requirement}
+                                            </Badge>
+                                        )
+                                    )}
                                 </Stack>
                             </Stack>
 
@@ -429,60 +464,33 @@ export default function VacanciesManagement() {
                                 />
                             </Group>
 
-                            <Group grow>
-                                <Select
-                                    label="Тип занятости"
-                                    placeholder="Выберите тип"
-                                    required
-                                    data={[
-                                        { value: 'full-time', label: 'Полный день' },
-                                        { value: 'part-time', label: 'Частичная занятость' },
-                                        { value: 'contract', label: 'Контракт' },
-                                        { value: 'internship', label: 'Стажировка' },
-                                    ]}
-                                    {...form.getInputProps('employment_type')}
-                                    classNames={{
-                                        label: classes.inputLabel,
-                                        input: classes.inputField,
-                                    }}
-                                />
-                                <Select
-                                    label="Статус"
-                                    placeholder="Выберите статус"
-                                    required
-                                    data={[
-                                        { value: 'open', label: 'Открыта' },
-                                        { value: 'on-hold', label: 'На паузе' },
-                                        { value: 'closed', label: 'Закрыта' },
-                                    ]}
-                                    {...form.getInputProps('status')}
-                                    classNames={{
-                                        label: classes.inputLabel,
-                                        input: classes.inputField,
-                                    }}
-                                />
-                            </Group>
-
-                            <TextInput
-                                label="Дата публикации"
-                                placeholder="ГГГГ-ММ-ДД"
+                            <Select
+                                label="Статус"
+                                placeholder="Выберите статус"
                                 required
-                                {...form.getInputProps('posted_date')}
-                                styles={{
-                                    label: { color: 'white' },
-                                    input: {
-                                        backgroundColor: theme.other.cardBackground,
-                                        color: 'white',
-                                        borderColor: theme.other.customYellow,
-                                    },
+                                data={[
+                                    { value: 'Открыта', label: 'Открыта' },
+                                    { value: 'На паузе', label: 'На паузе' },
+                                    { value: 'Закрыта', label: 'Закрыта' },
+                                ]}
+                                {...form.getInputProps('status')}
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
                                 }}
                             />
 
                             <Group className={classes.buttonGroup}>
-                                <Button variant="outline" onClick={() => setOpened(false)}>
+                                <Button
+                                    variant="outline"
+                                    onClick={() => setOpened(false)}
+                                >
                                     Отмена
                                 </Button>
-                                <Button type="submit" color={theme.other.customOrange}>
+                                <Button
+                                    type="submit"
+                                    color={theme.other.customOrange}
+                                >
                                     {editingVacancy ? 'Обновить' : 'Создать'}
                                 </Button>
                             </Group>
@@ -493,4 +501,3 @@ export default function VacanciesManagement() {
         </Container>
     );
 }
-

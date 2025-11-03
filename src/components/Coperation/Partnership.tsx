@@ -1,4 +1,14 @@
-import { Box, Text, Stack, TextInput, Textarea, Button, Group, Image, useMantineTheme } from '@mantine/core';
+import {
+    Box,
+    Text,
+    Stack,
+    TextInput,
+    Textarea,
+    Button,
+    Group,
+    Image,
+    useMantineTheme,
+} from '@mantine/core';
 import styles from './Partnership.module.css';
 
 function Partnership() {
@@ -6,8 +16,15 @@ function Partnership() {
     return (
         <Box>
             <Box style={{ display: 'flex', gap: '16px', width: '100%' }}>
-                <Box style={{ flex: '0 0 calc(60% - 8px)' }}>
-                    <Text ta="center" fw={700} c="white" mb="xl" tt="uppercase" fz={32}>
+                <Box style={{ flex: '0 0 calc(60% - 8px)' }} pl="xl">
+                    <Text
+                        ta="center"
+                        fw={700}
+                        c="white"
+                        mb="xl"
+                        tt="uppercase"
+                        fz={32}
+                    >
                         Заполни анкету на партнерство и стань частью коллектива
                     </Text>
 
@@ -35,7 +52,6 @@ function Partnership() {
                                 size="lg"
                                 radius={theme.other.buttonRadius}
                                 w="100%"
-
                                 classNames={{ input: styles.input }}
                             />
                             <Button
@@ -60,12 +76,9 @@ function Partnership() {
                             tt="uppercase"
                             size="lg"
                             radius={theme.other.buttonRadius}
-
                             classNames={{ input: styles.input }}
                         />
                     </Group>
-
-
                 </Box>
 
                 <Image
@@ -79,7 +92,7 @@ function Partnership() {
                 />
             </Box>
         </Box>
-    )
+    );
 }
 
 export default Partnership;

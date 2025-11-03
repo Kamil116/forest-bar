@@ -1,7 +1,7 @@
 import React from 'react';
 import {Box, Stack, Text, Title, useMantineTheme} from "@mantine/core";
 
-function AdvantageCard({title, text}: { title: string, text: string }) {
+function AdvantageCard({title, description}: { title: string, description: string }) {
     const theme = useMantineTheme();
     
     return (
@@ -18,7 +18,7 @@ function AdvantageCard({title, text}: { title: string, text: string }) {
                     {title}
                 </Title>
                 <Text fz={20} c="rgba(247, 187, 26, 0.6)">
-                    {text}
+                    {description}
                 </Text>
             </Stack>
         </Box>

@@ -7,7 +7,7 @@ import styles from "./VacancyCards.module.css";
 function VacancyCards() {
     // Map mock vacancies to the format expected by VacancyCard
     const jobs = mockVacancies
-        .filter(vacancy => vacancy.status === 'open') // Only show open vacancies
+        .filter(vacancy => vacancy.status === 'Открыта') // Only show open vacancies
         .map(vacancy => ({
             title: vacancy.title,
             city: vacancy.city,

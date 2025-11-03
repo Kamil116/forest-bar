@@ -27,11 +27,11 @@ export default function AdvantagesManagement() {
     const form = useForm<Omit<Advantage, 'id'>>({
         initialValues: {
             title: '',
-            text: '',
+            description: '',
         },
         validate: {
             title: (value) => (value.length < 2 ? 'Название должно содержать минимум 2 символа' : null),
-            text: (value) =>
+            description: (value) =>
                 value.length < 10 ? 'Описание должно содержать минимум 10 символов' : null,
         },
     });
@@ -46,7 +46,7 @@ export default function AdvantagesManagement() {
         setEditingAdvantage(advantage);
         form.setValues({
             title: advantage.title,
-            text: advantage.text,
+            description: advantage.description,
         });
         setOpened(true);
     };
@@ -115,7 +115,7 @@ export default function AdvantagesManagement() {
             sortable: true,
         },
         {
-            key: 'text',
+            key: 'description',
             label: 'Описание',
             render: (value) => (
                 <span className={classes.descriptionText}>
@@ -138,7 +138,7 @@ export default function AdvantagesManagement() {
                     onEdit={handleEdit}
                     onDelete={handleDelete}
                     onAdd={handleAdd}
-                    searchKeys={['title', 'text']}
+                    searchKeys={['title', 'description']}
                     title="Список преимуществ"
                 />
 
@@ -181,7 +181,7 @@ export default function AdvantagesManagement() {
                                 placeholder="Введите описание преимущества"
                                 required
                                 minRows={3}
-                                {...form.getInputProps('text')}
+                                {...form.getInputProps('description')}
                                 classNames={{
                                     label: classes.inputLabel,
                                     input: classes.inputField,
@@ -203,3 +203,4 @@ export default function AdvantagesManagement() {
         </Container>
     );
 }
+

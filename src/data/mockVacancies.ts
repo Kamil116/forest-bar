@@ -1,12 +1,12 @@
-import { Vacancy } from "@/types/vacancy";
+import { Vacancy } from '@/types/vacancy';
 
 export const mockVacancies: Vacancy[] = [
     {
         id: 1,
         title: 'Менеджер по продажам',
         city: 'Москва',
-        department: 'Продажи',
-        description: 'Активные продажи лесных ягод и продуктов. Работа с корпоративными клиентами.',
+        description:
+            'Активные продажи лесных ягод и продуктов. Работа с корпоративными клиентами.',
         conditions: [
             'Оклад + процент от продаж',
             'График 5/2',
@@ -21,16 +21,14 @@ export const mockVacancies: Vacancy[] = [
         ],
         salary_min: 80000,
         salary_max: 150000,
-        employment_type: 'full-time',
-        status: 'open',
-        posted_date: '2024-01-15',
+        status: 'Открыта',
     },
     {
         id: 2,
         title: 'Логист',
         city: 'Санкт-Петербург',
-        department: 'Логистика',
-        description: 'Организация доставки продукции по северо-западному региону.',
+        description:
+            'Организация доставки продукции по северо-западному региону.',
         conditions: [
             'Оклад от 90 000 руб',
             'График 5/2',
@@ -45,16 +43,14 @@ export const mockVacancies: Vacancy[] = [
         ],
         salary_min: 90000,
         salary_max: 120000,
-        employment_type: 'full-time',
-        status: 'open',
-        posted_date: '2024-01-20',
+        status: 'Открыта',
     },
     {
         id: 3,
         title: 'Маркетолог',
         city: 'Москва',
-        department: 'Маркетинг',
-        description: 'Разработка и реализация маркетинговой стратегии компании.',
+        description:
+            'Разработка и реализация маркетинговой стратегии компании.',
         conditions: [
             'Оклад от 100 000 руб',
             'Удаленная работа возможна',
@@ -69,15 +65,12 @@ export const mockVacancies: Vacancy[] = [
         ],
         salary_min: 100000,
         salary_max: 150000,
-        employment_type: 'full-time',
-        status: 'open',
-        posted_date: '2024-02-01',
+        status: 'Открыта',
     },
     {
         id: 4,
         title: 'Специалист по закупкам',
         city: 'Новосибирск',
-        department: 'Закупки',
         description: 'Закупка лесных ягод у поставщиков, контроль качества.',
         conditions: [
             'Оклад от 70 000 руб',
@@ -93,15 +86,12 @@ export const mockVacancies: Vacancy[] = [
         ],
         salary_min: 70000,
         salary_max: 95000,
-        employment_type: 'full-time',
-        status: 'open',
-        posted_date: '2024-02-10',
+        status: 'Открыта',
     },
     {
         id: 5,
         title: 'Стажер отдела продаж',
         city: 'Москва',
-        department: 'Продажи',
         description: 'Помощь менеджерам по продажам, обучение на практике.',
         conditions: [
             'Стипендия 40 000 руб',
@@ -117,15 +107,12 @@ export const mockVacancies: Vacancy[] = [
         ],
         salary_min: 40000,
         salary_max: 50000,
-        employment_type: 'internship',
-        status: 'open',
-        posted_date: '2024-02-15',
+        status: 'Открыта',
     },
     {
         id: 6,
         title: 'Водитель-экспедитор',
         city: 'Екатеринбург',
-        department: 'Логистика',
         description: 'Доставка продукции клиентам по городу и области.',
         conditions: [
             'Оклад от 60 000 руб',
@@ -141,16 +128,14 @@ export const mockVacancies: Vacancy[] = [
         ],
         salary_min: 60000,
         salary_max: 75000,
-        employment_type: 'full-time',
-        status: 'open',
-        posted_date: '2024-02-20',
+        status: 'Открыта',
     },
     {
         id: 7,
         title: 'Бухгалтер',
         city: 'Москва',
-        department: 'Финансы',
-        description: 'Ведение бухгалтерского учета, работа с первичными документами.',
+        description:
+            'Ведение бухгалтерского учета, работа с первичными документами.',
         conditions: [
             'Оклад от 85 000 руб',
             'График 5/2',
@@ -165,16 +150,14 @@ export const mockVacancies: Vacancy[] = [
         ],
         salary_min: 85000,
         salary_max: 110000,
-        employment_type: 'full-time',
-        status: 'on-hold',
-        posted_date: '2024-01-10',
+        status: 'На паузе',
     },
     {
         id: 8,
         title: 'HR-менеджер',
         city: 'Санкт-Петербург',
-        department: 'Кадры',
-        description: 'Подбор персонала, адаптация новых сотрудников, кадровое делопроизводство.',
+        description:
+            'Подбор персонала, адаптация новых сотрудников, кадровое делопроизводство.',
         conditions: [
             'Оклад от 95 000 руб',
             'График 5/2',
@@ -189,9 +172,6 @@ export const mockVacancies: Vacancy[] = [
         ],
         salary_min: 95000,
         salary_max: 120000,
-        employment_type: 'full-time',
-        status: 'closed',
-        posted_date: '2023-12-15',
+        status: 'Закрыта',
     },
 ];
-
