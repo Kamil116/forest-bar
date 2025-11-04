@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { Box } from '@mantine/core';
 import { HomePage } from './HomePage';
 import CooperationPage from './CooperationPage';
-import VendorsPage from "@/pages/VendorsPage/VendorsPage";
+import VendorsPage from '@/pages/VendorsPage/VendorsPage';
+import Recipe from './Recipe/Recipe';
 
 export function LandingPage() {
     useEffect(() => {
@@ -19,6 +20,9 @@ export function LandingPage() {
         <Box>
             <Box id="home-section">
                 <HomePage />
+            </Box>
+            <Box id="recipe-section">
+                <Recipe />
             </Box>
             <Box id="about-us">
                 <VendorsPage />
