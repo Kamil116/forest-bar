@@ -1,6 +1,6 @@
 import * as z from 'zod';
 
-const Vendor = z.object({
+export const VendorSchema = z.object({
     id: z.number(),
     title: z.string(),
     name: z.string(),
@@ -13,4 +13,4 @@ const Vendor = z.object({
     description: z.string().optional(),
 });
 
-export type Vendor = z.infer<typeof Vendor>;
+export type Vendor = z.infer<typeof VendorSchema>;

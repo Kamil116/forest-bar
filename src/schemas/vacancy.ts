@@ -1,6 +1,6 @@
 import * as z from 'zod';
 
-const Vacancy = z.object({
+export const VacancySchema = z.object({
     id: z.number(),
     title: z.string(),
     city: z.string(),
@@ -12,4 +12,4 @@ const Vacancy = z.object({
     status: z.enum(['Открыта', 'На паузе', 'Закрыта']),
 })
 
-export type Vacancy = z.infer<typeof Vacancy>
+export type Vacancy = z.infer<typeof VacancySchema>

@@ -6,5 +6,6 @@ export function useFetchProducts() {
     return useQuery<Product[], Error>({
         queryKey: ['products'],
         queryFn: fetchProducts,
+        retry: 1,
     });
 }
