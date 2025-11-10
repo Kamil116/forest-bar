@@ -7,91 +7,25 @@ import {
     Card,
     useMantineTheme,
     Divider,
+    Group,
 } from '@mantine/core';
 import classes from './VendorsPage.module.css';
-
-const vendors = [
-    {
-        id: 1,
-        title: 'Московская область',
-        address: 'Москва, Красная площадь, 1',
-        phone: '+7 (495) 123-4567',
-        coords: [55.7558, 37.6176],
-    },
-    {
-        id: 2,
-        title: 'Санкт-Петербург',
-        address: 'Санкт-Петербург, Дворцовая площадь, 2',
-        phone: '+7 (812) 234-5678',
-        coords: [59.9311, 30.3609],
-    },
-    {
-        id: 3,
-        title: 'Новосибирская область',
-        address: 'Новосибирск, Красный проспект, 3',
-        phone: '+7 (383) 345-6789',
-        coords: [55.0084, 82.9357],
-    },
-    {
-        id: 4,
-        title: 'Екатеринбург',
-        address: 'Екатеринбург, проспект Ленина, 4',
-        phone: '+7 (343) 456-7890',
-        coords: [56.8431, 60.6454],
-    },
-    {
-        id: 5,
-        title: 'Нижний Новгород',
-        address: 'Нижний Новгород, Большая Покровская, 5',
-        phone: '+7 (831) 567-8901',
-        coords: [56.2965, 43.9361],
-    },
-    {
-        id: 6,
-        title: 'Казань',
-        address: 'Казань, улица Баумана, 6',
-        phone: '+7 (843) 678-9012',
-        coords: [55.8304, 49.0661],
-    },
-    {
-        id: 7,
-        title: 'Челябинск',
-        address: 'Челябинск, проспект Ленина, 7',
-        phone: '+7 (351) 789-0123',
-        coords: [55.1644, 61.4368],
-    },
-    {
-        id: 8,
-        title: 'Омск',
-        address: 'Омск, улица Ленина, 8',
-        phone: '+7 (3812) 890-1234',
-        coords: [54.9885, 73.3242],
-    },
-    {
-        id: 9,
-        title: 'Самара',
-        address: 'Самара, улица Ленинградская, 9',
-        phone: '+7 (846) 901-2345',
-        coords: [53.2001, 50.15],
-    },
-    {
-        id: 10,
-        title: 'Ростов-на-Дону',
-        address: 'Ростов-на-Дону, Большая Садовая, 10',
-        phone: '+7 (863) 012-3456',
-        coords: [47.2357, 39.7015],
-    },
-];
+import { IconMapPin } from '@tabler/icons-react';
+import { mockVendors } from '@/data/mockVendors';
+import { Vendor } from '@/types/vendor';
 
 export default function VendorsPage() {
     const theme = useMantineTheme();
-    const [selected, setSelected] = useState<(typeof vendors)[0] | null>(null);
+    const [selected, setSelected] = useState<Vendor | null>(null);
     const [hoveredId, setHoveredId] = useState<number | null>(null);
 
-    const markers = vendors
+    const markers = mockVendors
+        .filter((v): v is Vendor & { coords: [number, number] } => 
+            v.coords !== null && v.coords !== undefined
+        )
         .map((v) => `${v.coords[1]},${v.coords[0]},pm2rdl`)
         .join('~');
-    const center = selected
+    const center = selected && selected.coords
         ? `${selected.coords[1]},${selected.coords[0]}`
         : '85,61.5240';
     const zoom = selected ? 10 : 4;
@@ -127,7 +61,7 @@ export default function VendorsPage() {
                             classNames={classes}
                         >
                             <Stack gap="lg" px="md">
-                                {vendors.map((v) => (
+                                {mockVendors.map((v) => (
                                     <Card
                                         key={v.id}
                                         p="md"
@@ -166,48 +100,85 @@ export default function VendorsPage() {
                                         }}
                                         onClick={() => setSelected(v)}
                                     >
-                                        <Text
-                                            fw={700}
-                                            fz={24}
-                                            c={
-                                                selected?.id === v.id
-                                                    ? theme.other
-                                                          .darkBackground
-                                                    : 'white'
-                                            }
+                                        <Group
+                                            justify="space-between"
+                                            align="center"
                                         >
-                                            {v.title}
-                                        </Text>
-                                        <Divider
-                                            my="sm"
-                                            size={2}
-                                            color={theme.other.customOrange}
-                                            w="70%"
-                                        />
-                                        <Text
-                                            size="sm"
-                                            fz={16}
-                                            c={
-                                                selected?.id === v.id
-                                                    ? theme.other
-                                                          .darkBackground
-                                                    : 'rgba(255,255,255,0.7)'
-                                            }
-                                        >
-                                            {v.address}
-                                        </Text>
-                                        <Text
-                                            size="sm"
-                                            fz={16}
-                                            c={
-                                                selected?.id === v.id
-                                                    ? theme.other
-                                                          .darkBackground
-                                                    : 'rgba(255,255,255,0.7)'
-                                            }
-                                        >
-                                            {v.phone}
-                                        </Text>
+                                            <Stack gap={0}>
+                                                <Text
+                                                    fw={700}
+                                                    fz={24}
+                                                    c={
+                                                        selected?.id === v.id
+                                                            ? theme.other
+                                                                  .darkBackground
+                                                            : 'white'
+                                                    }
+                                                >
+                                                    {v.region}
+                                                </Text>
+                                                <Divider
+                                                    my="xs"
+                                                    size={2}
+                                                    color={
+                                                        selected?.id === v.id
+                                                            ? 'black'
+                                                            : theme.other
+                                                                  .customOrange
+                                                    }
+                                                    w="100%"
+                                                />
+                                                <Text
+                                                    size="sm"
+                                                    fz={16}
+                                                    c={
+                                                        selected?.id === v.id
+                                                            ? theme.other
+                                                                  .darkBackground
+                                                            : 'rgba(255,255,255,0.7)'
+                                                    }
+                                                >
+                                                    {v.address}
+                                                </Text>
+                                                <Text
+                                                    size="sm"
+                                                    fz={16}
+                                                    c={
+                                                        selected?.id === v.id
+                                                            ? theme.other
+                                                                  .darkBackground
+                                                            : 'rgba(255,255,255,0.7)'
+                                                    }
+                                                >
+                                                    {v.phone}
+                                                </Text>
+                                            </Stack>
+                                            <Box
+                                                py="md"
+                                                px="md"
+                                                bg={theme.other.cardBackground}
+                                                style={{
+                                                    borderRadius: '15px',
+                                                    border:
+                                                        hoveredId === v.id
+                                                            ? `1px solid ${
+                                                                  theme.other
+                                                                      .customYellow
+                                                              }`
+                                                            : '',
+                                                }}
+                                            >
+                                                <IconMapPin
+                                                    size={32}
+                                                    color={
+                                                        selected?.id === v.id
+                                                            ? 'lime'
+                                                            : theme.other
+                                                                  .customYellow
+                                                    }
+                                                />
+                                            </Box>
+                                        </Group>
                                     </Card>
                                 ))}
                             </Stack>

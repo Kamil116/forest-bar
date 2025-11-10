@@ -2,15 +2,18 @@ import * as z from 'zod';
 
 export const VendorSchema = z.object({
     id: z.number(),
-    title: z.string(),
-    name: z.string(),
-    middleName: z.string(),
-    surname: z.string(),
-    address: z.string(),
+    first_name: z.string(),
+    last_name: z.string(),
+    middle_name: z.string().nullable().optional(),
+    city: z.string(),
+    region: z.string(),
+    email: z.string().nullable().optional(),
     phone: z.string(),
-    coords: z.array(z.number()).length(2),
-    email: z.string().optional(),
-    description: z.string().optional(),
+    referral_link: z.string().nullable().optional(),
+    address: z.string(),
+    work_hours: z.string(),
+    photo_url: z.string().nullable().optional(),
+    coords: z.tuple([z.number(), z.number()]).nullable().optional(),
 });
 
 export type Vendor = z.infer<typeof VendorSchema>;

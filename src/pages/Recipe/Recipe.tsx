@@ -1,4 +1,3 @@
-import { theme } from '@/theme';
 import {
     Box,
     Stack,
@@ -48,7 +47,7 @@ export default function Recipe() {
                         src={`${import.meta.env.BASE_URL}/images/home-bg.jpg`}
                         fit="cover"
                         style={{ flex: 1, height: '100%' }}
-                    ></Image>
+                    />
                 </Group>
                 <Group
                     justify="flex-end"
@@ -77,7 +76,7 @@ export default function Recipe() {
                         src={`${import.meta.env.BASE_URL}/images/home-bg.jpg`}
                         fit="cover"
                         style={{ flex: 1, height: '100%' }}
-                    ></Image>
+                    />
                 </Group>
                 <Group
                     justify="flex-end"
@@ -106,7 +105,7 @@ export default function Recipe() {
                         src={`${import.meta.env.BASE_URL}/images/home-bg.jpg`}
                         fit="cover"
                         style={{ flex: 1, height: '100%' }}
-                    ></Image>
+                    />
                 </Group>
             </Stack>
         </Box>

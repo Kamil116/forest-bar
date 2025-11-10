@@ -4,12 +4,10 @@ export const VacancySchema = z.object({
     id: z.number(),
     title: z.string(),
     city: z.string(),
-    description: z.string(),
-    conditions: z.array(z.string()),
-    requirements: z.array(z.string()),
-    salary_min: z.number().optional(),
-    salary_max: z.number().optional(),
-    status: z.enum(['Открыта', 'На паузе', 'Закрыта']),
-})
+    schedule: z.string(), // График работы
+    salary: z.string(), // Зарплата
+    additional_conditions: z.array(z.string()).nullable().optional(), // Список дополнительных условий
+    long_description: z.string(),
+});
 
-export type Vacancy = z.infer<typeof VacancySchema>
+export type Vacancy = z.infer<typeof VacancySchema>;

@@ -12,6 +12,8 @@ import {
     Image,
     Badge,
     useMantineTheme,
+    Select,
+    TagsInput,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { notifications } from '@mantine/notifications';
@@ -31,11 +33,15 @@ export default function ProductsManagement() {
         initialValues: {
             name: '',
             price: 0,
-            short_description: '',
+            product_type: 'ягода',
             long_description: '',
-            image_url: '',
-            video_url: '',
+            images: [],
             seller_id: 1,
+            vitamins: [],
+            minerals: [],
+            antioxidants: [],
+            energy_value: '',
+            shelf_life: '',
         },
         validate: {
             name: (value) =>
@@ -44,9 +50,9 @@ export default function ProductsManagement() {
                     : null,
             price: (value) =>
                 value <= 0 ? 'Цена должна быть больше 0' : null,
-            short_description: (value) =>
-                value.length < 10
-                    ? 'Краткое описание должно содержать минимум 10 символов'
+            product_type: (value) =>
+                value.length < 2
+                    ? 'Тип товара должен содержать минимум 2 символа'
                     : null,
             long_description: (value) =>
                 value.length < 20
@@ -66,11 +72,15 @@ export default function ProductsManagement() {
         form.setValues({
             name: product.name,
             price: product.price,
-            short_description: product.short_description,
+            product_type: product.product_type,
             long_description: product.long_description,
-            image_url: product.image_url,
-            video_url: product.video_url || '',
+            images: product.images || [],
             seller_id: product.seller_id,
+            vitamins: product.vitamins || [],
+            minerals: product.minerals || [],
+            antioxidants: product.antioxidants || [],
+            energy_value: product.energy_value || '',
+            shelf_life: product.shelf_life || '',
         });
         setOpened(true);
     };
@@ -136,11 +146,11 @@ export default function ProductsManagement() {
             sortable: true,
         },
         {
-            key: 'image_url',
+            key: 'images',
             label: 'Изображение',
             render: (value) => (
                 <Image
-                    src={value}
+                    src={value && value.length > 0 ? value[0] : ''}
                     alt="Product"
                     h={50}
                     w={50}
@@ -155,17 +165,18 @@ export default function ProductsManagement() {
             sortable: true,
         },
         {
+            key: 'product_type',
+            label: 'Тип',
+            sortable: true,
+            render: (value) => (
+                <Badge color={theme.other.customOrange}>{value}</Badge>
+            ),
+        },
+        {
             key: 'price',
             label: 'Цена',
             sortable: true,
             render: (value) => `₽${value}`,
-        },
-        {
-            key: 'short_description',
-            label: 'Описание',
-            render: (value) => (
-                <span className={classes.descriptionText}>{value}</span>
-            ),
         },
         {
             key: 'seller_id',
@@ -192,7 +203,7 @@ export default function ProductsManagement() {
                     onAdd={handleAdd}
                     searchKeys={[
                         'name',
-                        'short_description',
+                        'product_type',
                         'long_description',
                     ]}
                     title="Каталог товаров"
@@ -246,11 +257,12 @@ export default function ProductsManagement() {
                                 }}
                             />
 
-                            <TextInput
-                                label="Краткое описание"
-                                placeholder="Введите краткое описание"
+                            <Select
+                                label="Тип товара"
+                                placeholder="Выберите тип товара"
                                 required
-                                {...form.getInputProps('short_description')}
+                                data={['ягода', 'мёд', 'чай', 'ягодный сбор', 'варенье', 'другое']}
+                                {...form.getInputProps('product_type')}
                                 classNames={{
                                     label: classes.inputLabel,
                                     input: classes.inputField,
@@ -269,11 +281,41 @@ export default function ProductsManagement() {
                                 }}
                             />
 
-                            <TextInput
-                                label="URL изображения"
-                                placeholder="Введите URL изображения"
-                                required
-                                {...form.getInputProps('image_url')}
+                            <TagsInput
+                                label="URL изображений"
+                                placeholder="Введите URL изображения и нажмите Enter"
+                                description="Можно добавить несколько изображений"
+                                {...form.getInputProps('images')}
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
+                                }}
+                            />
+
+                            <TagsInput
+                                label="Витамины (необязательно)"
+                                placeholder="Введите витамины (например: C, A, E)"
+                                {...form.getInputProps('vitamins')}
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
+                                }}
+                            />
+
+                            <TagsInput
+                                label="Минералы (необязательно)"
+                                placeholder="Введите минералы (например: калий, железо)"
+                                {...form.getInputProps('minerals')}
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
+                                }}
+                            />
+
+                            <TagsInput
+                                label="Антиоксиданты (необязательно)"
+                                placeholder="Введите антиоксиданты (например: антоцианы)"
+                                {...form.getInputProps('antioxidants')}
                                 classNames={{
                                     label: classes.inputLabel,
                                     input: classes.inputField,
@@ -281,9 +323,19 @@ export default function ProductsManagement() {
                             />
 
                             <TextInput
-                                label="URL видео (необязательно)"
-                                placeholder="Введите URL видео"
-                                {...form.getInputProps('video_url')}
+                                label="Энергетическая ценность (необязательно)"
+                                placeholder="Например: 43 ккал/100г"
+                                {...form.getInputProps('energy_value')}
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
+                                }}
+                            />
+
+                            <TextInput
+                                label="Срок хранения (необязательно)"
+                                placeholder="Например: 7 дней"
+                                {...form.getInputProps('shelf_life')}
                                 classNames={{
                                     label: classes.inputLabel,
                                     input: classes.inputField,

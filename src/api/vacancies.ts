@@ -1,5 +1,4 @@
-import { VacancySchema } from '@/schemas/vacancy';
-import type { Vacancy } from '@/schemas/vacancy';
+import { VacancySchema, type Vacancy } from '@/schemas/vacancy';
 import z from 'zod';
 
 export async function fetchVacancy(): Promise<Vacancy[]> {

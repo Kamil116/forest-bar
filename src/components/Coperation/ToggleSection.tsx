@@ -41,8 +41,8 @@ export function ToggleSection() {
                 {value === 'job' && (
                     <Stack align="center" justify="center">
                         <VacancyCards />
-                        <Title order={2} fz={theme.other.titleSize} fw={400} tt="uppercase"
-                            c={theme.other.customOrange}>
+                        <Title fz={64} fw={400} tt="uppercase"
+                            c='white'>
                             Профили продавцов
                         </Title>
                         <ProfileCards />

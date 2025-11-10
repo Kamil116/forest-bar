@@ -24,9 +24,9 @@ function Header() {
                         variant="subtle"
                         color={theme.other.buttonColor}
                         fz={40}
-                        onClick={() => navigate('/')}
+                        onClick={() => navigate('/news')}
                     >
-                        О нас
+                        Новости
                     </Button>
                     <Button
                         variant="subtle"

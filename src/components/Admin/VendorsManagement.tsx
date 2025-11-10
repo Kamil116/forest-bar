@@ -28,24 +28,50 @@ export default function VendorsManagement() {
 
     const form = useForm<Omit<Vendor, 'id'>>({
         initialValues: {
-            title: '',
-            name: '',
-            middleName: '',
-            surname: '',
+            first_name: '',
+            last_name: '',
+            middle_name: '',
+            city: '',
+            region: '',
             address: '',
             phone: '',
             email: '',
+            work_hours: '',
             coords: [0, 0],
-            description: '',
+            referral_link: undefined,
+            photo_url: undefined,
         },
         validate: {
-            title: (value) => (value.length < 3 ? 'Название должно содержать минимум 3 символа' : null),
-            name: (value) => (value.length < 2 ? 'Имя должно содержать минимум 2 символа' : null),
-            middleName: (value) => (value.length < 2 ? 'Отчество должно содержать минимум 2 символа' : null),
-            surname: (value) => (value.length < 2 ? 'Фамилия должна содержать минимум 2 символа' : null),
-            address: (value) => (value.length < 10 ? 'Адрес должен содержать минимум 10 символов' : null),
-            phone: (value) => (value.length < 10 ? 'Телефон должен быть действительным' : null),
-            email: (value) => (/^\S+@\S+$/.test(value || '') || !value ? null : 'Неверный email'),
+            first_name: (value) =>
+                value.length < 2
+                    ? 'Имя должно содержать минимум 2 символа'
+                    : null,
+            last_name: (value) =>
+                value.length < 2
+                    ? 'Фамилия должна содержать минимум 2 символа'
+                    : null,
+            city: (value) =>
+                value.length < 2
+                    ? 'Город должен содержать минимум 2 символа'
+                    : null,
+            region: (value) =>
+                value.length < 2
+                    ? 'Регион должен содержать минимум 2 символа'
+                    : null,
+            address: (value) =>
+                value.length < 10
+                    ? 'Адрес должен содержать минимум 10 символов'
+                    : null,
+            phone: (value) =>
+                value.length < 10
+                    ? 'Телефон должен быть действительным'
+                    : null,
+            email: (value) =>
+                /^\S+@\S+$/.test(value || '') || !value
+                    ? null
+                    : 'Неверный email',
+            work_hours: (value) =>
+                value.length < 3 ? 'Рабочие часы должны быть указаны' : null,
         },
     });
 
@@ -58,15 +84,18 @@ export default function VendorsManagement() {
     const handleEdit = (vendor: Vendor) => {
         setEditingVendor(vendor);
         form.setValues({
-            title: vendor.title,
-            name: vendor.name,
-            middleName: vendor.middleName,
-            surname: vendor.surname,
+            first_name: vendor.first_name,
+            last_name: vendor.last_name,
+            middle_name: vendor.middle_name || '',
+            city: vendor.city,
+            region: vendor.region,
             address: vendor.address,
             phone: vendor.phone,
             email: vendor.email || '',
-            coords: vendor.coords,
-            description: vendor.description || '',
+            work_hours: vendor.work_hours,
+            coords: vendor.coords || [0, 0],
+            referral_link: vendor.referral_link || undefined,
+            photo_url: vendor.photo_url || undefined,
         });
         setOpened(true);
     };
@@ -74,7 +103,7 @@ export default function VendorsManagement() {
     const handleDelete = (vendor: Vendor) => {
         modals.openConfirmModal({
             title: 'Удалить поставщика',
-            children: `Вы уверены, что хотите удалить "${vendor.title}"?`,
+            children: `Вы уверены, что хотите удалить "${vendor.region}"?`,
             labels: { confirm: 'Удалить', cancel: 'Отмена' },
             confirmProps: { color: 'red', size: 'lg' },
             cancelProps: { size: 'lg' },
@@ -86,7 +115,7 @@ export default function VendorsManagement() {
                 setVendors(vendors.filter((v) => v.id !== vendor.id));
                 notifications.show({
                     title: 'Поставщик удален',
-                    message: `${vendor.title} был удален`,
+                    message: `${vendor.region} был удален`,
                     color: 'red',
                 });
             },
@@ -97,12 +126,14 @@ export default function VendorsManagement() {
         if (editingVendor) {
             setVendors(
                 vendors.map((v) =>
-                    v.id === editingVendor.id ? { ...values, id: editingVendor.id } : v
+                    v.id === editingVendor.id
+                        ? { ...values, id: editingVendor.id }
+                        : v
                 )
             );
             notifications.show({
                 title: 'Поставщик обновлен',
-                message: `${values.title} был успешно обновлен`,
+                message: `${values.middle_name + values.first_name + values.last_name} был успешно обновлен`,
                 color: 'green',
             });
         } else {
@@ -113,7 +144,7 @@ export default function VendorsManagement() {
             setVendors([...vendors, newVendor]);
             notifications.show({
                 title: 'Поставщик добавлен',
-                message: `${values.title} был успешно добавлен`,
+                message: `${values.middle_name + values.first_name + values.last_name}} был успешно добавлен`,
                 color: 'green',
             });
         }
@@ -128,23 +159,27 @@ export default function VendorsManagement() {
             sortable: true,
         },
         {
-            key: 'title',
-            label: 'Название',
+            key: 'region',
+            label: 'Регион',
             sortable: true,
         },
         {
-            key: 'surname',
+            key: 'city',
+            label: 'Город',
+            sortable: true,
+        },
+        {
+            key: 'last_name',
             label: 'Представитель',
             sortable: true,
-            render: (_value, row) => `${row.surname} ${row.name} ${row.middleName}`,
+            render: (_value, row) =>
+                `${row.last_name} ${row.first_name} ${row.middle_name || ''}`,
         },
         {
             key: 'address',
             label: 'Адрес',
             render: (value) => (
-                <span className={classes.descriptionText}>
-                    {value}
-                </span>
+                <span className={classes.descriptionText}>{value}</span>
             ),
         },
         {
@@ -157,13 +192,20 @@ export default function VendorsManagement() {
             render: (value) => value || <Badge color="gray">Н/Д</Badge>,
         },
         {
+            key: 'work_hours',
+            label: 'Рабочие часы',
+        },
+        {
             key: 'coords',
             label: 'Местоположение',
-            render: (value: [number, number]) => (
-                <Badge color={theme.other.customYellow}>
-                    {value[0].toFixed(2)}, {value[1].toFixed(2)}
-                </Badge>
-            ),
+            render: (value) =>
+                value ? (
+                    <Badge color={theme.other.customYellow}>
+                        {value[0].toFixed(2)}, {value[1].toFixed(2)}
+                    </Badge>
+                ) : (
+                    <Badge color="gray">Н/Д</Badge>
+                ),
         },
     ];
 
@@ -180,7 +222,16 @@ export default function VendorsManagement() {
                     onEdit={handleEdit}
                     onDelete={handleDelete}
                     onAdd={handleAdd}
-                    searchKeys={['title', 'name', 'surname', 'middleName', 'address', 'phone', 'email']}
+                    searchKeys={[
+                        'first_name',
+                        'last_name',
+                        'middle_name',
+                        'city',
+                        'region',
+                        'address',
+                        'phone',
+                        'email',
+                    ]}
                     title="Партнеры-поставщики"
                 />
 
@@ -188,8 +239,10 @@ export default function VendorsManagement() {
                     opened={opened}
                     onClose={() => setOpened(false)}
                     title={
-                        <Title order={2} c='white'>
-                            {editingVendor ? 'Редактировать поставщика' : 'Добавить нового поставщика'}
+                        <Title order={2} c="white">
+                            {editingVendor
+                                ? 'Редактировать поставщика'
+                                : 'Добавить нового поставщика'}
                         </Title>
                     }
                     size="lg"
@@ -207,32 +260,10 @@ export default function VendorsManagement() {
                     <form onSubmit={form.onSubmit(handleSubmit)}>
                         <Stack gap="md">
                             <TextInput
-                                label="Название поставщика"
-                                placeholder="Введите название поставщика"
-                                required
-                                {...form.getInputProps('title')}
-                                classNames={{
-                                    label: classes.inputLabel,
-                                    input: classes.inputField,
-                                }}
-                            />
-
-                            <TextInput
                                 label="Имя представителя"
                                 placeholder="Введите имя"
                                 required
-                                {...form.getInputProps('name')}
-                                classNames={{
-                                    label: classes.inputLabel,
-                                    input: classes.inputField,
-                                }}
-                            />
-
-                            <TextInput
-                                label="Отчество представителя"
-                                placeholder="Введите отчество"
-                                required
-                                {...form.getInputProps('middleName')}
+                                {...form.getInputProps('first_name')}
                                 classNames={{
                                     label: classes.inputLabel,
                                     input: classes.inputField,
@@ -243,7 +274,39 @@ export default function VendorsManagement() {
                                 label="Фамилия представителя"
                                 placeholder="Введите фамилию"
                                 required
-                                {...form.getInputProps('surname')}
+                                {...form.getInputProps('last_name')}
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
+                                }}
+                            />
+
+                            <TextInput
+                                label="Отчество представителя (необязательно)"
+                                placeholder="Введите отчество"
+                                {...form.getInputProps('middle_name')}
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
+                                }}
+                            />
+
+                            <TextInput
+                                label="Город"
+                                placeholder="Введите город"
+                                required
+                                {...form.getInputProps('city')}
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
+                                }}
+                            />
+
+                            <TextInput
+                                label="Регион"
+                                placeholder="Введите регион"
+                                required
+                                {...form.getInputProps('region')}
                                 classNames={{
                                     label: classes.inputLabel,
                                     input: classes.inputField,
@@ -283,32 +346,53 @@ export default function VendorsManagement() {
                                 }}
                             />
 
+                            <TextInput
+                                label="Рабочие часы"
+                                placeholder="9:00 - 18:00"
+                                required
+                                {...form.getInputProps('work_hours')}
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
+                                }}
+                            />
+
                             <Group grow>
                                 <NumberInput
-                                    label="Широта"
+                                    label="Широта (необязательно)"
                                     placeholder="55.7558"
-                                    required
                                     decimalScale={4}
                                     step={0.0001}
-                                    value={form.values.coords[0]}
-                                    onChange={(value) =>
-                                        form.setFieldValue('coords', [Number(value), form.values.coords[1]])
-                                    }
+                                    value={form.values.coords?.[0] ?? 0}
+                                    onChange={(value) => {
+                                        const lat = Number(value);
+                                        const lng =
+                                            form.values.coords?.[1] ?? 0;
+                                        form.setFieldValue('coords', [
+                                            lat,
+                                            lng,
+                                        ]);
+                                    }}
                                     classNames={{
                                         label: classes.inputLabel,
                                         input: classes.inputField,
                                     }}
                                 />
                                 <NumberInput
-                                    label="Долгота"
+                                    label="Долгота (необязательно)"
                                     placeholder="37.6176"
-                                    required
                                     decimalScale={4}
                                     step={0.0001}
-                                    value={form.values.coords[1]}
-                                    onChange={(value) =>
-                                        form.setFieldValue('coords', [form.values.coords[0], Number(value)])
-                                    }
+                                    value={form.values.coords?.[1] ?? 0}
+                                    onChange={(value) => {
+                                        const lat =
+                                            form.values.coords?.[0] ?? 0;
+                                        const lng = Number(value);
+                                        form.setFieldValue('coords', [
+                                            lat,
+                                            lng,
+                                        ]);
+                                    }}
                                     classNames={{
                                         label: classes.inputLabel,
                                         input: classes.inputField,
@@ -316,11 +400,20 @@ export default function VendorsManagement() {
                                 />
                             </Group>
 
-                            <Textarea
-                                label="Описание (необязательно)"
-                                placeholder="Введите описание поставщика"
-                                minRows={2}
-                                {...form.getInputProps('description')}
+                            <TextInput
+                                label="Реферальная ссылка (необязательно)"
+                                placeholder="https://example.com"
+                                {...form.getInputProps('referral_link')}
+                                classNames={{
+                                    label: classes.inputLabel,
+                                    input: classes.inputField,
+                                }}
+                            />
+
+                            <TextInput
+                                label="URL фото (необязательно)"
+                                placeholder="https://example.com/photo.jpg"
+                                {...form.getInputProps('photo_url')}
                                 classNames={{
                                     label: classes.inputLabel,
                                     input: classes.inputField,
@@ -328,10 +421,16 @@ export default function VendorsManagement() {
                             />
 
                             <Group className={classes.buttonGroup}>
-                                <Button variant="outline" onClick={() => setOpened(false)}>
+                                <Button
+                                    variant="outline"
+                                    onClick={() => setOpened(false)}
+                                >
                                     Отмена
                                 </Button>
-                                <Button type="submit" color={theme.other.customOrange}>
+                                <Button
+                                    type="submit"
+                                    color={theme.other.customOrange}
+                                >
                                     {editingVendor ? 'Обновить' : 'Создать'}
                                 </Button>
                             </Group>
@@ -342,4 +441,3 @@ export default function VendorsManagement() {
         </Container>
     );
 }
-

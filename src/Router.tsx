@@ -11,6 +11,8 @@ import ProductsManagement from '@/components/Admin/ProductsManagement';
 import VendorsManagement from '@/components/Admin/VendorsManagement';
 import VacanciesManagement from '@/components/Admin/VacanciesManagement';
 import AdvantagesManagement from '@/components/Admin/AdvantagesManagement';
+import NewsHome from './pages/News/NewsHome';
+import NewsPage from './pages/News/NewsPage';
 
 const router = createBrowserRouter(
     [
@@ -30,6 +32,14 @@ const router = createBrowserRouter(
         {
             path: '/catalog',
             element: <Catalog />,
+        },
+        {
+            path: '/news',
+            element: <NewsHome />
+        },
+        {
+            path: '/news/:id',
+            element: <NewsPage />
         },
         {
             path: '/admin',
