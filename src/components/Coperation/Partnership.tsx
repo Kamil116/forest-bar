@@ -14,22 +14,28 @@ import styles from './Partnership.module.css';
 function Partnership() {
     const theme = useMantineTheme();
     return (
-        <Box>
-            <Box style={{ display: 'flex', gap: '16px', width: '100%' }}>
-                <Box style={{ flex: '0 0 calc(60% - 8px)' }} pl="xl">
+        <Box px={{ base: 'xs', md: 'md' }} py={{ base: 'md', md: 'xl' }}>
+            <Box className={styles.container}>
+                <Box className={styles.formContainer}>
                     <Text
                         ta="center"
                         fw={700}
                         c="white"
-                        mb="xl"
+                        mb={{ base: 'md', md: 'xl' }}
                         tt="uppercase"
-                        fz={32}
+                        fz={{ base: 18, sm: 24, md: 28, lg: 32 }}
+                        px={{ base: 'xs', md: 0 }}
                     >
                         Заполни анкету на партнерство и стань частью коллектива
                     </Text>
 
-                    <Group align="flex-start" gap="md" grow>
-                        <Stack gap="lg" align="center">
+                    <Group 
+                        align="flex-start" 
+                        gap="md" 
+                        grow
+                        wrap="wrap"
+                    >
+                        <Stack gap="lg" align="center" style={{ flex: 1, minWidth: '280px' }}>
                             <TextInput
                                 placeholder="Имя и фамилия"
                                 tt="uppercase"
@@ -57,10 +63,10 @@ function Partnership() {
                             <Button
                                 size="xl"
                                 radius={theme.other.buttonRadius}
-                                fz={theme.other.buttonSize}
+                                fz={{ base: 16, md: theme.other.buttonSize }}
                                 fw={600}
                                 mt="lg"
-                                w="80%"
+                                w={{ base: '100%', md: '80%' }}
                                 bg={theme.other.successGreen}
                                 c="black"
                             >
@@ -71,12 +77,13 @@ function Partnership() {
                         <Textarea
                             placeholder="Сопроводительное письмо/Анкета"
                             autosize
-                            minRows={10}
-                            maxRows={10}
+                            minRows={8}
+                            maxRows={12}
                             tt="uppercase"
                             size="lg"
                             radius={theme.other.buttonRadius}
                             classNames={{ input: styles.input }}
+                            style={{ flex: 1, minWidth: '280px' }}
                         />
                     </Group>
                 </Box>
@@ -85,9 +92,6 @@ function Partnership() {
                     src={`${import.meta.env.BASE_URL}/images/dawd.png`}
                     alt="Partnership"
                     className={styles.image}
-                    style={{
-                        flex: '0 0 calc(40% - 8px)',
-                    }}
                     fit="cover"
                 />
             </Box>

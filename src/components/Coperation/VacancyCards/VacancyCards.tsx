@@ -7,8 +7,15 @@ import styles from "./VacancyCards.module.css";
 function VacancyCards() {
     return (
         <Box w="100%">
-            <ScrollArea classNames={styles} type="auto" offsetScrollbars ml='xl' mr='xl' pb="md">
-                <Group wrap='nowrap' gap='xl'>
+            <ScrollArea 
+                classNames={styles} 
+                type="auto" 
+                offsetScrollbars 
+                ml={{ base: 'xs', md: 'xl' }} 
+                mr={{ base: 'xs', md: 'xl' }} 
+                pb="md"
+            >
+                <Group wrap='nowrap' gap="xl">
                     {mockVacancies.map((job, index) => <VacancyCard key={index} job={job}/>)}
                 </Group>
             </ScrollArea>

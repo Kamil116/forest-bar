@@ -22,38 +22,32 @@
     display: flex;
     flex-direction: row;
     gap: 1.5rem;
+    width: 100%;
+    min-height: 0;
 
     @media (max-width: 768px) {
         flex-direction: column;
+        gap: 1rem;
     }
 }
 
 .vendorBox {
-    height: 70vh;
-
-    @media (max-width: 768px) {
-        height: 50vh;
-        min-height: 400px;
-    }
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .mapBox {
-    height: 70vh;
-
-    @media (max-width: 768px) {
-        height: 60vh;
-        min-height: 400px;
-    }
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
-.title {
-    font-size: 60px;
-
-    @media (max-width: 768px) {
-        font-size: 36px;
-    }
-
-    @media (max-width: 480px) {
-        font-size: 28px;
-    }
+.mapBox iframe {
+    flex: 1;
+    min-height: 0;
 }

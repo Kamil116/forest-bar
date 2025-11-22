@@ -5,8 +5,8 @@ import { mockAdvantages } from '@/data/mockAdvantages';
 
 function Advantages() {
     return (
-        <Box>
-            <Group gap="xl" justify="center">
+        <Box px={{ base: 'xs', md: 'md' }}>
+            <Group gap="xl" justify="center" wrap="wrap">
                 {mockAdvantages.map((advantage) => (
                     <AdvantageCard
                         key={advantage.id}

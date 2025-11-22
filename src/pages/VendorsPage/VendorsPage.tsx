@@ -32,39 +32,44 @@ export default function VendorsPage() {
     const mapUrl = `https://yandex.ru/map-widget/v1/?ll=${center}&z=${zoom}&l=map&pt=${markers}&lang=ru_RU`;
 
     return (
-        <Box h="100vh" w="100%" p="md" bg={theme.other.cardBackground}>
-            <Stack h="100%" gap="md" w="100%">
+        <Box h="100vh" w="100%" p={{ base: 'xs', sm: 'sm', md: 'md' }} bg={theme.other.cardBackground}>
+            <Stack h="100%" gap="md" w="100%" style={{ overflow: 'hidden' }}>
                 <Text
-                    className={classes.title}
                     fw={400}
                     c="white"
                     ta="center"
                     tt="uppercase"
+                    fz={{ base: 28, sm: 36, md: 48, lg: 60 }}
+                    style={{ flexShrink: 0 }}
                 >
                     Наши партнеры
                 </Text>
 
-                <Box className={classes.responsiveGroup}>
+                <Box className={classes.responsiveGroup} style={{ flex: 1, minHeight: 0 }}>
                     <Box
                         className={classes.vendorBox}
                         style={{
                             borderRadius: theme.other.cardRadius,
                             flex: 1,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            minHeight: 0,
+                            overflow: 'hidden',
                         }}
                         bg={theme.other.darkBackground}
                     >
                         <ScrollArea
-                            h="70vh"
-                            px="xs"
-                            py="xl"
+                            style={{ flex: 1, minHeight: 0 }}
+                            px={{ base: 'xs', md: 'xs' }}
+                            py={{ base: 'sm', md: 'xl' }}
                             scrollbarSize={8}
                             classNames={classes}
                         >
-                            <Stack gap="lg" px="md">
+                            <Stack gap="lg" px={{ base: 'xs', md: 'md' }}>
                                 {mockVendors.map((v) => (
                                     <Card
                                         key={v.id}
-                                        p="md"
+                                        p={{ base: 'sm', md: 'md' }}
                                         radius={theme.other.cardRadius}
                                         bg={
                                             selected?.id === v.id
@@ -103,17 +108,20 @@ export default function VendorsPage() {
                                         <Group
                                             justify="space-between"
                                             align="center"
+                                            wrap="nowrap"
+                                            gap="md"
                                         >
-                                            <Stack gap={0}>
+                                            <Stack gap={0} style={{ flex: 1, minWidth: 0 }}>
                                                 <Text
                                                     fw={700}
-                                                    fz={24}
+                                                    fz={{ base: 18, sm: 20, md: 24 }}
                                                     c={
                                                         selected?.id === v.id
                                                             ? theme.other
                                                                   .darkBackground
                                                             : 'white'
                                                     }
+                                                    style={{ wordBreak: 'break-word' }}
                                                 >
                                                     {v.region}
                                                 </Text>
@@ -130,19 +138,20 @@ export default function VendorsPage() {
                                                 />
                                                 <Text
                                                     size="sm"
-                                                    fz={16}
+                                                    fz={{ base: 12, sm: 14, md: 16 }}
                                                     c={
                                                         selected?.id === v.id
                                                             ? theme.other
                                                                   .darkBackground
                                                             : 'rgba(255,255,255,0.7)'
                                                     }
+                                                    style={{ wordBreak: 'break-word' }}
                                                 >
                                                     {v.address}
                                                 </Text>
                                                 <Text
                                                     size="sm"
-                                                    fz={16}
+                                                    fz={{ base: 12, sm: 14, md: 16 }}
                                                     c={
                                                         selected?.id === v.id
                                                             ? theme.other
@@ -154,8 +163,8 @@ export default function VendorsPage() {
                                                 </Text>
                                             </Stack>
                                             <Box
-                                                py="md"
-                                                px="md"
+                                                py={{ base: 'sm', md: 'md' }}
+                                                px={{ base: 'sm', md: 'md' }}
                                                 bg={theme.other.cardBackground}
                                                 style={{
                                                     borderRadius: '15px',
@@ -166,10 +175,15 @@ export default function VendorsPage() {
                                                                       .customYellow
                                                               }`
                                                             : '',
+                                                    flexShrink: 0,
                                                 }}
                                             >
                                                 <IconMapPin
-                                                    size={32}
+                                                    size={24}
+                                                    style={{
+                                                        width: 'clamp(24px, 4vw, 32px)',
+                                                        height: 'clamp(24px, 4vw, 32px)',
+                                                    }}
                                                     color={
                                                         selected?.id === v.id
                                                             ? 'lime'
@@ -190,8 +204,11 @@ export default function VendorsPage() {
                         style={{
                             borderRadius: theme.other.cardRadius,
                             flex: 2,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            minHeight: 0,
                         }}
-                        p="md"
+                        p={{ base: 'xs', md: 'md' }}
                         bg={theme.other.cardBackground}
                     >
                         <iframe

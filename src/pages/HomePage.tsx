@@ -15,25 +15,40 @@ export function HomePage() {
                 h="100%"
                 align="center"
                 justify="space-between"
-                pb={50}
+                pb={{ base: 20, md: 50 }}
+                px={{ base: 'md', md: 0 }}
             >
                 <Header />
-                <Stack align="center">
-                    <Title fw={400} order={1} fz={120} tt="uppercase" c="white">
+                <Stack align="center" gap="md">
+                    <Title 
+                        fw={400} 
+                        order={1} 
+                        fz={{ base: 36, sm: 56, md: 80, lg: 120 }} 
+                        tt="uppercase" 
+                        c="white"
+                        ta="center"
+                    >
                         богатства природы
                     </Title>
-                    <Title fw={400} order={2} fz={96} tt="uppercase" c="rgb(255, 255, 255, 0.74)">
+                    <Title 
+                        fw={400} 
+                        order={2} 
+                        fz={{ base: 28, sm: 44, md: 64, lg: 96 }} 
+                        tt="uppercase" 
+                        c="rgb(255, 255, 255, 0.74)"
+                        ta="center"
+                    >
                         как часть жизни
                     </Title>
                 </Stack>
 
                 <Button
                     size="xl"
-                    fz={40}
+                    fz={{ base: 20, sm: 28, md: 36, lg: 40 }}
                     fw={400}
                     color="rgba(56, 52, 52, 0.53)"
                     radius={theme.other.buttonRadius}
-                    style={{ width: '15%' }}
+                    style={{ width: 'clamp(200px, 25%, 300px)' }}
                     onClick={() => navigate('/catalog')}
                 >
                     Каталог

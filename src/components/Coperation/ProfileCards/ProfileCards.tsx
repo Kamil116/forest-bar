@@ -19,8 +19,8 @@ function ProfileCards() {
                 <ScrollArea
                     classNames={styles}
                     type="auto"
-                    ml="xl"
-                    mr="xl"
+                    ml={{ base: 'xs', md: 'xl' }}
+                    mr={{ base: 'xs', md: 'xl' }}
                     offsetScrollbars
                     pb="md"
                 >
@@ -31,7 +31,7 @@ function ProfileCards() {
                     </Group>
                 </ScrollArea>
             </Box>
-            <Box pos="relative" w="20%" mx="auto" my="xl">
+            <Box pos="relative" w={{ base: '40%', md: '20%' }} mx="auto" my={{ base: 'md', md: 'xl' }}>
                 <Divider size={2} color={theme.other.customOrange} />
                 <Box
                     pos="absolute"

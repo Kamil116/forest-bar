@@ -3,18 +3,17 @@ import { Box, Stack, Title, Button, Group, useMantineTheme } from '@mantine/core
 import VacancyCards from "@/components/Coperation/VacancyCards/VacancyCards";
 import ProfileCards from './ProfileCards/ProfileCards';
 import Partnership from './Partnership';
-import Footer from "@/components/shared/Footer";
 
 export function ToggleSection() {
     const [value, setValue] = useState('job');
     const theme = useMantineTheme();
 
     return (
-        <Box ta='center' w="100%">
-            <Group gap="md" justify="center">
+        <Box ta='center' w="100%" px={{ base: 'xs', md: 'md' }}>
+            <Group gap="md" justify="center" wrap="wrap">
                 <Button
                     size="xl"
-                    fz={theme.other.titleSize}
+                    fz={{ base: 18, sm: 24, md: theme.other.titleSize }}
                     fw={500}
                     radius={theme.other.buttonRadius}
                     bg={value === 'job' ? theme.other.customYellow : theme.other.darkBackground}
@@ -25,7 +24,7 @@ export function ToggleSection() {
                 </Button>
                 <Button
                     size="xl"
-                    fz={theme.other.titleSize}
+                    fz={{ base: 18, sm: 24, md: theme.other.titleSize }}
                     fw={500}
                     radius={theme.other.buttonRadius}
                     bg={value === 'cooperation' ? theme.other.customYellow : theme.other.darkBackground}
@@ -36,17 +35,20 @@ export function ToggleSection() {
                 </Button>
             </Group>
 
-            {/* // похоже на костыль, но ок  */}
-            <Box mt="xl" >
+            <Box mt={{ base: 'lg', md: 'xl' }}>
                 {value === 'job' && (
-                    <Stack align="center" justify="center">
+                    <Stack align="center" justify="center" gap="lg">
                         <VacancyCards />
-                        <Title fz={64} fw={400} tt="uppercase"
-                            c='white'>
+                        <Title 
+                            fz={{ base: 28, sm: 36, md: 48, lg: 64 }} 
+                            fw={400} 
+                            tt="uppercase"
+                            c='white'
+                            ta="center"
+                        >
                             Профили продавцов
                         </Title>
                         <ProfileCards />
-                        <Footer />
                     </Stack>
                 )}
                 {value === 'cooperation' && (

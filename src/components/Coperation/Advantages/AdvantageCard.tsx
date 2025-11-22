@@ -1,5 +1,6 @@
 import React from 'react';
 import {Box, Stack, Text, Title, useMantineTheme} from "@mantine/core";
+import classes from './AdvantageCard.module.css';
 
 function AdvantageCard({title, description}: { title: string, description: string }) {
     const theme = useMantineTheme();
@@ -7,17 +8,28 @@ function AdvantageCard({title, description}: { title: string, description: strin
     return (
         <Box 
             bg={theme.other.darkBackground} 
-            p={theme.other.cardPadding}
+            p={{ base: 'sm', md: theme.other.cardPadding }}
+            className={classes.advantageCard}
             style={{
                 borderRadius: theme.other.cardRadius,
-                minWidth: 'clamp(200px, 25vw, 400px)',
             }}
         >
             <Stack align="center" gap="md">
-                <Title order={2} fz={theme.other.titleSize} fw={400} tt="uppercase" c={theme.other.customOrange}>
+                <Title 
+                    order={2} 
+                    fz={{ base: 20, sm: 24, md: theme.other.titleSize }} 
+                    fw={400} 
+                    tt="uppercase" 
+                    c={theme.other.customOrange}
+                    ta="center"
+                >
                     {title}
                 </Title>
-                <Text fz={20} c="rgba(247, 187, 26, 0.6)">
+                <Text 
+                    fz={{ base: 14, sm: 16, md: 18, lg: 20 }} 
+                    c="rgba(247, 187, 26, 0.6)"
+                    ta="center"
+                >
                     {description}
                 </Text>
             </Stack>

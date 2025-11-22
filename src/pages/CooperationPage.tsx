@@ -1,17 +1,22 @@
 import React from 'react';
-import { Box, Stack, Title, useMantineTheme } from "@mantine/core";
-import { ToggleSection } from "@/components/Coperation/ToggleSection";
-import Advantages from "@/components/Coperation/Advantages/Advantages";
+import { Box, Stack, Title, useMantineTheme } from '@mantine/core';
+import { ToggleSection } from '@/components/Coperation/ToggleSection';
+import Advantages from '@/components/Coperation/Advantages/Advantages';
 
 function CooperationPage() {
     const theme = useMantineTheme();
 
     return (
-        <Box bg={theme.other.cardBackground}>
-            <Stack h="100%"
-                align="center"
-                justify="space-between">
-                <Title fw={700} fz={64} tt="uppercase" c="white" py={40}>
+        <Box bg={theme.other.cardBackground} p={{ base: 'xs', sm: 'sm', md: 'md', lg: 'xl' }}>
+            <Stack h="100%" align="center" justify="space-between" gap="xl">
+                <Title 
+                    fw={700} 
+                    fz={{ base: 32, sm: 40, md: 48, lg: 64 }} 
+                    tt="uppercase" 
+                    c="white" 
+                    py={{ base: 20, md: 40 }}
+                    ta="center"
+                >
                     Сотрудничество
                 </Title>
                 <Advantages />

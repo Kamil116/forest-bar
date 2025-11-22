@@ -1,113 +1,59 @@
+import { useState } from 'react';
+import { Box, Container, Stack, useMantineTheme } from '@mantine/core';
 import {
-    Box,
-    Stack,
-    Title,
-    useMantineTheme,
-    Text,
-    Image,
-    Group,
-} from '@mantine/core';
+    BackgroundHexagonGrids,
+    RecipeTitleCards,
+    RecipeFeaturesBanner,
+} from './components';
+import { recipes } from './data/recipes';
 
 export default function Recipe() {
     const theme = useMantineTheme();
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const currentRecipe = recipes[currentIndex];
+
+    const handlePrevious = () => {
+        setCurrentIndex((prev) =>
+            prev === 0 ? recipes.length - 1 : prev - 1
+        );
+    };
+
+    const handleNext = () => {
+        setCurrentIndex((prev) =>
+            prev === recipes.length - 1 ? 0 : prev + 1
+        );
+    };
+
     return (
-        <Box h="100vh" bg={theme.other.cardBackground} p="md">
-            <Stack h="100%" gap="md">
-                <Title tt="uppercase" ta="center" fz={70}>
-                    Принцип изготовления
-                </Title>
-                <Group
-                    justify="flex-end"
-                    grow
-                    style={{ flex: 1, minHeight: 0 }}
+        <Stack gap={0} h="100vh">
+            <Box
+                bg={theme.other.cardBackground}
+                style={{
+                    flex: 1,
+                    position: 'relative',
+                    overflow: 'hidden',
+                }}
+            >
+                <BackgroundHexagonGrids />
+
+                <Container
+                    size="xl"
+                    py="xl"
+                    style={{ position: 'relative', zIndex: 1 }}
                 >
-                    <Box
-                        bg={theme.other.darkBackground}
-                        p="md"
-                        h="100%"
-                        style={{
-                            flexShrink: 0,
-                            maxWidth: '40%',
-                            borderRadius: theme.other.cardRadius,
-                            overflow: 'auto',
-                        }}
-                    >
-                        <Text c="white" fz={40}>
-                            Наша продукция изготовляется на паровой бане с
-                            добавлением яблок, яблоки при выпаривании выделяют
-                            яблочный пектин, который загущает и консервирует
-                            ягоду, Наша продукция изготовляется на паровой бане
-                            с добавлением яблок, яблоки при выпаривании
-                            выделяют яблочный пектин, который загущает и
-                            консервирует ягоду,
-                        </Text>
-                    </Box>
-                    <Image
-                        radius="lg"
-                        src={`${import.meta.env.BASE_URL}/images/home-bg.jpg`}
-                        fit="cover"
-                        style={{ flex: 1, height: '100%' }}
-                    />
-                </Group>
-                <Group
-                    justify="flex-end"
-                    grow
-                    style={{ flex: 1, minHeight: 0 }}
-                >
-                    <Box
-                        h="100%"
-                        bg={theme.other.darkBackground}
-                        p="md"
-                        style={{
-                            flexShrink: 0,
-                            maxWidth: '40%',
-                            borderRadius: theme.other.cardRadius,
-                        }}
-                    >
-                        <Text c="white" fz={40}>
-                            Наша продукция изготовляется на паровой бане с
-                            добавлением яблок, яблоки при выпаривании выделяют
-                            яблочный пектин, который загущает и консервирует
-                            ягоду,
-                        </Text>
-                    </Box>
-                    <Image
-                        radius="lg"
-                        src={`${import.meta.env.BASE_URL}/images/home-bg.jpg`}
-                        fit="cover"
-                        style={{ flex: 1, height: '100%' }}
-                    />
-                </Group>
-                <Group
-                    justify="flex-end"
-                    grow
-                    style={{ flex: 1, minHeight: 0 }}
-                >
-                    <Box
-                        h="100%"
-                        bg={theme.other.darkBackground}
-                        p="md"
-                        style={{
-                            flexShrink: 0,
-                            maxWidth: '40%',
-                            borderRadius: theme.other.cardRadius,
-                        }}
-                    >
-                        <Text c="white" fz={40}>
-                            Наша продукция изготовляется на паровой бане с
-                            добавлением яблок, яблоки при выпаривании выделяют
-                            яблочный пектин, который загущает и консервирует
-                            ягоду,
-                        </Text>
-                    </Box>
-                    <Image
-                        radius="lg"
-                        src={`${import.meta.env.BASE_URL}/images/home-bg.jpg`}
-                        fit="cover"
-                        style={{ flex: 1, height: '100%' }}
-                    />
-                </Group>
-            </Stack>
-        </Box>
+                    <Stack gap="xl" align="center" justify="center" mih="80vh">
+                        <RecipeTitleCards
+                            mainTitle={currentRecipe.mainTitle}
+                            subTitle={currentRecipe.subTitle}
+                        />
+                        <RecipeFeaturesBanner
+                            description={currentRecipe.description}
+                            onPrevious={handlePrevious}
+                            onNext={handleNext}
+                        />
+                    </Stack>
+                </Container>
+            </Box>
+        </Stack>
     );
 }

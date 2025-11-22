@@ -37,7 +37,7 @@ function ProductCard({ product }: { product: Product }) {
             >
                 <Card.Section>
                     <Image
-                        src={product.image_url}
+                        src={product.images?.[0] ?? ''}
                         alt={product.name}
                         height={200}
                         fit="cover"
