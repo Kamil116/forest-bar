@@ -12,8 +12,8 @@ export function ToggleSection() {
         <Box ta='center' w="100%" px={{ base: 'xs', md: 'md' }}>
             <Group gap="md" justify="center" wrap="wrap">
                 <Button
-                    size="xl"
-                    fz={{ base: 18, sm: 24, md: theme.other.titleSize }}
+                    size="md"
+                    fz={{ base: 18, sm: 24, md: 36 }}
                     fw={500}
                     radius={theme.other.buttonRadius}
                     bg={value === 'job' ? theme.other.customYellow : theme.other.darkBackground}
@@ -23,8 +23,8 @@ export function ToggleSection() {
                     Работа
                 </Button>
                 <Button
-                    size="xl"
-                    fz={{ base: 18, sm: 24, md: theme.other.titleSize }}
+                    size="md"
+                    fz={{ base: 18, sm: 24, md: 36 }}
                     fw={500}
                     radius={theme.other.buttonRadius}
                     bg={value === 'cooperation' ? theme.other.customYellow : theme.other.darkBackground}
@@ -40,7 +40,7 @@ export function ToggleSection() {
                     <Stack align="center" justify="center" gap="lg">
                         <VacancyCards />
                         <Title 
-                            fz={{ base: 28, sm: 36, md: 48, lg: 64 }} 
+                            fz={{ base: 28, sm: 36, md: 44, lg: 52 }} 
                             fw={400} 
                             tt="uppercase"
                             c='white'

@@ -1,0 +1,9 @@
+/* CSS Variables for footer font sizes */
+:root {
+    --footer-text-font-size: clamp(6px, 2vw, 24px);
+}
+
+.footerText {
+    font-size: var(--footer-text-font-size);
+}
+

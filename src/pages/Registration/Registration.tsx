@@ -1,6 +1,8 @@
 import Header from "@/components/shared/Header";
-import { Box, Button, Container, Stack, TextInput, Badge, useMantineTheme, Group } from "@mantine/core";
+import { Box, Button, Container, Stack, TextInput, Badge, useMantineTheme, Group, Text } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate, Link } from "react-router-dom";
 import classes from "./Registration.module.css";
 
 interface FormValues {
@@ -13,6 +15,8 @@ interface FormValues {
 
 function Registration() {
     const theme = useMantineTheme();
+    const { login } = useAuth();
+    const navigate = useNavigate();
 
     const form = useForm<FormValues>({
         initialValues: {
@@ -78,7 +82,11 @@ function Registration() {
                         Регистрация
                     </Badge>
                     <Container size="md" px='5rem' bg={theme.other.cardBackground} py='xl' styles={{ root: { borderRadius: theme.other.cardRadius } }}>
-                        <form onSubmit={form.onSubmit((values: FormValues) => console.log(values))}>
+                        <form onSubmit={form.onSubmit((values: FormValues) => {
+                            // TODO: Add actual registration logic here
+                            login();
+                            navigate('/');
+                        })}>
                             <Stack>
                                 {[
                                     { name: 'phone', placeholder: 'Номер телефона' },
@@ -122,14 +130,30 @@ function Registration() {
                                         bg="#0077FF"
                                         c="white"
                                         onClick={() => {
-                                            // VK OAuth logic here
-                                            console.log('VK authorization');
+                                            // TODO: VK OAuth logic here
                                         }}
                                     >
                                         Создать через VK
                                     </Button>
                                 </Group>
-
+                                <Text
+                                    ta="center"
+                                    mt="md"
+                                    fz="md"
+                                    c="white"
+                                >
+                                    Уже зарегестрированы?{' '}
+                                    <Text
+                                        component={Link}
+                                        to="/login"
+                                        c={theme.other.customYellow}
+                                        fw={600}
+                                        style={{ textDecoration: 'none' }}
+                                        td="underline"
+                                    >
+                                        Войти
+                                    </Text>
+                                </Text>
                             </Stack>
                         </form>
                     </Container>

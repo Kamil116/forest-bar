@@ -21,25 +21,29 @@ export function RecipeFeaturesBanner({ description, onPrevious, onNext }: Recipe
     return (
         <Container
             size="xl"
-            mt="xl"
+            mt={{ base: 'md', sm: 'lg', md: 'xl' }}
             fluid
+            px={{ base: 'xs', sm: 'sm', md: 'md' }}
             style={{
                 position: 'relative',
                 overflow: 'hidden',
                 borderRadius: theme.other.cardRadius,
                 background: theme.other.customYellow,
-                padding: '3rem 2rem',
+                paddingTop: 'clamp(1.5rem, 4vw, 3rem)',
+                paddingBottom: 'clamp(1.5rem, 4vw, 3rem)',
+                paddingLeft: 'clamp(1rem, 3vw, 2rem)',
+                paddingRight: 'clamp(1rem, 3vw, 2rem)',
             }}
         >
             {/* Hexagon Grid Background - positioned higher to cover more area */}
             <Box
                 style={{
                     position: 'absolute',
-                    bottom: '80px', // Position higher from bottom
+                    bottom: 'clamp(40px, 8vw, 80px)',
                     left: 0,
                     right: 0,
-                    height: '400px', // Increased height
-                    opacity: 0.6, // Reduced opacity for better contrast
+                    height: 'clamp(200px, 30vw, 400px)',
+                    opacity: 0.6,
                     pointerEvents: 'none',
                     overflow: 'hidden',
                 }}
@@ -63,26 +67,30 @@ export function RecipeFeaturesBanner({ description, onPrevious, onNext }: Recipe
             </Box>
 
             {/* Text Content */}
-            <Stack gap="xl" style={{ position: 'relative', zIndex: 4 }}>
+            <Stack gap="md" style={{ position: 'relative', zIndex: 4 }}>
                 <Text
                     c="white"
                     fz={{
-                        base: 20,
-                        md: 24,
-                        lg: 28,
+                        base: 12,
+                        sm: 16,
+                        md: 20,
+                        lg: 24,
+                        xl: 28,
                     }}
                     ta="center"
+                    px={{ base: 'xs', sm: 'sm', md: 'md' }}
+                    style={{ lineHeight: 1.5 }}
                 >
                     {description}
                 </Text>
 
                 {/* Icons Content */}
                 <Group
-                    gap="xl"
+                    gap="lg"
                     justify="center"
                     align="center"
                     wrap="wrap"
-                    mt="xl"
+                    mt="lg"
                 >
                     {FEATURES.map((feature, index) => (
                         <RecipeFeatureCard

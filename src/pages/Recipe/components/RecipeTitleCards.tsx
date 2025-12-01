@@ -13,12 +13,12 @@ export function RecipeTitleCards({ mainTitle, subTitle }: RecipeTitleCardsProps)
             <Paper
                 radius={theme.other.cardRadius}
                 bg={theme.other.customYellow}
-                p="md"
-                style={{ flex: '2 1 300px' }}
+                p={{ base: 'xs', sm: 'sm', md: 'md', lg: 'lg' }}
+                style={{ flex: '2 1 300px', minWidth: 'clamp(180px, 25vw, 300px)' }}
             >
                 <Text
                     c="white"
-                    fz={{ base: 34, md: 48, lg: 64 }}
+                    fz={{ base: 18, sm: 24, md: 32, lg: 40, xl: 48 }}
                     fw={500}
                     ta="center"
                 >
@@ -28,12 +28,12 @@ export function RecipeTitleCards({ mainTitle, subTitle }: RecipeTitleCardsProps)
             <Paper
                 radius={theme.other.cardRadius}
                 bg={theme.other.customYellow}
-                p="md"
-                style={{ flex: '1 1 200px' }}
+                p={{ base: 'xs', sm: 'sm', md: 'md', lg: 'lg' }}
+                style={{ flex: '1 1 200px', minWidth: 'clamp(140px, 18vw, 200px)' }}
             >
                 <Text
                     c="white"
-                    fz={{ base: 34, md: 48, lg: 64 }}
+                    fz={{ base: 18, sm: 24, md: 32, lg: 40, xl: 48 }}
                     fw={500}
                     ta="center"
                 >

@@ -1,5 +1,9 @@
 .mainBackground {
-    background: linear-gradient(to bottom, rgba(216, 137, 11, 1), rgba(255, 186, 0, 1));
+    background: linear-gradient(
+        to bottom,
+        rgba(216, 137, 11, 1),
+        rgba(255, 186, 0, 1)
+    );
     width: 100%;
     min-height: 100%;
 }
@@ -9,14 +13,16 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    flex-shrink: 0;
 }
 
 .headerImage {
     width: 100%;
-    min-width: 100%;
+    max-width: 100%;
     height: auto;
     object-fit: cover;
+    display: block;
 }
 
 .hexagonsContainer {
@@ -24,11 +30,19 @@
     align-items: flex-start;
     justify-content: center;
     flex-wrap: nowrap;
-    gap: 50px;
+    gap: clamp(15px, 3vw, 40px);
     width: 100%;
-    padding: 4rem 0px 0px 0px;
+    padding: clamp(0.25rem, 1vw, 0.75rem) clamp(15px, 2vw, 30px);
     overflow-x: auto;
     overflow-y: visible;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    flex-shrink: 1;
+    min-height: 0;
+}
+
+.hexagonsContainer::-webkit-scrollbar {
+    display: none;
 }
 
 .hexagonWrapper {
@@ -39,7 +53,7 @@
 }
 
 .hexagonBottom {
-    margin-top: 250px;
+    margin-top: clamp(100px, 18vw, 220px);
 }
 
 .hexagonBox {
@@ -48,62 +62,75 @@
     align-items: center;
     justify-content: center;
     overflow: visible;
+    padding: 10px;
+    margin: -10px;
+    width: clamp(150px, 5vw, 200px);
+    height: 150px;
 }
 
-/* Responsive hexagon sizes */
-.hexagonBox :global(.hexagonContainer) {
-    width: clamp(140px, 18vw, 200px) !important;
-    height: clamp(140px, 18vw, 200px) !important;
-}
-
-@media (max-width: 1200px) {
+@media (max-width: 1080px) {
     .hexagonsContainer {
-        gap: 25px;
-        padding: 80px 15px;
-        min-height: 650px;
+        gap: 2.5rem;
+    }
+
+    .hexagonBottom {
+        margin-top: 170px;
+    }
+
+    .hexagonBox {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* .hexagonsContainer {
+        2rem;
+    } */
+
+    .hexagonBottom {
+        margin-top: 150px;
+    }
+
+    .hexagonBox {
+        width: clamp(120px, 4vw, 65px);
+        height: clamp(120px, 8vw, 100px);
+    }
+}
+
+@media (max-width: 480px) {
+    .hexagonBottom {
+        margin-top: 120px;
+    }
+
+    .hexagonBox {
+        width: 85px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 376px) {
+    .hexagonBottom {
+        margin-top: 120px;
+    }
+
+    .hexagonBox {
+        width: 75px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 320px) {
+    .hexagonsContainer {
+        gap: 0.7rem;
     }
 
     .hexagonBottom {
         margin-top: 130px;
     }
 
-    .hexagonBox :global(.hexagonContainer) {
-        width: clamp(140px, 18vw, 180px) !important;
-        height: clamp(140px, 18vw, 180px) !important;
-    }
-}
-
-@media (max-width: 768px) {
-    .hexagonsContainer {
-        gap: 20px;
-        padding: 70px 10px;
-        min-height: 580px;
-        justify-content: flex-start;
-    }
-
-    .hexagonBottom {
-        margin-top: 100px;
-    }
-
-    .hexagonBox :global(.hexagonContainer) {
-        width: 140px !important;
-        height: 140px !important;
-    }
-}
-
-@media (max-width: 480px) {
-    .hexagonsContainer {
-        gap: 15px;
-        padding: 60px 5px;
-        min-height: 520px;
-    }
-
-    .hexagonBottom {
-        margin-top: 90px;
-    }
-
-    .hexagonBox :global(.hexagonContainer) {
-        width: 120px !important;
-        height: 120px !important;
+    .hexagonBox {
+        width: 65px;
+        height: 90px;
     }
 }

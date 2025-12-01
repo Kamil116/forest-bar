@@ -24,9 +24,11 @@ export function NavigationArrows({
                 style={{
                     color: 'rgba(139, 69, 19, 1)',
                     cursor: 'pointer',
+                    width: 'clamp(32px, 5vw, 60px)',
+                    height: 'clamp(32px, 5vw, 60px)',
                 }}
             >
-                <IconChevronLeft size={60} />
+                <IconChevronLeft style={{ width: 'clamp(32px, 5vw, 60px)', height: 'clamp(32px, 5vw, 60px)' }} />
             </ActionIcon>
             <ActionIcon
                 variant="transparent"
@@ -35,9 +37,11 @@ export function NavigationArrows({
                 style={{
                     color: 'rgba(139, 69, 19, 1)',
                     cursor: 'pointer',
+                    width: 'clamp(32px, 5vw, 60px)',
+                    height: 'clamp(32px, 5vw, 60px)',
                 }}
             >
-                <IconChevronRight size={60} />
+                <IconChevronRight style={{ width: 'clamp(32px, 5vw, 60px)', height: 'clamp(32px, 5vw, 60px)' }} />
             </ActionIcon>
         </Group>
     );

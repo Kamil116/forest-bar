@@ -9,6 +9,7 @@ import {
     Divider,
 } from '@mantine/core';
 import { Vendor } from '@/types/vendor';
+import classes from './ProfileCard.module.css';
 
 function ProfileCard({ leaderProfile }: { leaderProfile: Vendor }) {
     const theme = useMantineTheme();
@@ -29,16 +30,16 @@ function ProfileCard({ leaderProfile }: { leaderProfile: Vendor }) {
                     <Image
                         src={`${import.meta.env.BASE_URL}/images/home-bg.jpg`}
                         alt="Profile"
-                        h={{ base: 120, sm: 150, md: 180, lg: 200 }}
+                        h={{ base: 100, sm: 120, md: 140, lg: 160 }}
                         radius="xl"
                         style={{
                             objectFit: 'cover',
                         }}
                     />
                     <Text 
+                        className={classes.profileCardText}
                         c="white" 
                         tt="uppercase" 
-                        fz={{ base: 16, sm: 20, md: 28, lg: 34 }} 
                         fw={700}
                         ta="center"
                     >
@@ -52,8 +53,8 @@ function ProfileCard({ leaderProfile }: { leaderProfile: Vendor }) {
                         w="80%"
                     />
                     <Text 
+                        className={classes.profileCardText}
                         c={theme.other.customOrange} 
-                        fz={{ base: 14, sm: 18, md: 24, lg: 34 }}
                         ta="center"
                     >
                         {leaderProfile.city}
@@ -61,15 +62,15 @@ function ProfileCard({ leaderProfile }: { leaderProfile: Vendor }) {
                 </Stack>
                 <Stack gap='md' align="center">
                     <Text 
+                        className={classes.profileCardText}
                         c={theme.other.customOrange} 
-                        fz={{ base: 14, sm: 18, md: 24, lg: 34 }}
                         ta="center"
                     >
                         {leaderProfile.phone}
                     </Text>
                     <Text 
+                        className={classes.profileCardText}
                         c={theme.other.customOrange} 
-                        fz={{ base: 12, sm: 16, md: 22, lg: 34 }} 
                         td="underline"
                         ta="center"
                         style={{ wordBreak: 'break-word' }}
@@ -77,12 +78,12 @@ function ProfileCard({ leaderProfile }: { leaderProfile: Vendor }) {
                         {leaderProfile.email}
                     </Text>
                     <Button
+                        className={classes.profileCardButton}
                         color={theme.other.customOrange}
-                        fz={{ base: 14, sm: 18, md: 24, lg: 34 }}
                         fw={500}
                         w="fit-content"
                         px={{ base: 'md', md: 'xl' }}
-                        size="md"
+                        size="sm"
                     >
                         Реферальная ссылка
                     </Button>

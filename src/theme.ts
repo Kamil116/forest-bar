@@ -1,7 +1,7 @@
 import {createTheme} from '@mantine/core';
 
 export const theme = createTheme({
-    fontFamily: 'Norse, sans-serif',
+    fontFamily: 'Comic Helvetic, sans-serif',
     headings: {fontFamily: 'Norse, sans-serif'},
     other: {
         // Colors

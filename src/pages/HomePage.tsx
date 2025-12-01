@@ -16,7 +16,6 @@ export function HomePage() {
                 align="center"
                 justify="space-between"
                 pb={{ base: 20, md: 50 }}
-                px={{ base: 'md', md: 0 }}
             >
                 <Header />
                 <Stack align="center" gap="md">

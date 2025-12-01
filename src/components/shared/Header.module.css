@@ -2,9 +2,9 @@
     position: relative;
     z-index: 10;
     overflow: visible;
-    height: 80px;
-    min-height: 80px;
-    max-height: 80px;
+    height: clamp(40px, 5vh, 60px);
+    min-height: clamp(40px, 5vh, 60px);
+    max-height: clamp(40px, 5vh, 60px);
 }
 
 .logo {
@@ -13,3 +13,16 @@
     cursor: pointer;
 }
 
+/* CSS Variables for button font sizes */
+:root {
+    --nav-button-font-size: clamp(12px, 2vw, 28px);
+    --mobile-nav-button-font-size: clamp(16px, 2vw, 24px);
+}
+
+.navButton {
+    font-size: var(--nav-button-font-size);
+}
+
+.mobileNavButton {
+    font-size: var(--mobile-nav-button-font-size);
+}

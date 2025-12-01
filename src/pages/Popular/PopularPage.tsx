@@ -49,8 +49,8 @@ export default function PopularPage() {
     const theme = useMantineTheme();
 
     return (
-        <Stack gap={0} h="100vh" >
-            <Box className={classes.mainBackground}>
+        <Stack gap={0} h="100vh" style={{ overflow: 'hidden' }}>
+            <Box className={classes.mainBackground} style={{ height: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
                 {/* Header with group_6.png - Outside Container for full width */}
                 <Box className={classes.headerSection}>
                     <Image
@@ -60,14 +60,15 @@ export default function PopularPage() {
                     />
                 </Box>
 
-                <Container size="xl">
-                    <Stack gap="xl" align="center">
+                <Container size="xl" px={{ base: 'xs', sm: 'sm', md: 'md', lg: 'lg' }} style={{ height: '100%', display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
+                    <Stack gap="sm" align="center" py={{ base: 'xs', sm: 'sm', md: 'md' }} style={{ flex: 1, minHeight: 0, justifyContent: 'space-between', overflow: 'hidden' }}>
                         {/* Title */}
                         <Text
-                            fz={{ base: 32, sm: 40, md: 48, lg: 64 }}
+                            fz={{ base: 20, sm: 28, md: 36, lg: 44, xl: 56 }}
                             fw={700}
                             c="white"
                             ta="center"
+                            px={{ base: 'xs', sm: 'sm', md: 'md' }}
                         >
                             ПОПУЛЯРНО
                         </Text>
@@ -86,15 +87,16 @@ export default function PopularPage() {
                                     {item.position === 'top' && (
                                         <Text
                                             fz={{
-                                                base: 16,
-                                                sm: 20,
-                                                md: 24,
-                                                lg: 32,
+                                                base: 10,
+                                                sm: 14,
+                                                md: 18,
+                                                lg: 22,
+                                                xl: 28,
                                             }}
                                             fw={700}
                                             c="white"
                                             ta="center"
-                                            mb="md"
+                                            mb={{ base: 'xs', sm: 'sm', md: 'md' }}
                                             className={classes.hexagonLabel}
                                         >
                                             {item.label}
@@ -105,7 +107,6 @@ export default function PopularPage() {
                                         <HexagonImage
                                             src={item.image}
                                             alt={item.label}
-                                            size={200}
                                         />
                                         {index < HEXAGON_DATA.length - 1 && (
                                             <ArrowConnector
@@ -121,15 +122,16 @@ export default function PopularPage() {
                                     {item.position === 'bottom' && (
                                         <Text
                                             fz={{
-                                                base: 16,
-                                                sm: 20,
-                                                md: 24,
-                                                lg: 32,
+                                                base: 10,
+                                                sm: 14,
+                                                md: 18,
+                                                lg: 22,
+                                                xl: 28,
                                             }}
                                             fw={700}
                                             c="white"
                                             ta="center"
-                                            mt="md"
+                                            mt={{ base: 'xs', sm: 'sm', md: 'md' }}
                                             className={classes.hexagonLabel}
                                         >
                                             {item.label}
@@ -142,14 +144,17 @@ export default function PopularPage() {
                         {/* More Button */}
                         <Button
                             size="xl"
-                            fz={{ base: 20, sm: 28, md: 36 }}
+                            fz={{ base: 12, sm: 16, md: 20, lg: 26, xl: 32 }}
                             fw={500}
-                            w='20%'
+                            w={{ base: '85%', sm: '70%', md: '50%', lg: '35%', xl: '25%' }}
                             bg="rgba(219, 166, 25, 0.9)"
                             c="white"
                             radius={theme.other.buttonRadius}
                             style={{
                                 boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                                flexShrink: 0,
+                                marginTop: 'auto',
+                                padding: 'clamp(8px, 1.5vw, 16px)',
                             }}
                         >
                             Больше

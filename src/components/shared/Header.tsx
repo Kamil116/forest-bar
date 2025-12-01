@@ -9,13 +9,17 @@ import {
     Image,
     Burger,
 } from '@mantine/core';
+import { IconUser } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
 import { scrollToSection } from '@/utils/scrollToSection';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/contexts/AuthContext';
+import classes from './Header.module.css';
 
 function Header() {
     const theme = useMantineTheme();
     const navigate = useNavigate();
+    const { isAuthenticated } = useAuth();
     const [opened, { toggle, close }] = useDisclosure(false);
 
     const handleNavigation = (path: string, callback?: () => void) => {
@@ -39,7 +43,8 @@ function Header() {
             <Button
                 variant="subtle"
                 color={theme.other.buttonColor}
-                fz={{ base: 16, sm: 24, md: 32, lg: 40 }}
+                className={classes.mobileNavButton}
+                p={{ base: 4, sm: 6 }}
                 onClick={() => handleNavigation('/news')}
                 fullWidth
             >
@@ -48,7 +53,8 @@ function Header() {
             <Button
                 variant="subtle"
                 color={theme.other.buttonColor}
-                fz={{ base: 16, sm: 24, md: 32, lg: 40 }}
+                className={classes.mobileNavButton}
+                p={{ base: 4, sm: 6 }}
                 onClick={() => handleNavigation('/catalog')}
                 fullWidth
             >
@@ -57,34 +63,43 @@ function Header() {
             <Button
                 variant="subtle"
                 color={theme.other.buttonColor}
-                fz={{ base: 16, sm: 24, md: 32, lg: 40 }}
+                className={classes.mobileNavButton}
+                p={{ base: 4, sm: 6 }}
                 onClick={handleScrollToSection}
                 fullWidth
             >
                 Команда
             </Button>
-            <Button
-                variant="subtle"
-                color={theme.other.buttonColor}
-                fz={{ base: 16, sm: 24, md: 32, lg: 40 }}
-                onClick={() => handleNavigation('/login')}
-                fullWidth
-            >
-                Вход
-            </Button>
-            <Button
-                variant="subtle"
-                color={theme.other.buttonColor}
-                fz={{ base: 14, sm: 20, md: 28, lg: 40 }}
-                onClick={() => handleNavigation('/registration')}
-                fullWidth
-            >
-                Регистрация
-            </Button>
+            {isAuthenticated ? (
+                <Button
+                    variant="subtle"
+                    color={theme.other.buttonColor}
+                    className={classes.mobileNavButton}
+                    p={{ base: 4, sm: 6 }}
+                    onClick={() => handleNavigation('/profile')}
+                    fullWidth
+                    rightSection={<IconUser size={16} />}
+                >
+                    Профиль
+                </Button>
+            ) : (
+                <Button
+                    variant="subtle"
+                    color={theme.other.buttonColor}
+                    className={classes.mobileNavButtonSmall}
+                    p={{ base: 4, sm: 6 }}
+                    onClick={() => handleNavigation('/registration')}
+                    fullWidth
+                    rightSection={<IconUser size={16} />}
+                >
+                    Регистрация
+                </Button>
+            )}
             <Button
                 variant="subtle"
                 color="red"
-                fz={{ base: 16, sm: 24, md: 32, lg: 40 }}
+                className={classes.mobileNavButton}
+                p={{ base: 4, sm: 6 }}
                 onClick={() => handleNavigation('/admin')}
                 fullWidth
             >
@@ -103,8 +118,8 @@ function Header() {
                     alignItems: 'center',
                     justifyContent: 'center',
                 }}
-                px={{ base: 'xs', md: 'md' }}
-                py={{ base: 'xs', md: 'sm' }}
+                px={{ base: 4, sm: 6, md: 8 }}
+                py={{ base: 2, sm: 3, md: 4 }}
             >
                 {/* Desktop Navigation */}
                 <Group
@@ -118,8 +133,8 @@ function Header() {
                     <Button
                         variant="subtle"
                         color={theme.other.buttonColor}
-                        fz={{ base: 14, sm: 20, md: 28, lg: 40 }}
-                        style={{ fontSize: 'clamp(14px, 2.5vw, 40px)' }}
+                        className={classes.navButton}
+                        p={{ base: 2, sm: 3, md: 4 }}
                         onClick={() => navigate('/news')}
                     >
                         Новости
@@ -127,24 +142,24 @@ function Header() {
                     <Button
                         variant="subtle"
                         color={theme.other.buttonColor}
-                        fz={{ base: 14, sm: 20, md: 28, lg: 40 }}
-                        style={{ fontSize: 'clamp(14px, 2.5vw, 40px)' }}
+                        className={classes.navButton}
+                        p={{ base: 2, sm: 3, md: 4 }}
                         onClick={() => navigate('/catalog')}
                     >
                         Каталог
                     </Button>
                     <Image
                         src={`${import.meta.env.BASE_URL}/images/logo.svg`}
-                        h={{ base: 40, sm: 55, md: 70 }}
-                        w={{ base: 60, sm: 80, md: 100 }}
+                        h={{ base: 25, sm: 30, md: 40, lg: 50 }}
+                        w={{ base: 35, sm: 45, md: 60, lg: 70 }}
                         style={{ cursor: 'pointer' }}
                         onClick={() => navigate('/')}
                     />
                     <Button
                         variant="subtle"
                         color={theme.other.buttonColor}
-                        fz={{ base: 14, sm: 20, md: 28, lg: 40 }}
-                        style={{ fontSize: 'clamp(14px, 2.5vw, 40px)' }}
+                        className={classes.navButton}
+                        p={{ base: 2, sm: 3, md: 4 }}
                         onClick={() => {
                             navigate('/');
                             setTimeout(() => scrollToSection('about-us'), 100);
@@ -152,29 +167,33 @@ function Header() {
                     >
                         Команда
                     </Button>
-                    <Button
-                        variant="subtle"
-                        color={theme.other.buttonColor}
-                        fz={{ base: 14, sm: 20, md: 28, lg: 40 }}
-                        style={{ fontSize: 'clamp(14px, 2.5vw, 40px)' }}
-                        onClick={() => navigate('/login')}
-                    >
-                        Вход
-                    </Button>
-                    <Button
-                        variant="subtle"
-                        color={theme.other.buttonColor}
-                        fz={{ base: 12, sm: 18, md: 24, lg: 40 }}
-                        style={{ fontSize: 'clamp(12px, 2.2vw, 40px)' }}
-                        onClick={() => navigate('/registration')}
-                    >
-                        Регистрация
-                    </Button>
+                    {isAuthenticated ? (
+                        <Button
+                            variant="subtle"
+                            color={theme.other.buttonColor}
+                            className={classes.navButton}
+                            p={{ base: 2, sm: 3, md: 4 }}
+                            onClick={() => navigate('/profile')}
+                            rightSection={<IconUser size={14} />}
+                        >
+                            Профиль
+                        </Button>
+                    ) : (
+                        <Button
+                            variant="subtle"
+                            color={theme.other.buttonColor}
+                            className={classes.navButton}
+                            p={{ base: 2, sm: 3, md: 4 }}
+                            onClick={() => navigate('/registration')}
+                            rightSection={<IconUser size={14} />}
+                        >
+                            Регистрация
+                        </Button>
+                    )}
                     <Button
                         variant="subtle"
                         color="red"
-                        fz={{ base: 14, sm: 20, md: 28, lg: 40 }}
-                        style={{ fontSize: 'clamp(14px, 2.5vw, 40px)' }}
+                        className={classes.navButton}
                         onClick={() => navigate('/admin')}
                     >
                         Админка
@@ -223,7 +242,7 @@ function Header() {
                     },
                     title: {
                         color: theme.other.buttonColor,
-                        fontSize: '24px',
+                        fontSize: 'clamp(32px, 4vw, 40px)',
                     },
                 }}
             >

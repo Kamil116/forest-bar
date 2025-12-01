@@ -13,6 +13,7 @@ import VacanciesManagement from '@/components/Admin/VacanciesManagement';
 import AdvantagesManagement from '@/components/Admin/AdvantagesManagement';
 import NewsHome from './pages/News/NewsHome';
 import NewsPage from './pages/News/NewsPage';
+import ProfilePage from './pages/Profile/ProfilePage';
 
 const router = createBrowserRouter(
     [
@@ -40,6 +41,10 @@ const router = createBrowserRouter(
         {
             path: '/news/:id',
             element: <NewsPage />
+        },
+        {
+            path: '/profile',
+            element: <ProfilePage />
         },
         {
             path: '/admin',

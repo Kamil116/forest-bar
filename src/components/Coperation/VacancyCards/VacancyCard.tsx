@@ -25,16 +25,23 @@ function VacancyCard({ job }: { job: Vacancy }) {
         <Container
             size="sm"
             bg={theme.other.darkBackground}
-            py={{ base: 'sm', md: theme.other.cardPadding }}
+            py={{ base: 'xs', md: 'md' }}
             px={{ base: 'xs', md: 'md' }}
-            style={{ borderRadius: theme.other.cardRadius }}
+            style={{ 
+                borderRadius: theme.other.cardRadius,
+                minWidth: 'clamp(180px, 35vw, 400px)',
+                maxWidth: 'clamp(180px, 35vw, 400px)',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column'
+            }}
         >
-            <Stack align="center" gap="md">
+            <Stack align="center" gap="md" style={{ flex: 1, justifyContent: 'space-between' }}>
                 {/* Заголовок и город */}
                 <Stack gap={0} align="center">
                     <Title
                         order={2}
-                        fz={{ base: 18, sm: 24, md: theme.other.titleSize }}
+                        fz={{ base: 24, sm: 28, md: 32, lg: 36 }}
                         fw={400}
                         tt="uppercase"
                         c={theme.other.customOrange}
@@ -60,17 +67,24 @@ function VacancyCard({ job }: { job: Vacancy }) {
                 />
 
                 {/* Условия */}
-                <Stack w="100%" gap="sm">
+                <Stack w="90%" gap="sm" style={{ flex: 1, justifyContent: 'flex-start' }}>
                     {job.additional_conditions?.map((condition, index) => (
                         <Badge
                             key={index}
                             bg={theme.other.cardBackground}
+                            py='xs'
                             radius="lg"
                             size="lg"
                             c={theme.other.customOrange}
-                            fz={{ base: 14, sm: 18, md: 22, lg: 24 }}
+                            fz={{ base: 12, sm: 14, md: 18, lg: 24 }}
                             fullWidth
-                            p={{ base: 'sm', md: 20 }}
+                            h='100%'
+                            styles={{
+                                label: {
+                                    wordBreak: 'break-word',
+                                    whiteSpace: 'normal',
+                                }
+                            }}
                         >
                             {condition}
                         </Badge>
@@ -78,7 +92,7 @@ function VacancyCard({ job }: { job: Vacancy }) {
                 </Stack>
 
                 <Button
-                    mt={{ base: 'xs', md: 'md' }}
+                    mt="auto"
                     color={theme.other.customOrange}
                     radius={theme.other.buttonRadius}
                     fz={{ base: 14, sm: 18, md: theme.other.buttonSize }}

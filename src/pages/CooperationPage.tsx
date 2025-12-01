@@ -11,7 +11,7 @@ function CooperationPage() {
             <Stack h="100%" align="center" justify="space-between" gap="xl">
                 <Title 
                     fw={700} 
-                    fz={{ base: 32, sm: 40, md: 48, lg: 64 }} 
+                    fz={{ base: 28, sm: 36, md: 44, lg: 52 }} 
                     tt="uppercase" 
                     c="white" 
                     py={{ base: 20, md: 40 }}

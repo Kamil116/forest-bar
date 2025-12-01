@@ -12,7 +12,7 @@
 .right-down {
     bottom: -110px;
     left: 50%;
-    width: 140px;
+    width: 100px;
     height: 100px;
     transform: translateX(-10%);
 }
@@ -20,7 +20,7 @@
 .right-up {
     top: -100px;
     left: 50%;
-    width: 140px;
+    width: 100px;
     height: 100px;
     transform: translateX(-10%);
 }
@@ -28,24 +28,24 @@
 @media (max-width: 1200px) {
     .right-down,
     .right-up {
-        width: 120px;
-        height: 110px;
+        width: 100px;
+        height: 80px;
     }
 
     .right-down {
-        bottom: -85px;
+        bottom: -80px;
     }
 
     .right-up {
-        top: -85px;
+        top: -70px;
     }
 }
 
 @media (max-width: 768px) {
     .right-down,
     .right-up {
-        width: 90px;
-        height: 80px;
+        width: 60px;
+        height: 65px;
     }
 
     .right-down {
@@ -60,16 +60,31 @@
 @media (max-width: 480px) {
     .right-down,
     .right-up {
-        width: 70px;
-        height: 65px;
+        width: 35px;
+        height: 40px;
     }
 
     .right-down {
-        bottom: -55px;
+        bottom: -40px;
     }
 
     .right-up {
-        top: -55px;
+        top: -40px;
     }
 }
 
+@media (max-width: 320px) {
+    .right-down,
+    .right-up {
+        width: 35px;
+        height: 35px;
+    }
+
+    .right-down {
+        bottom: -35px;
+    }
+
+    .right-up {
+        top: -35px;
+    }
+}

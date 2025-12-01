@@ -1,6 +1,8 @@
 import Header from "@/components/shared/Header";
 import { Box, Button, Container, Stack, TextInput, Badge, useMantineTheme, Group } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 import classes from "./Login.module.css";
 
 interface FormValues {
@@ -10,6 +12,8 @@ interface FormValues {
 
 function Login() {
     const theme = useMantineTheme();
+    const { login } = useAuth();
+    const navigate = useNavigate();
 
     const form = useForm<FormValues>({
         initialValues: {
@@ -60,7 +64,11 @@ function Login() {
                         Вход
                     </Badge>
                     <Container size="md" px='5rem' bg={theme.other.cardBackground} py='xl' styles={{ root: { borderRadius: theme.other.cardRadius } }}>
-                        <form onSubmit={form.onSubmit((values: FormValues) => console.log(values))}>
+                        <form onSubmit={form.onSubmit((values: FormValues) => {
+                            // TODO: Add actual authentication logic here
+                            login();
+                            navigate('/');
+                        })}>
                             <Stack>
                                 {[
                                     { name: 'email', placeholder: 'Почта', type: 'email' },
@@ -102,8 +110,7 @@ function Login() {
                                         bg="#0077FF"
                                         c="white"
                                         onClick={() => {
-                                            // VK OAuth logic here
-                                            console.log('VK authorization');
+                                            // TODO: VK OAuth logic here
                                         }}
                                     >
                                         Войти через VK

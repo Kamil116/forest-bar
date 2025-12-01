@@ -7,17 +7,9 @@ interface HexagonImageProps {
     size?: number;
 }
 
-export function HexagonImage({ src, alt, size = 200 }: HexagonImageProps) {
+export function HexagonImage({ src, alt }: HexagonImageProps) {
     return (
-        <Box
-            className={classes.hexagonWrapper}
-            style={{ 
-                width: `${size}px`, 
-                height: `${size}px`,
-                minWidth: `${size}px`,
-                minHeight: `${size}px`
-            }}
-        >
+        <Box className={classes.hexagonWrapper}>
             <Box className={classes.hexagonContainer}>
                 <Image
                     src={src}

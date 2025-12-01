@@ -38,10 +38,11 @@ export default function Recipe() {
 
                 <Container
                     size="xl"
-                    py="xl"
+                    px={{ base: 'xs', sm: 'sm', md: 'md', lg: 'lg' }}
+                    py={{ base: 'sm', sm: 'md', md: 'lg', lg: 'xl' }}
                     style={{ position: 'relative', zIndex: 1 }}
                 >
-                    <Stack gap="xl" align="center" justify="center" mih="80vh">
+                    <Stack gap="lg" align="center" justify="center" mih={{ base: '50vh', sm: '60vh', md: '70vh', lg: '80vh' }}>
                         <RecipeTitleCards
                             mainTitle={currentRecipe.mainTitle}
                             subTitle={currentRecipe.subTitle}

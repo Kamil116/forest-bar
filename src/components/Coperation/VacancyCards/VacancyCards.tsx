@@ -15,7 +15,7 @@ function VacancyCards() {
                 mr={{ base: 'xs', md: 'xl' }} 
                 pb="md"
             >
-                <Group wrap='nowrap' gap="xl">
+                <Group wrap='nowrap' gap="xl" align="stretch">
                     {mockVacancies.map((job, index) => <VacancyCard key={index} job={job}/>)}
                 </Group>
             </ScrollArea>
