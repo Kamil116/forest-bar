@@ -1,31 +1,48 @@
-import {Box, Text, Stack, TextInput, Textarea, Button, Group, Image, useMantineTheme} from '@mantine/core';
+import {
+    Box,
+    Text,
+    Stack,
+    TextInput,
+    Textarea,
+    Button,
+    Group,
+    Image,
+    useMantineTheme,
+} from '@mantine/core';
+import styles from './Partnership.module.css';
 
 function Partnership() {
     const theme = useMantineTheme();
     return (
-        <Box>
-            <Box style={{display: 'flex', gap: '16px', width: '100%'}}>
-                <Box style={{flex: '0 0 calc(60% - 8px)'}}>
-                    <Text ta="center" fz={theme.other.titleSize} fw={700} c="white" mb="xl" tt="uppercase">
+        <Box px={{ base: 'xs', md: 'md' }} py={{ base: 'md', md: 'xl' }}>
+            <Box className={styles.container}>
+                <Box className={styles.formContainer}>
+                    <Text
+                        ta="center"
+                        fw={700}
+                        c="white"
+                        mb={{ base: 'md', md: 'xl' }}
+                        tt="uppercase"
+                        fz={{ base: 18, sm: 24, md: 28, lg: 32 }}
+                        px={{ base: 'xs', md: 0 }}
+                    >
                         Заполни анкету на партнерство и стань частью коллектива
                     </Text>
 
-                    <Group align="stretch" gap="md" h="100%" grow>
-                        <Stack gap="lg" align="center">
+                    <Group 
+                        align="flex-start" 
+                        gap="md" 
+                        grow
+                        wrap="wrap"
+                    >
+                        <Stack gap="lg" align="center" style={{ flex: 1, minWidth: '280px' }}>
                             <TextInput
                                 placeholder="Имя и фамилия"
                                 tt="uppercase"
                                 size="lg"
                                 radius={theme.other.buttonRadius}
                                 w="100%"
-                                styles={{
-                                    input: {
-                                        backgroundColor: theme.other.customYellow,
-                                        color: 'black',
-                                        boxShadow: `4px 8px 0px ${theme.other.customYellowShadow}`,
-                                        border: 'none',
-                                    }
-                                }}
+                                classNames={{ input: styles.input }}
                             />
                             <TextInput
                                 placeholder="Email"
@@ -33,14 +50,7 @@ function Partnership() {
                                 size="lg"
                                 w="100%"
                                 radius={theme.other.buttonRadius}
-                                styles={{
-                                    input: {
-                                        backgroundColor: theme.other.customYellow,
-                                        color: 'black',
-                                        boxShadow: `4px 8px 0px ${theme.other.customYellowShadow}`,
-                                        border: 'none',
-                                    }
-                                }}
+                                classNames={{ input: styles.input }}
                             />
                             <TextInput
                                 placeholder="Телефон"
@@ -48,22 +58,15 @@ function Partnership() {
                                 size="lg"
                                 radius={theme.other.buttonRadius}
                                 w="100%"
-                                styles={{
-                                    input: {
-                                        backgroundColor: theme.other.customYellow,
-                                        color: 'black',
-                                        boxShadow: `4px 8px 0px ${theme.other.customYellowShadow}`,
-                                        border: 'none',
-                                    }
-                                }}
+                                classNames={{ input: styles.input }}
                             />
                             <Button
                                 size="xl"
                                 radius={theme.other.buttonRadius}
-                                fz={theme.other.buttonSize}
+                                fz={{ base: 16, md: theme.other.buttonSize }}
                                 fw={600}
                                 mt="lg"
-                                w="80%"
+                                w={{ base: '100%', md: '80%' }}
                                 bg={theme.other.successGreen}
                                 c="black"
                             >
@@ -74,39 +77,26 @@ function Partnership() {
                         <Textarea
                             placeholder="Сопроводительное письмо/Анкета"
                             autosize
-                            minRows={10}
-                            maxRows={10}
+                            minRows={8}
+                            maxRows={12}
                             tt="uppercase"
                             size="lg"
                             radius={theme.other.buttonRadius}
-                            styles={{
-                                input: {
-                                    backgroundColor: theme.other.customYellow,
-                                    color: 'black',
-                                    boxShadow: `4px 8px 0px ${theme.other.customYellowShadow}`,
-                                    border: 'none',
-                                }
-                            }}
+                            classNames={{ input: styles.input }}
+                            style={{ flex: 1, minWidth: '280px' }}
                         />
                     </Group>
-
-
                 </Box>
 
                 <Image
-                    src="/images/dawd.png"
+                    src={`${import.meta.env.BASE_URL}/images/dawd.png`}
                     alt="Partnership"
-                    style={{
-                        flex: '0 0 calc(40% - 8px)',
-                        minHeight: '500px',
-                        objectFit: 'cover',
-                        overflow: 'hidden',
-                    }}
+                    className={styles.image}
                     fit="cover"
                 />
             </Box>
         </Box>
-    )
+    );
 }
 
 export default Partnership;
