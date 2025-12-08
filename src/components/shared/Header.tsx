@@ -109,7 +109,7 @@ function Header() {
     );
 
     return (
-        <Box w="100%" bg={theme.other.darkBackground}>
+        <Box w="100%" bg={theme.other.darkBackground} className={classes.header}>
             <Container
                 h="100%"
                 fluid
@@ -127,7 +127,7 @@ function Header() {
                     justify="center"
                     gap="sm"
                     wrap="wrap"
-                    style={{ gap: 'clamp(8px, 2vw, 32px)' }}
+                    style={{ gap: 'clamp(8px, 2vw, 32px)'}}
                     visibleFrom="md"
                 >
                     <Button
@@ -148,13 +148,13 @@ function Header() {
                     >
                         Каталог
                     </Button>
-                    <Image
-                        src={`${import.meta.env.BASE_URL}/images/logo.svg`}
-                        h={{ base: 25, sm: 30, md: 40, lg: 50 }}
-                        w={{ base: 35, sm: 45, md: 60, lg: 70 }}
-                        style={{ cursor: 'pointer' }}
-                        onClick={() => navigate('/')}
-                    />
+                    <Box className={classes.logoWrapper}>
+                        <Image
+                            src={`${import.meta.env.BASE_URL}/images/logo.svg`}
+                            className={classes.logoDesktop}
+                            onClick={() => navigate('/')}
+                        />
+                    </Box>
                     <Button
                         variant="subtle"
                         color={theme.other.buttonColor}
@@ -205,6 +205,7 @@ function Header() {
                     w="100%"
                     justify="space-between"
                     px="xs"
+                    h='clamp(50px, 5vh, 200px)'
                     hiddenFrom="md"
                 >
                     <Burger
@@ -213,13 +214,13 @@ function Header() {
                         size="sm"
                         color={theme.other.buttonColor}
                     />
-                    <Image
-                        src={`${import.meta.env.BASE_URL}/images/logo.svg`}
-                        h={40}
-                        w={60}
-                        style={{ cursor: 'pointer' }}
-                        onClick={() => navigate('/')}
-                    />
+                    <Box className={classes.logoWrapper} style={{ width: 'clamp(50px, 6vw, 80px)' }}>
+                        <Image
+                            src={`${import.meta.env.BASE_URL}/images/logo.svg`}
+                            className={classes.logoMobile}
+                            onClick={() => navigate('/')}
+                        />
+                    </Box>
                     <Box w={40} /> {/* Spacer to center logo */}
                 </Group>
             </Container>

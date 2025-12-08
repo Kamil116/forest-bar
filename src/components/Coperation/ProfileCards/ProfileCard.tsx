@@ -82,8 +82,7 @@ function ProfileCard({ leaderProfile }: { leaderProfile: Vendor }) {
                         color={theme.other.customOrange}
                         fw={500}
                         w="fit-content"
-                        px={{ base: 'md', md: 'xl' }}
-                        size="sm"
+                        size="compact-md"
                     >
                         Реферальная ссылка
                     </Button>

@@ -5,7 +5,10 @@ interface RecipeTitleCardsProps {
     subTitle: string;
 }
 
-export function RecipeTitleCards({ mainTitle, subTitle }: RecipeTitleCardsProps) {
+export function RecipeTitleCards({
+    mainTitle,
+    subTitle,
+}: RecipeTitleCardsProps) {
     const theme = useMantineTheme();
 
     return (
@@ -14,7 +17,10 @@ export function RecipeTitleCards({ mainTitle, subTitle }: RecipeTitleCardsProps)
                 radius={theme.other.cardRadius}
                 bg={theme.other.customYellow}
                 p={{ base: 'xs', sm: 'sm', md: 'md', lg: 'lg' }}
-                style={{ flex: '2 1 300px', minWidth: 'clamp(180px, 25vw, 300px)' }}
+                style={{
+                    flex: '2 1 300px',
+                    minWidth: 'clamp(180px, 25vw, 300px)',
+                }}
             >
                 <Text
                     c="white"
@@ -29,7 +35,6 @@ export function RecipeTitleCards({ mainTitle, subTitle }: RecipeTitleCardsProps)
                 radius={theme.other.cardRadius}
                 bg={theme.other.customYellow}
                 p={{ base: 'xs', sm: 'sm', md: 'md', lg: 'lg' }}
-                style={{ flex: '1 1 200px', minWidth: 'clamp(140px, 18vw, 200px)' }}
             >
                 <Text
                     c="white"

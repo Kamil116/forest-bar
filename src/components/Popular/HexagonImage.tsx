@@ -23,4 +23,3 @@ export function HexagonImage({ src, alt }: HexagonImageProps) {
         </Box>
     );
 }
-

@@ -1,21 +1,23 @@
-import { Box, Container, Group, Stack, Text, useMantineTheme } from '@mantine/core';
-import { HexagonGrid } from '@/components/HexagonGrid';
+import { Container, Group, Stack, Text, useMantineTheme } from '@mantine/core';
 import { RecipeFeatureCard } from './RecipeFeatureCard';
 import { NavigationArrows } from './NavigationArrows';
+import { RecipeBannerBackground } from './RecipeBannerBackground';
+import classes from './RecipeFeaturesBanner.module.css';
+
+interface RecipeFeature {
+    label: string;
+    imageSrc: string;
+}
 
 interface RecipeFeaturesBannerProps {
     description: string;
     onPrevious?: () => void;
     onNext?: () => void;
+    backgroundComponent?: React.ReactNode;
+    features?: RecipeFeature[]; // Features показываются только если переданы (не для мёда)
 }
 
-const FEATURES = [
-    { label: 'Натуральность', imageSrc: `${import.meta.env.BASE_URL}/images/Group 81.png` },
-    { label: 'Качество', imageSrc: `${import.meta.env.BASE_URL}/images/Group 91.png` },
-    { label: 'Насыщенность', imageSrc: `${import.meta.env.BASE_URL}/images/Group 82.png` },
-];
-
-export function RecipeFeaturesBanner({ description, onPrevious, onNext }: RecipeFeaturesBannerProps) {
+export function RecipeFeaturesBanner({ description, onPrevious, onNext, backgroundComponent, features }: RecipeFeaturesBannerProps) {
     const theme = useMantineTheme();
 
     return (
@@ -24,50 +26,16 @@ export function RecipeFeaturesBanner({ description, onPrevious, onNext }: Recipe
             mt={{ base: 'md', sm: 'lg', md: 'xl' }}
             fluid
             px={{ base: 'xs', sm: 'sm', md: 'md' }}
+            className={classes.bannerContainer}
             style={{
                 position: 'relative',
-                overflow: 'hidden',
                 borderRadius: theme.other.cardRadius,
                 background: theme.other.customYellow,
-                paddingTop: 'clamp(1.5rem, 4vw, 3rem)',
-                paddingBottom: 'clamp(1.5rem, 4vw, 3rem)',
-                paddingLeft: 'clamp(1rem, 3vw, 2rem)',
-                paddingRight: 'clamp(1rem, 3vw, 2rem)',
             }}
         >
-            {/* Hexagon Grid Background - positioned higher to cover more area */}
-            <Box
-                style={{
-                    position: 'absolute',
-                    bottom: 'clamp(40px, 8vw, 80px)',
-                    left: 0,
-                    right: 0,
-                    height: 'clamp(200px, 30vw, 400px)',
-                    opacity: 0.6,
-                    pointerEvents: 'none',
-                    overflow: 'hidden',
-                }}
-            >
-                <HexagonGrid
-                    rows={5}
-                    cols={12}
-                    hexagonSize={80}
-                    gap={4}
-                    glowProbability={0.15}
-                    align="center"
-                    colors={[
-                        'rgba(255, 200, 87, 0.8)', // Lighter yellow with opacity
-                        'rgba(230, 180, 50, 0.8)', // Medium yellow-orange with opacity
-                        'rgba(255, 215, 120, 0.8)', // Very light yellow with opacity
-                        'rgba(240, 190, 60, 0.8)', // Golden yellow with opacity
-                        'rgba(200, 150, 40, 0.8)', // Darker yellow-orange with opacity
-                        'rgba(220, 170, 50, 0.8)', // Medium golden with opacity
-                    ]}
-                />
-            </Box>
-
-            {/* Text Content */}
-            <Stack gap="md" style={{ position: 'relative', zIndex: 4 }}>
+            <Stack gap="md" className={classes.contentWrapper}>
+                {/* Text Content at Top */}
+                <Stack gap="md" className={classes.contentStack}>
                 <Text
                     c="white"
                     fz={{
@@ -77,29 +45,46 @@ export function RecipeFeaturesBanner({ description, onPrevious, onNext }: Recipe
                         lg: 24,
                         xl: 28,
                     }}
+                    fw={500}
                     ta="center"
                     px={{ base: 'xs', sm: 'sm', md: 'md' }}
-                    style={{ lineHeight: 1.5 }}
+                    style={{ 
+                        lineHeight: 1.5,
+                        textShadow: '0 2px 8px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.5)',
+                        position: 'relative',
+                        zIndex: 3,
+                    }}
                 >
                     {description}
                 </Text>
 
-                {/* Icons Content */}
-                <Group
-                    gap="lg"
-                    justify="center"
-                    align="center"
-                    wrap="wrap"
-                    mt="lg"
-                >
-                    {FEATURES.map((feature, index) => (
-                        <RecipeFeatureCard
-                            key={index}
-                            label={feature.label}
-                            imageSrc={feature.imageSrc}
-                        />
-                    ))}
-                </Group>
+                    {/* Icons Content - показывается только если есть features (не для мёда) */}
+                    {features && features.length > 0 && (
+                        <Group
+                            gap="lg"
+                            justify="center"
+                            align="center"
+                            wrap="wrap"
+                            mt="lg"
+                            style={{ position: 'relative', zIndex: 3 }}
+                        >
+                            {features.map((feature, index) => (
+                                <RecipeFeatureCard
+                                    key={index}
+                                    label={feature.label}
+                                    imageSrc={feature.imageSrc}
+                                />
+                            ))}
+                        </Group>
+                    )}
+                </Stack>
+
+                {/* Background component - полноценный элемент в потоке */}
+                {backgroundComponent && (
+                    <div className={classes.backgroundWrapper}>
+                        {backgroundComponent}
+                    </div>
+                )}
             </Stack>
 
             {/* Navigation Arrows */}

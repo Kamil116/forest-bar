@@ -13,20 +13,10 @@ function Footer() {
         >
             <Group justify="space-between" wrap="wrap" gap="sm">
                 <Stack justify="flex-end" gap={2}>
-                    <Text
-                        className={classes.footerText}
-                        tt="uppercase"
-                        c="rgba(255, 255, 255, 0.31)"
-                        ta={{ base: 'center', md: 'left' }}
-                    >
+                    <Text className={classes.footerText}>
                         (c) Forest Bar 2025
                     </Text>
-                    <Text
-                        className={classes.footerText}
-                        tt="uppercase"
-                        c="rgba(255, 255, 255, 0.31)"
-                        ta={{ base: 'center', md: 'left' }}
-                    >
+                    <Text className={classes.footerText}>
                         Магазин экопродуктов
                     </Text>
                 </Stack>
@@ -36,64 +26,16 @@ function Footer() {
                     wrap="wrap"
                     justify="flex-end"
                 >
-                    <Stack gap={0}>
-                        <Text
-                            className={classes.footerText}
-                            tt="uppercase"
-                            c="rgba(255, 255, 255, 0.31)"
-                            ta={{ base: 'center', md: 'left' }}
-                        >
-                            Информация о компании
-                        </Text>
-                    </Stack>
-                    <Stack gap={0}>
-                        <Text
-                            className={classes.footerText}
-                            tt="uppercase"
-                            c="rgba(255, 255, 255, 0.31)"
-                            ta={{ base: 'center', md: 'left' }}
-                            style={{ wordBreak: 'break-word' }}
-                        >
+                    <Stack gap={0} className={classes.hideOnMobile}>
+                        <Text className={classes.footerText}>
                             Политика конфиденциальности
                         </Text>
                     </Stack>
                     <Stack gap={0}>
                         <Text
-                            className={classes.footerText}
-                            tt="uppercase"
-                            c="rgba(255, 255, 255, 0.31)"
-                            ta={{ base: 'center', md: 'left' }}
-                        >
-                            +7 900 800 71-13
-                        </Text>
-                        <Text
-                            className={classes.footerText}
-                            tt="uppercase"
-                            c="rgba(255, 255, 255, 0.31)"
-                            ta={{ base: 'center', md: 'left' }}
-                            style={{ wordBreak: 'break-word' }}
+                            className={`${classes.footerText}`}
                         >
                             Пользовательское соглашение
-                        </Text>
-                    </Stack>
-                    <Stack gap={0}>
-                        <Text
-                            className={classes.footerText}
-                            tt="uppercase"
-                            c="rgba(255, 255, 255, 0.31)"
-                            ta={{ base: 'center', md: 'left' }}
-                            style={{ wordBreak: 'break-word' }}
-                        >
-                            email@forestBar.ru
-                        </Text>
-                        <Text
-                            className={classes.footerText}
-                            tt="uppercase"
-                            c="rgba(255, 255, 255, 0.31)"
-                            ta={{ base: 'center', md: 'left' }}
-                            style={{ wordBreak: 'break-word' }}
-                        >
-                            Правила оплаты и возврата
                         </Text>
                     </Stack>
                 </Group>

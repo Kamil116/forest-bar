@@ -22,7 +22,7 @@ export function HomePage() {
                     <Title 
                         fw={400} 
                         order={1} 
-                        fz={{ base: 36, sm: 56, md: 80, lg: 120 }} 
+                        fz={{ base: 56, sm: 56, md: 80, lg: 120 }} 
                         tt="uppercase" 
                         c="white"
                         ta="center"

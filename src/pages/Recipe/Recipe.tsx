@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Box, Container, Stack, useMantineTheme } from '@mantine/core';
 import {
-    BackgroundHexagonGrids,
     RecipeTitleCards,
     RecipeFeaturesBanner,
+    RecipeBannerBackground,
 } from './components';
 import { recipes } from './data/recipes';
 
@@ -25,36 +25,43 @@ export default function Recipe() {
     };
 
     return (
-        <Stack gap={0} h="100vh">
-            <Box
-                bg={theme.other.cardBackground}
-                style={{
-                    flex: 1,
-                    position: 'relative',
-                    overflow: 'hidden',
-                }}
+        <Box
+            bg={theme.other.cardBackground}
+            style={{
+                position: 'relative',
+                overflow: 'hidden',
+                paddingTop: 'clamp(1rem, 3vh, 2rem)',
+                paddingBottom: 'clamp(1rem, 3vh, 2rem)',
+            }}
+        >
+            <Container
+                size="xl"
+                px={{ base: 'xs', sm: 'sm', md: 'md', lg: 'lg' }}
+                py={{ base: 'xs', sm: 'sm', md: 'md', lg: 'lg' }}
+                style={{ position: 'relative', zIndex: 1 }}
             >
-                <BackgroundHexagonGrids />
-
-                <Container
-                    size="xl"
-                    px={{ base: 'xs', sm: 'sm', md: 'md', lg: 'lg' }}
-                    py={{ base: 'sm', sm: 'md', md: 'lg', lg: 'xl' }}
-                    style={{ position: 'relative', zIndex: 1 }}
+                <Stack 
+                    gap="md"
+                    align="center" 
+                    justify="center" 
                 >
-                    <Stack gap="lg" align="center" justify="center" mih={{ base: '50vh', sm: '60vh', md: '70vh', lg: '80vh' }}>
-                        <RecipeTitleCards
-                            mainTitle={currentRecipe.mainTitle}
-                            subTitle={currentRecipe.subTitle}
-                        />
-                        <RecipeFeaturesBanner
-                            description={currentRecipe.description}
-                            onPrevious={handlePrevious}
-                            onNext={handleNext}
-                        />
-                    </Stack>
-                </Container>
-            </Box>
-        </Stack>
+                    <RecipeTitleCards
+                        mainTitle={currentRecipe.mainTitle}
+                        subTitle={currentRecipe.subTitle}
+                    />
+                    <RecipeFeaturesBanner
+                        description={currentRecipe.description}
+                        onPrevious={handlePrevious}
+                        onNext={handleNext}
+                        backgroundComponent={
+                            (currentRecipe.subTitle.toLowerCase().includes('мёд') || currentRecipe.subTitle.toLowerCase().includes('мед')) 
+                                ? <RecipeBannerBackground imageUrl={`${import.meta.env.BASE_URL}/images/honey-bg.png`} />
+                                : undefined
+                        }
+                        features={currentRecipe.features}
+                    />
+                </Stack>
+            </Container>
+        </Box>
     );
 }

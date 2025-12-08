@@ -23,7 +23,7 @@ function AdvantageCard({
             <Stack align="center" gap="md">
                 <Title
                     order={2}
-                    fz={{ base: 16, sm: 20, md: 32 }}
+                    fz={{ base: 22, sm: 24, md: 32 }}
                     fw={400}
                     tt="uppercase"
                     c={theme.other.customOrange}

@@ -1,50 +1,21 @@
-import { Box } from '@mantine/core';
-import { useId } from 'react';
-import classes from './ArrowConnector.module.css';
+/**
+ * ArrowConnector - Main component that renders arrows between hexagons
+ * Automatically switches between mobile and desktop versions based on screen size
+ */
+import { useMediaQuery } from '@mantine/hooks';
+import { ArrowConnectorMobile } from './ArrowConnectorMobile';
+import { ArrowConnectorDesktop } from './ArrowConnectorDesktop';
 
-interface ArrowConnectorProps {
-    direction: 'right-down' | 'right-up';
-}
+/**
+ * Renders an arrow connector between hexagons
+ * @param props.direction - 'right-down' for arrows going from top hexagons to bottom, 'right-up' for bottom to top
+ */
+export function ArrowConnector(props: { direction: 'right-down' | 'right-up' }) {
+    const isMobile = useMediaQuery('(max-width: 768px)');
 
-export function ArrowConnector({ direction }: ArrowConnectorProps) {
-    const markerId = useId();
-    
-    return (
-        <Box className={`${classes.arrow} ${classes[direction]}`}>
-            <svg
-                viewBox="0 0 250 150"
-                preserveAspectRatio="none"
-                className={classes.arrowSvg}
-            >
-                <defs>
-                    <marker
-                        id={markerId}
-                        markerWidth="12"
-                        markerHeight="12"
-                        refX="11"
-                        refY="6"
-                        orient="auto"
-                    >
-                        <polygon
-                            points="0 0, 12 6, 0 12"
-                            fill="rgba(92, 61, 46, 1)"
-                        />
-                    </marker>
-                </defs>
-                <path
-                    d={
-                        direction === 'right-down'
-                            ? 'M 50 0 C 50 25, 80 55, 115 85 C 150 115, 190 130, 245 105'
-                            : 'M 65 145 C 50 125, 80 95, 115 65 C 150 35, 190 20, 245 5'
-                    }
-                    stroke="rgba(92, 61, 46, 1)"
-                    strokeWidth="5"
-                    fill="none"
-                    markerEnd={`url(#${markerId})`}
-                    strokeLinecap="round"
-                />
-            </svg>
-        </Box>
+    return isMobile ? (
+        <ArrowConnectorMobile direction={props.direction} />
+    ) : (
+        <ArrowConnectorDesktop direction={props.direction} />
     );
 }
-
